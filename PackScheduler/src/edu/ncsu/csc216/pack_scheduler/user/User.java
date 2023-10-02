@@ -29,11 +29,11 @@ public abstract class User {
 	 * @param hashPW    Represents the user's hash password.
 	 */
 	public User(String firstName, String lastName, String id, String email, String hashPW) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.id = id;
-		this.email = email;
-		this.hashPW = hashPW;
+		setFirstName(firstName);
+		setLastName(lastName);
+		setId(id);
+		setEmail(email);
+		setPassword(hashPW);
 	}
 
 	/**

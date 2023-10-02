@@ -21,19 +21,19 @@ public class RegistrationManager {
 
 	/**Instance of a registration manager	 */
 	private static RegistrationManager instance;
-	
+
 	/** The course catalog object used within the class*/
 	private CourseCatalog courseCatalog;
 	
 	/** the student directory object used in this class*/
 	private StudentDirectory studentDirectory;
-	
+
 	/** The single instance of the registrar user*/
 	private User registrar;
 	
 	/** the current user in the class*/
 	private User currentUser;
-	
+
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	
