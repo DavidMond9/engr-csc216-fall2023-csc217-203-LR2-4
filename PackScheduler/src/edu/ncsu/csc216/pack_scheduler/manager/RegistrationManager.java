@@ -20,29 +20,15 @@ import edu.ncsu.csc216.pack_scheduler.user.User;
 public class RegistrationManager {
 
 	/**Instance of a registration manager	 */
-	private static RegistrationManager instance;
-<<<<<<< HEAD
-	private CourseCatalog courseCatalog;
-=======
-	
+	private static RegistrationManager instance;	
 	/** The course catalog object used within the class*/
 	private CourseCatalog courseCatalog;
-	
 	/** the student directory object used in this class*/
->>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-fall2023/csc217-203-LR2-4.git
 	private StudentDirectory studentDirectory;
-<<<<<<< HEAD
-	private User registrar;
-	private User currentUser;
-=======
-	
 	/** The single instance of the registrar user*/
 	private User registrar;
-	
 	/** the current user in the class*/
 	private User currentUser;
-	
->>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-fall2023/csc217-203-LR2-4.git
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	
