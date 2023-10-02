@@ -1,6 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
-abstract class User {
+public abstract class User {
 
 	/** Student first name */
 	private String firstName;
@@ -149,6 +149,10 @@ abstract class User {
 		this.id = id;
 	}
 
+	/**
+	 * the hashcode method encrpyts the password
+	 * @return the encoded integer value
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -161,6 +165,11 @@ abstract class User {
 		return result;
 	}
 
+	/**
+	 * this creates a method to compare to objects and see if they are the same
+	 * @param obj the object this instance of a user is being compared to
+	 * @return true if the two objects are not the same, false if they are identical
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
