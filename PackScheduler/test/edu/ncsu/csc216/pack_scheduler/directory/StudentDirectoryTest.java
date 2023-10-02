@@ -13,6 +13,8 @@ import java.util.Scanner;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.pack_scheduler.user.Student;
+
 /**
  * Tests StudentDirectory.
  * @author Sarah Heckman
@@ -255,11 +257,12 @@ public class StudentDirectoryTest {
 	@Test
 	public void testGetStudentById() {
 		StudentDirectory sd = new StudentDirectory();
+		Student s = new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", 15);
+		Student s2 = new Student("James", "Long", "jlong", "jlong@ncsu.edu", "pw", 15);
 		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
 		sd.addStudent("James", "Long", "jlong", "jlong@ncsu.edu", "pw", "pw", 15);
-
-		assertEquals(sd.getStudentById("zking"), sd.getStudentDirectory()[2][0]);
-		assertEquals(sd.getStudentById("jlong"), sd.getStudentDirectory()[2][1]);
+		assertEquals(sd.getStudentById("zking"), s);
+		assertEquals(sd.getStudentById("jlong"), s2);
 		
 		//ID doesn't exist
 		try {
