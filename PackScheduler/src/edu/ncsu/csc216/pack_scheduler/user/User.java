@@ -1,10 +1,10 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
-
 /**
- * User class represents a user who has a first name, last name,
- * id, email, and hashPW.
- * @author Duncan, 
+ * User class represents a user who has a first name, last name, id, email, and
+ * hashPW.
+ * 
+ * @author Duncan,
  */
 public abstract class User {
 
@@ -19,15 +19,14 @@ public abstract class User {
 	/** Student password in hash code */
 	private String hashPW;
 
-
-	
 	/**
 	 * Constructor to create a User in the User class.
+	 * 
 	 * @param firstName Represents the user's first name.
-	 * @param lastName Represents the user's last name.
-	 * @param id Represents the user's id.
-	 * @param email Represents the user's email.
-	 * @param hashPW Represents the user's hash password.
+	 * @param lastName  Represents the user's last name.
+	 * @param id        Represents the user's id.
+	 * @param email     Represents the user's email.
+	 * @param hashPW    Represents the user's hash password.
 	 */
 	public User(String firstName, String lastName, String id, String email, String hashPW) {
 		this.firstName = firstName;
@@ -36,7 +35,7 @@ public abstract class User {
 		this.email = email;
 		this.hashPW = hashPW;
 	}
-	
+
 	/**
 	 * Returns the student's email
 	 * 
@@ -50,27 +49,28 @@ public abstract class User {
 	 * Sets the student's email
 	 * 
 	 * @param email the email to set
-	 * @throws IllegalArgumentException if email is null or empty or an invalid format
+	 * @throws IllegalArgumentException if email is null or empty or an invalid
+	 *                                  format
 	 */
 	public void setEmail(String email) {
 		if (email == null || "".equals(email)) {
-			
+
 			throw new IllegalArgumentException("Invalid email");
-			
-		} 
-		
-		if (!email.contains("@") || !email.contains(".")) {
-			
-			throw new IllegalArgumentException("Invalid email");
-			
-		} 
-		
-		if (email.lastIndexOf(".") < email.indexOf("@")) {
-			
-			throw new IllegalArgumentException("Invalid email");
-			
+
 		}
-		
+
+		if (!email.contains("@") || !email.contains(".")) {
+
+			throw new IllegalArgumentException("Invalid email");
+
+		}
+
+		if (email.lastIndexOf(".") < email.indexOf("@")) {
+
+			throw new IllegalArgumentException("Invalid email");
+
+		}
+
 		this.email = email;
 	}
 
@@ -91,10 +91,10 @@ public abstract class User {
 	 */
 	public void setPassword(String hashPW) {
 		if (hashPW == null || "".equals(hashPW)) {
-			
+
 			throw new IllegalArgumentException("Invalid password");
-			
-		} 
+
+		}
 		this.hashPW = hashPW;
 	}
 
@@ -115,11 +115,11 @@ public abstract class User {
 	 */
 	public void setFirstName(String firstName) {
 		if (firstName == null || "".equals(firstName)) {
-			
+
 			throw new IllegalArgumentException("Invalid first name");
-			
-		} 
-		
+
+		}
+
 		this.firstName = firstName;
 	}
 
@@ -140,10 +140,10 @@ public abstract class User {
 	 */
 	public void setLastName(String lastName) {
 		if (lastName == null || "".equals(lastName)) {
-			
+
 			throw new IllegalArgumentException("Invalid last name");
-			
-		} 
+
+		}
 		this.lastName = lastName;
 	}
 
@@ -164,16 +164,17 @@ public abstract class User {
 	 */
 	protected void setId(String id) {
 		if (id == null || "".equals(id)) {
-			
+
 			throw new IllegalArgumentException("Invalid id");
-			
-		} 
-		
+
+		}
+
 		this.id = id;
 	}
 
 	/**
 	 * the hashcode method encrpyts the password
+	 * 
 	 * @return the encoded integer value
 	 */
 	@Override
@@ -190,6 +191,7 @@ public abstract class User {
 
 	/**
 	 * this creates a method to compare to objects and see if they are the same
+	 * 
 	 * @param obj the object this instance of a user is being compared to
 	 * @return true if the two objects are not the same, false if they are identical
 	 */
@@ -229,7 +231,20 @@ public abstract class User {
 			return false;
 		return true;
 	}
-	
-	
+
+	private static class Registrar extends User {
+
+		/**
+		 * create a registrar user
+		 * @param firstName first name of the registrar user
+		 * @param lastName last name of the registrar user
+		 * @param id id for the registrar user
+		 * @param email the email for the registrar user
+		 * @param hashPW password for the registrar user
+		 */
+		public Registrar(String firstName, String lastName, String id, String email, String hashPW) {
+			super(firstName, lastName, id, email, hashPW);
+		}
+	}
 
 }
