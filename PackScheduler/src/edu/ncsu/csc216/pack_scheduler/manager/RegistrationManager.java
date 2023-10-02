@@ -14,7 +14,7 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 
 /**
- * the registration manager class is capable of ensuring users are met with their class needs
+ * The registration manager class is capable of ensuring users are met with their class needs
  * @author Duncan
  */
 public class RegistrationManager {
@@ -49,7 +49,7 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * creates a registrar from the file being taken in as a field
+	 * Creates a registrar from the file being taken in as a field
 	 */
 	private void createRegistrar() {
 		Properties prop = new Properties();
@@ -160,12 +160,17 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * the inner registrar class that will implement a singleton pattern
-	 * @author Aubrey
+	 * The inner registrar class that will implement a singleton pattern
+	 * @author Audrey Fuelleman
 	 */
 	private static class Registrar extends User {
 		/**
 		 * Create a registrar user.
+		 * @param firstName the registrar's first name
+		 * @param lastName the registrar's last name
+		 * @param id the registrar's id
+		 * @param email the registrar's email
+		 * @param hashPW the registrar's hashed password
 		 */
 		public Registrar(String firstName, String lastName, String id, String email, String hashPW) {
 			super(firstName, lastName, id, email, hashPW);
