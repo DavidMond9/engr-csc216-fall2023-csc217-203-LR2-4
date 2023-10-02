@@ -248,5 +248,26 @@ public class StudentDirectoryTest {
 			fail("Error reading files.");
 		}
 	}
+	
+	/**
+	 * Tests StudentDirectory.getStudentById().
+	 */
+	@Test
+	public void testGetStudentById() {
+		StudentDirectory sd = new StudentDirectory();
+		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
+		sd.addStudent("James", "Long", "jlong", "jlong@ncsu.edu", "pw", "pw", 15);
+
+		assertEquals(sd.getStudentById("zking"), sd.getStudentDirectory()[2][0]);
+		assertEquals(sd.getStudentById("jlong"), sd.getStudentDirectory()[2][1]);
+		
+		//ID doesn't exist
+		try {
+			sd.getStudentById("");
+			fail();
+		} catch(IllegalArgumentException e) {
+			assertEquals("Student not in directory.", e.getMessage());
+		}
+	}
 
 }
