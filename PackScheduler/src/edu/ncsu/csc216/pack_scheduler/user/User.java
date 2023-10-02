@@ -4,6 +4,7 @@ package edu.ncsu.csc216.pack_scheduler.user;
 /**
  * User class represents a user who has a first name, last name,
  * id, email, and hashPW.
+ * @author Duncan, 
  */
 public abstract class User {
 
