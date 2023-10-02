@@ -232,22 +232,6 @@ public abstract class User {
 		return true;
 	}
 
-	/**
-	 * the inner class for registrar, it will be used within registration manager
-	 */
-	private static class Registrar extends User {
 
-		/**
-		 * create a registrar user
-		 * @param firstName first name of the registrar user
-		 * @param lastName last name of the registrar user
-		 * @param id id for the registrar user
-		 * @param email the email for the registrar user
-		 * @param hashPW password for the registrar user
-		 */
-		public Registrar(String firstName, String lastName, String id, String email, String hashPW) {
-			super(firstName, lastName, id, email, hashPW);
-		}
-	}
 
 }
