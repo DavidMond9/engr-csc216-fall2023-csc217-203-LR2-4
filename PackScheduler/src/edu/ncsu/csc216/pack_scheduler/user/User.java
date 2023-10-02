@@ -232,6 +232,9 @@ public abstract class User {
 		return true;
 	}
 
+	/**
+	 * the inner class for registrar, it will be used within registration manager
+	 */
 	private static class Registrar extends User {
 
 		/**
