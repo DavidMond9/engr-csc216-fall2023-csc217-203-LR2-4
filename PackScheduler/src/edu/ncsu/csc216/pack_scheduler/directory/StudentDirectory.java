@@ -161,4 +161,32 @@ public class StudentDirectory {
 		}
 	}
 
+	/**
+	 * Search for a student in the student directory by their id
+	 * 
+	 * @param id a student id
+	 * @return student the student with the given id
+	 */
+	public Student getStudentById(String id) {
+		Student student = null;
+		
+		for (int i = 0; i < studentDirectory.size(); i++) {
+			
+			if (studentDirectory.get(i).getId().equals(id)) {
+				
+				student = studentDirectory.get(i);
+				
+			}
+			
+		}
+		
+		if (student == null) {
+			
+			throw new IllegalArgumentException("Student not in directory");
+			
+		}
+
+		return student;
+	}
+
 }
