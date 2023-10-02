@@ -1,9 +1,12 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+<<<<<<< HEAD
 /**
  * User class represents a user who has a first name, last name,
  * id, email, and hashPW.
  */
+=======
+>>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-fall2023/csc217-203-LR2-4.git
 public abstract class User {
 
 	/** Student first name */
@@ -170,6 +173,10 @@ public abstract class User {
 		this.id = id;
 	}
 
+	/**
+	 * the hashcode method encrpyts the password
+	 * @return the encoded integer value
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -182,6 +189,11 @@ public abstract class User {
 		return result;
 	}
 
+	/**
+	 * this creates a method to compare to objects and see if they are the same
+	 * @param obj the object this instance of a user is being compared to
+	 * @return true if the two objects are not the same, false if they are identical
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
