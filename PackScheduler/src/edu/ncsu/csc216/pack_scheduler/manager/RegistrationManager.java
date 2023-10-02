@@ -16,10 +16,10 @@ import edu.ncsu.csc216.pack_scheduler.user.User;
 public class RegistrationManager {
 	
 	private static RegistrationManager instance;
-	  private CourseCatalog courseCatalog;
+	private CourseCatalog courseCatalog;
 	private StudentDirectory studentDirectory;
-	  private User registrar;
-	   private User currentUser;
+	private User registrar;
+	private User currentUser;
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	private static final String PROP_FILE = "registrar.properties";

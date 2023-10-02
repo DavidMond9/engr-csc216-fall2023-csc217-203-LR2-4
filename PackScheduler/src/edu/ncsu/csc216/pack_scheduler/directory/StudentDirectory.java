@@ -179,10 +179,9 @@ public class StudentDirectory {
 			}
 			
 		}
-		
 		if (student == null) {
 			
-			throw new IllegalArgumentException("Student not in directory");
+			throw new IllegalArgumentException("Student not in directory.");
 			
 		}
 
