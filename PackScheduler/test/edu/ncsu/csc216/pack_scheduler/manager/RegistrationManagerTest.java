@@ -43,10 +43,5 @@ public class RegistrationManagerTest {
 	public void testGetCurrentUser() {
 		fail("Not yet implemented");
 	}
-	
-	@Test
-	public void testGetStudentById() {
-		fail("Not yet implemented");
-	}
 
 }
