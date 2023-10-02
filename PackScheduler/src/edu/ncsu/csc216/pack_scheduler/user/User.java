@@ -1,6 +1,10 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
-abstract class User {
+/**
+ * User class represents a user who has a first name, last name,
+ * id, email, and hashPW.
+ */
+public abstract class User {
 
 	/** Student first name */
 	private String firstName;
@@ -14,6 +18,23 @@ abstract class User {
 	private String hashPW;
 
 
+	
+	/**
+	 * Constructor to create a User in the User class.
+	 * @param firstName Represents the user's first name.
+	 * @param lastName Represents the user's last name.
+	 * @param id Represents the user's id.
+	 * @param email Represents the user's email.
+	 * @param hashPW Represents the user's hash password.
+	 */
+	public User(String firstName, String lastName, String id, String email, String hashPW) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.id = id;
+		this.email = email;
+		this.hashPW = hashPW;
+	}
+	
 	/**
 	 * Returns the student's email
 	 * 
