@@ -1,12 +1,11 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
-<<<<<<< HEAD
+
 /**
  * User class represents a user who has a first name, last name,
  * id, email, and hashPW.
+ * @author Duncan, 
  */
-=======
->>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-fall2023/csc217-203-LR2-4.git
 public abstract class User {
 
 	/** Student first name */
