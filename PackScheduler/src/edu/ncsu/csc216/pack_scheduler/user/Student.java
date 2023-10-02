@@ -316,5 +316,37 @@ public class Student extends User implements Comparable<Student> {
 		return compare;
 	}
 
+	/**
+	 * creates an encrypted integer
+	 * @return the encrypted integer
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + maxCredits;
+		return result;
+	}
+
+	/**
+	 * determines if a student object is equal to the parameter
+	 * @param obj the object being compared
+	 * @return true if the objects are not equal, false if they are equal
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (maxCredits != other.maxCredits)
+			return false;
+		return true;
+	}
+
+	
 	
 }
