@@ -66,13 +66,9 @@ public class RegistrationManagerTest {
 		try (InputStream input = new FileInputStream(PROP_FILE)) {
 			prop.load(input);
 
-			String firstName = prop.getProperty("first");
-			String lastName = prop.getProperty("last");
 			String id = prop.getProperty("id");
-			String email = prop.getProperty("email");
 			String pw = prop.getProperty("pw");
-			
-			manager.getStudentDirectory().addStudent(firstName, lastName, id, email, pw, pw, 15);
+
 			assertTrue(manager.login(id, pw));
 			assertFalse(manager.login(id, pw + "different"));
 			
