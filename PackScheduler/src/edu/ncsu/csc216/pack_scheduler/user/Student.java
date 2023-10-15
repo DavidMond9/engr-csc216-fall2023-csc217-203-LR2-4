@@ -1,6 +1,5 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
-import java.util.Objects;
 
 /**
  * Class to create a Student object

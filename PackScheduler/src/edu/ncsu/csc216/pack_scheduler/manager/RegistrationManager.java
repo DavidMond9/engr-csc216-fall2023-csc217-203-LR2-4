@@ -23,10 +23,10 @@ public class RegistrationManager {
 	private static RegistrationManager instance;
 
 	/** The course catalog object used within the class*/
-	private CourseCatalog courseCatalog;
+	private CourseCatalog courseCatalog = new CourseCatalog();
 	
 	/** the student directory object used in this class*/
-	private StudentDirectory studentDirectory;
+	private StudentDirectory studentDirectory = new StudentDirectory();
 
 	/** The single instance of the registrar user*/
 	private User registrar;
@@ -44,7 +44,6 @@ public class RegistrationManager {
 	 * the constructor for the registration manager class
 	 */
 	private RegistrationManager() {
-		RegistrationManager manager = RegistrationManager.getInstance();
 		createRegistrar();
 	}
 
@@ -116,23 +115,26 @@ public class RegistrationManager {
 	 * @return true if the user enters the correct password, false if they enter the wrong password
 	 */
 	public boolean login(String id, String password) {
-		Student s = studentDirectory.getStudentById(id);
+		boolean loginSuccess = false;
+		if (studentDirectory != null) {
+			Student s = studentDirectory.getStudentById(id);
 
-		String localHashPW = hashPW(password);
-		if (s.getPassword().equals(localHashPW)) {
-			currentUser = s;
-			return true;
-		}
+			String localHashPW = hashPW(password);
+			if (s.getPassword().equals(localHashPW)) {
+				currentUser = s;
+				loginSuccess = true;
+			}
 
-		if (registrar.getId().equals(id)) {
+			if (registrar.getId().equals(id)) {
 
-			if (registrar.getPassword().equals(localHashPW)) {
-				currentUser = registrar;
-				return true;
+				if (registrar.getPassword().equals(localHashPW)) {
+					currentUser = registrar;
+					loginSuccess = true;
+				}
 			}
 		}
 
-		return false;
+		return loginSuccess;
 	}
 
 	/**
@@ -147,21 +149,19 @@ public class RegistrationManager {
 	 * @return the current user
 	 */ 
 	public User getCurrentUser() {
-		// TODO implement method
-		return null;
+		return currentUser;
 	}
 
 	/**
 	 * clears the data in the course catalog and student directory
 	 */
 	public void clearData() {
-		courseCatalog.newCourseCatalog();
-		studentDirectory.newStudentDirectory();
+			courseCatalog.newCourseCatalog();
+			studentDirectory.newStudentDirectory();	
 	}
 
 	/**
 	 * The inner registrar class that will implement a singleton pattern
-	 * @author Audrey Fuelleman
 	 */
 	private static class Registrar extends User {
 		/**

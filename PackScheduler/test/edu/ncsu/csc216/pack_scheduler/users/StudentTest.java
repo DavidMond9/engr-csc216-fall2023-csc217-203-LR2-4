@@ -10,9 +10,6 @@ import java.security.NoSuchAlgorithmException;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
-//import edu.ncsu.csc216.wolf_scheduler.course.Course;
-import edu.ncsu.csc216.pack_scheduler.user.User;
-
 
 /**
  * Tests the Student object. 

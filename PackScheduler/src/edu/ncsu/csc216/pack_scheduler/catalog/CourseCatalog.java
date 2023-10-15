@@ -21,8 +21,11 @@ public class CourseCatalog {
 	 */
 	private SortedList<Course> catalog;
 	
-	CourseCatalog() {
-		catalog = new SortedList<Course>();
+	/**
+	 * Constructs a course catalog object.
+	 */
+	public CourseCatalog() {
+		newCourseCatalog();
 	}
 	
 	/**
