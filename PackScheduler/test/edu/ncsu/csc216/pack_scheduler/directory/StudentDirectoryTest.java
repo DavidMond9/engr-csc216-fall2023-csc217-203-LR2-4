@@ -261,8 +261,12 @@ public class StudentDirectoryTest {
 		Student s2 = new Student("James", "Long", "jlong", "jlong@ncsu.edu", "pw", 15);
 		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
 		sd.addStudent("James", "Long", "jlong", "jlong@ncsu.edu", "pw", "pw", 15);
-		assertEquals(sd.getStudentById("zking"), s);
-		assertEquals(sd.getStudentById("jlong"), s2);
+		assertEquals(sd.getStudentById("zking").getFirstName(), s.getFirstName());
+		assertEquals(sd.getStudentById("zking").getLastName(), s.getLastName());
+		assertEquals(sd.getStudentById("zking").getEmail(), s.getEmail());
+		assertEquals(sd.getStudentById("jlong").getFirstName(), s2.getFirstName());
+		assertEquals(sd.getStudentById("jlong").getLastName(), s2.getLastName());
+		assertEquals(sd.getStudentById("jlong").getEmail(), s2.getEmail());
 		
 		//ID doesn't exist
 		try {
