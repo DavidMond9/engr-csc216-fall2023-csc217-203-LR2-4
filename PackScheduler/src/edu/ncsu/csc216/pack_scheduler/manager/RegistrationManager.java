@@ -115,26 +115,26 @@ public class RegistrationManager {
 	 * @return true if the user enters the correct password, false if they enter the wrong password
 	 */
 	public boolean login(String id, String password) {
-		boolean loginSuccess = false;
-		if (studentDirectory != null) {
-			Student s = studentDirectory.getStudentById(id);
-
-			String localHashPW = hashPW(password);
-			if (s.getPassword().equals(localHashPW)) {
-				currentUser = s;
-				loginSuccess = true;
-			}
-
-			if (registrar.getId().equals(id)) {
-
-				if (registrar.getPassword().equals(localHashPW)) {
-					currentUser = registrar;
-					loginSuccess = true;
-				}
+		String localHashPW = hashPW(password);
+		if (registrar.getId().equals(id)) {
+			
+			if (registrar.getPassword().equals(localHashPW)) {
+				currentUser = registrar;
+					return true;
+			} else {
+				return false;
+				
 			}
 		}
-
-		return loginSuccess;
+		
+		Student s = studentDirectory.getStudentById(id);
+			
+		if (s.getPassword().equals(localHashPW)) {
+			currentUser = s;
+				return true;
+		}	
+			
+				return false;
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * gets the current user
+	 * Returns the current user.
 	 * @return the current user
 	 */ 
 	public User getCurrentUser() {
