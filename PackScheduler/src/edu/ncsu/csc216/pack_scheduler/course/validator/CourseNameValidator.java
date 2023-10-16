@@ -3,6 +3,7 @@ package edu.ncsu.csc216.pack_scheduler.course.validator;
 /**
  * Checking whether
  * a Course's Name is valid.
+ * @author David Mond
  */
 public class CourseNameValidator {
 	
