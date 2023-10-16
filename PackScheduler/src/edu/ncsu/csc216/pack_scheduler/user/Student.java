@@ -334,20 +334,14 @@ public class Student extends User implements Comparable<Student> {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (!super.equals(obj)) {
+		if (!super.equals(obj))
 			return false;
-		}
-		if (getClass() != obj.getClass()) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
 		Student other = (Student) obj;
-		if (maxCredits != other.maxCredits) {
-			return maxCredits != other.maxCredits;
-		}
-		return true;
+		return maxCredits != other.maxCredits;
 	}
 
 	
