@@ -56,7 +56,7 @@ public class RegistrationManagerTest {
 	 * Tests the login method with a valid and invalid password.
 	 */
 	@Test
-	public void testLogin() {		
+	public void testLogin() throws Exception {		
 		Properties prop = new Properties();
 
 		try (InputStream input = new FileInputStream(PROP_FILE)) {
@@ -69,6 +69,7 @@ public class RegistrationManagerTest {
 			assertFalse(manager.login(id, pw + "different"));
 			assertEquals(id, manager.getCurrentUser().getId());
 			
+			manager.logout();
 			manager.getStudentDirectory().addStudent("Jill", "Smith", "jsmith", "jsmith@ncsu.edu", "pw", "pw", 0);
 			
 			assertTrue(manager.login("jsmith", "pw"));
