@@ -127,6 +127,7 @@ public class RegistrationManager {
 			}
 		}
 		
+		try {
 		Student s = studentDirectory.getStudentById(id);
 			
 		if (s.getPassword().equals(localHashPW)) {
@@ -135,6 +136,11 @@ public class RegistrationManager {
 		}	
 			
 				return false;
+				
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("User doesn't exist");
+			
+		}
 	}
 
 	/**
