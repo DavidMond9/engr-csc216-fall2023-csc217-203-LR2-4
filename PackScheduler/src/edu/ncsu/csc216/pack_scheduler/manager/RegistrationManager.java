@@ -116,8 +116,7 @@ public class RegistrationManager {
 	 */
 	public boolean login(String id, String password) {
 		// Only login if a user is not currently logged in.
-		if (currentUser == registrar ||
-			currentUser == null) {
+		if (currentUser == null) {
 			String localHashPW = hashPW(password);
 			if (registrar.getId().equals(id)) {
 				
@@ -156,7 +155,7 @@ public class RegistrationManager {
 	 * allows the user to log out
 	 */
 	public void logout() {
-		currentUser = registrar;
+		currentUser = null;
 	}
 
 	/**
