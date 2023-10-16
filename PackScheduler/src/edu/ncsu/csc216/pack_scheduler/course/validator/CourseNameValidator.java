@@ -1,12 +1,12 @@
 package edu.ncsu.csc216.pack_scheduler.course.validator;
 
 /**
- * Checking whether
- * a Course's Name is valid.
+ * Checking whether a Course's Name is valid.
+ * 
  * @author David Mond
  */
 public class CourseNameValidator {
-	
+
 	/**
 	 * Field to keep track of the amount of letters.
 	 */
@@ -27,70 +27,61 @@ public class CourseNameValidator {
 	 * Field to keep track if end is valid.
 	 */
 	private boolean validEndState;
-	
+
 	/**
 	 * Constructor for CourseNameValidator.
 	 */
 	public CourseNameValidator() {
-		
+
 	}
+
 	/**
 	 * Checks to see if the name is valid.
+	 * 
 	 * @param name Name input.
 	 * @return Boolean that represents if the name is valid or not.
 	 * @throws InvalidTransitionException throws an exception if invalid input.
 	 */
 	public boolean isValid(String name) throws InvalidTransitionException {
-		for(int i = 0; i < name.length(); i++) {
-			if("I".equals(currentState)) {
-				if(Character.isLetter(name.charAt(i))) {
+		for (int i = 0; i < name.length(); i++) {
+			if ("I".equals(currentState)) {
+				if (Character.isLetter(name.charAt(i))) {
 					stateInitial.onLetter();
-				}
-				else if(Character.isDigit(name.charAt(i))) {
+				} else if (Character.isDigit(name.charAt(i))) {
 					stateInitial.onDigit();
-				}	
-				else {
+				} else {
 					State.onOther();
 				}
-			}
-			else if ("L".equals(currentState)) {
-				if(Character.isLetter(name.charAt(i))) {
+			} else if ("L".equals(currentState)) {
+				if (Character.isLetter(name.charAt(i))) {
 					stateLetter.onLetter();
-				}
-				else if(Character.isDigit(name.charAt(i))) {
+				} else if (Character.isDigit(name.charAt(i))) {
 					stateLetter.onDigit();
-				}	
-				else {
+				} else {
 					State.onOther();
 				}
-			}
-			else if("D".equals(currentState)) {
-				if(Character.isLetter(name.charAt(i))) {
+			} else if ("D".equals(currentState)) {
+				if (Character.isLetter(name.charAt(i))) {
 					stateDigit.onLetter();
-				}
-				else if(Character.isDigit(name.charAt(i))) {
+				} else if (Character.isDigit(name.charAt(i))) {
 					stateDigit.onDigit();
-				}	
-				else {
+				} else {
 					State.onOther();
 				}
-			}
-			else if("S".equals(currentState)) {
-				if(Character.isLetter(name.charAt(i))) {
+			} else if ("S".equals(currentState)) {
+				if (Character.isLetter(name.charAt(i))) {
 					stateSuffix.onLetter();
-				}
-				else if(Character.isDigit(name.charAt(i))) {
+				} else if (Character.isDigit(name.charAt(i))) {
 					stateSuffix.onDigit();
-				}	
-				else {
+				} else {
 					State.onOther();
 				}
 			}
-			
+
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Abstract class state that represents the state that the FSM is in.
 	 */
@@ -99,30 +90,36 @@ public class CourseNameValidator {
 		 * Constructor for State.
 		 */
 		public State() {
-			
+
 		}
+
 		/**
 		 * Checks to see if char is a letter.
+		 * 
 		 * @return boolean which represents if letter or not.
-		 * @throws InvalidTransitionException 
+		 * @throws InvalidTransitionException
 		 */
 		public abstract void onLetter() throws InvalidTransitionException;
+
 		/**
 		 * Checks to see if char is a digit.
+		 * 
 		 * @return boolean which represents if digit or not.
-		 * @throws InvalidTransitionException 
+		 * @throws InvalidTransitionException
 		 */
 		public abstract void onDigit() throws InvalidTransitionException;
+
 		/**
 		 * If not digit or letter than onOther.
+		 * 
 		 * @throws InvalidTransitionException Throws exception for invalid input.
 		 */
 		public void onOther() throws InvalidTransitionException {
 			throw new InvalidTransitionException("Course name can only contain letters and digits.");
 		}
-		
+
 	}
-	
+
 	/**
 	 * InitialState class, first state, extends state.
 	 */
@@ -131,8 +128,9 @@ public class CourseNameValidator {
 		 * Constructor for InitialState.
 		 */
 		private InitialState() {
-			
+
 		}
+
 		/**
 		 * Checks to see if char is a letter.
 		 */
@@ -140,14 +138,17 @@ public class CourseNameValidator {
 			currentState = "L";
 			letterCount += 1;
 		}
+
 		/**
 		 * Checks to see if char is a digit.
-		 * @throws InvalidTransitionException 
+		 * 
+		 * @throws InvalidTransitionException
 		 */
 		public void onDigit() throws InvalidTransitionException {
 			throw new InvalidTransitionException("Course name must start with a letter.");
 		}
 	}
+
 	/**
 	 * LetterState class, second state, extends state.
 	 */
@@ -160,20 +161,35 @@ public class CourseNameValidator {
 		 * Constructor for LetterState.
 		 */
 		private LetterState() {
-			
+		
 		}
 		/**
 		 * Checks to see if char is a letter.
+		 * if the letter count is equal to 4 it transitions to the NumberState
+		 * @throws InvalidTransitionException if letter count is equal to 0 or greater than 5
 		 */
-		public void onLetter() {
-			
+		@Override
+		public void onLetter() throws InvalidTransitionException{
+			letterCount++;
+			if (letterCount == 0 || letterCount > MAX_PREFIX_LETTERS) {
+				throw new InvalidTransitionException("Invalid FSM transition.");
+			}
+			if (letterCount == MAX_PREFIX_LETTERS) {
+				currentState = "N";
+			}
+			currentState = "D";
 		}
+
 		/**
 		 * Checks to see if char is a digit.
 		 */
-		public void onDigit() {
-			
+		@Override
+		public void onDigit() throws InvalidTransitionException{
+			digitCount++;
+			if (letterCount == 0) {
+				throw new InvalidTransitionException("Invalid FSM transition.");
 		}
+			currentState = "N";
 	}
 	/**
 	 * DigitState class, third state, extends state.
