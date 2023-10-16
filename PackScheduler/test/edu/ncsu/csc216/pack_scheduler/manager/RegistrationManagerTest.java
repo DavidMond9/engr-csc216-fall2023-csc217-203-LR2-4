@@ -10,13 +10,9 @@ import java.util.Properties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.ncsu.csc216.pack_scheduler.course.Course;
-
 /**
  * Tests the RegistrationManager class.
  * @author Audrey Fuelleman
- * @author David Mond
- * @author Duncan Munro
  */
 public class RegistrationManagerTest {
 	
@@ -71,7 +67,13 @@ public class RegistrationManagerTest {
 
 			assertTrue(manager.login(id, pw));
 			assertFalse(manager.login(id, pw + "different"));
+			assertEquals(id, manager.getCurrentUser().getId());
 			
+			manager.getStudentDirectory().addStudent("Jill", "Smith", "jsmith", "jsmith@ncsu.edu", "pw", "pw", 0);
+			
+			assertTrue(manager.login("jsmith", "pw"));
+			assertFalse(manager.login("jsmith", "notpw"));
+			assertEquals(manager.getStudentDirectory().getStudentById("jsmith"), manager.getCurrentUser());
 
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Cannot load properties file.");
@@ -79,14 +81,32 @@ public class RegistrationManagerTest {
 
 	}
 
+	/**
+	 * Tests the logout method.
+	 */
 	@Test
 	public void testLogout() {
-		fail("Not yet implemented");
+		Properties prop = new Properties();
+
+		try (InputStream input = new FileInputStream(PROP_FILE)) {
+			prop.load(input);
+
+			String id = prop.getProperty("id");
+			manager.logout();
+			assertEquals(id, manager.getCurrentUser().getId());
+			
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Cannot load properties file.");
+		}
+
 	}
 
+	/**
+	 * Tests the getCurrentUser method before current user is set.
+	 */
 	@Test
 	public void testGetCurrentUser() {
-		fail("Not yet implemented");
+		assertEquals(null, manager.getCurrentUser());
 	}
 
 }
