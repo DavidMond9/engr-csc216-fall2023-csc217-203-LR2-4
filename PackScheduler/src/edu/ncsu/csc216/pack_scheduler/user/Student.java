@@ -341,7 +341,7 @@ public class Student extends User implements Comparable<Student> {
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		return maxCredits != other.maxCredits;
+		return !(maxCredits == other.maxCredits);
 	}
 
 	
