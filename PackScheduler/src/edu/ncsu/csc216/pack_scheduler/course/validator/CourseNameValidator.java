@@ -19,7 +19,17 @@ public class CourseNameValidator {
 	 * Field to keep track of the current state.
 	 */
 	private State currentState;
+	/**
+	 * Field to keep track if end is valid.
+	 */
+	private boolean validEndState;
 	
+	/**
+	 * Constructor for CourseNameValidator.
+	 */
+	public CourseNameValidator() {
+		
+	}
 	/**
 	 * Checks to see if the name is valid.
 	 * @param name Name input.
@@ -28,6 +38,7 @@ public class CourseNameValidator {
 	 */
 	public boolean isValid(String name) throws InvalidTransitionException {
 		for(int i = 0; i < name.length(); i++) {
+			
 			if(Character.isLetter(name.charAt(i))) {
 				currentState.onLetter();
 			}
@@ -45,6 +56,12 @@ public class CourseNameValidator {
 	 * Abstract class state that represents the state that the FSM is in.
 	 */
 	public abstract class State {
+		/**
+		 * Constructor for State.
+		 */
+		public State() {
+			
+		}
 		/**
 		 * Checks to see if char is a letter.
 		 * @return boolean which represents if letter or not.
@@ -70,6 +87,12 @@ public class CourseNameValidator {
 	 */
 	public class InitialState extends State {
 		/**
+		 * Constructor for InitialState.
+		 */
+		private InitialState() {
+			
+		}
+		/**
 		 * Checks to see if char is a letter.
 		 * @return boolean which represents if letter or not.
 		 */
@@ -87,7 +110,17 @@ public class CourseNameValidator {
 	/**
 	 * LetterState class, second state, extends state.
 	 */
-	public class LetterState extends State{
+	public class LetterState extends State {
+		/**
+		 * Constant for max prefix letters.
+		 */
+		private static final int MAX_PREFIX_LETTERS = 4;
+		/**
+		 * Constructor for LetterState.
+		 */
+		private LetterState() {
+			
+		}
 		/**
 		 * Checks to see if char is a letter.
 		 * @return boolean which represents if letter or not.
@@ -106,7 +139,17 @@ public class CourseNameValidator {
 	/**
 	 * DigitState class, third state, extends state.
 	 */
-	public class DigitState extends State{
+	public class DigitState extends State {
+		/**
+		 * Constant for Course Number Length.
+		 */
+		private static final int COURSE_NUMBER_LENGTH = 8;
+		/**
+		 * Constructor for DigitState.
+		 */
+		private DigitState() {
+			
+		}
 		/**
 		 * Checks to see if char is a letter.
 		 * @return boolean which represents if letter or not.
@@ -125,7 +168,13 @@ public class CourseNameValidator {
 	/**
 	 * SuffixState class, fourth state, extends state.
 	 */
-	public class SuffixState extends State{
+	public class SuffixState extends State {
+		/**
+		 * Constructor for SuffixState.
+		 */
+		private SuffixState() {
+			
+		}
 		/**
 		 * Checks to see if char is a letter.
 		 * @return boolean which represents if letter or not.
