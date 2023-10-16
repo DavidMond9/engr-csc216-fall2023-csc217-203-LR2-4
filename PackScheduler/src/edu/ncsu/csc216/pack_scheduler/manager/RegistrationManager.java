@@ -130,24 +130,25 @@ public class RegistrationManager {
 			}
 			
 			try {
-			Student s = studentDirectory.getStudentById(id);
+				Student s = studentDirectory.getStudentById(id);
 				
-			if (s.getPassword().equals(localHashPW)) {
-				currentUser = s;
-					return true;
-			}	
+				if (s != null) {
+					if (s.getPassword().equals(localHashPW)) {
+						currentUser = s;
+						return true;
+					} else {
+						return false;
+					}	
+				}	
 				
-					return false;
-					
 			} catch (IllegalArgumentException e) {
 				throw new IllegalArgumentException("User doesn't exist.");
 				
 			}
 	
-		} else {
-			return false;
-			
-		}
+		} 
+		
+		return false;
 
 	}
 
