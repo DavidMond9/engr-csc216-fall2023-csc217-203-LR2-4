@@ -18,7 +18,11 @@ public class CourseNameValidator {
 	/**
 	 * Field to keep track of the current state.
 	 */
-	private State currentState;
+	private String currentState;
+	private State stateInitial;
+	private State stateLetter;
+	private State stateDigit;
+	private State stateSuffix;
 	/**
 	 * Field to keep track if end is valid.
 	 */
@@ -38,16 +42,51 @@ public class CourseNameValidator {
 	 */
 	public boolean isValid(String name) throws InvalidTransitionException {
 		for(int i = 0; i < name.length(); i++) {
+			if("I".equals(currentState)) {
+				if(Character.isLetter(name.charAt(i))) {
+					stateInitial.onLetter();
+				}
+				else if(Character.isDigit(name.charAt(i))) {
+					stateInitial.onDigit();
+				}	
+				else {
+					State.onOther();
+				}
+			}
+			else if ("L".equals(currentState)) {
+				if(Character.isLetter(name.charAt(i))) {
+					stateLetter.onLetter();
+				}
+				else if(Character.isDigit(name.charAt(i))) {
+					stateLetter.onDigit();
+				}	
+				else {
+					State.onOther();
+				}
+			}
+			else if("D".equals(currentState)) {
+				if(Character.isLetter(name.charAt(i))) {
+					stateDigit.onLetter();
+				}
+				else if(Character.isDigit(name.charAt(i))) {
+					stateDigit.onDigit();
+				}	
+				else {
+					State.onOther();
+				}
+			}
+			else if("S".equals(currentState)) {
+				if(Character.isLetter(name.charAt(i))) {
+					stateSuffix.onLetter();
+				}
+				else if(Character.isDigit(name.charAt(i))) {
+					stateSuffix.onDigit();
+				}	
+				else {
+					State.onOther();
+				}
+			}
 			
-			if(Character.isLetter(name.charAt(i))) {
-				currentState.onLetter();
-			}
-			else if(Character.isDigit(name.charAt(i))) {
-				currentState.onDigit();
-			}	
-			else {
-				currentState.onOther();
-			}
 		}
 		return false;
 	}
@@ -66,12 +105,12 @@ public class CourseNameValidator {
 		 * Checks to see if char is a letter.
 		 * @return boolean which represents if letter or not.
 		 */
-		public abstract boolean onLetter();
+		public abstract void onLetter();
 		/**
 		 * Checks to see if char is a digit.
 		 * @return boolean which represents if digit or not.
 		 */
-		public abstract boolean onDigit();
+		public abstract void onDigit();
 		/**
 		 * If not digit or letter than onOther.
 		 * @throws InvalidTransitionException Throws exception for invalid input.
@@ -94,17 +133,15 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
-		 * @return boolean which represents if letter or not.
 		 */
-		public boolean onLetter() {
-			return false;
+		public void onLetter() {
+			letterCount += 1;
 		}
 		/**
 		 * Checks to see if char is a digit.
-		 * @return boolean which represents if digit or not.
 		 */
-		public boolean onDigit() {
-			return false;
+		public void onDigit() {
+			
 		}
 	}
 	/**
@@ -123,17 +160,15 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
-		 * @return boolean which represents if letter or not.
 		 */
-		public boolean onLetter() {
-			return false;
+		public void onLetter() {
+			
 		}
 		/**
 		 * Checks to see if char is a digit.
-		 * @return boolean which represents if digit or not.
 		 */
-		public boolean onDigit() {
-			return false;
+		public void onDigit() {
+			
 		}
 	}
 	/**
@@ -152,17 +187,15 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
-		 * @return boolean which represents if letter or not.
 		 */
-		public boolean onLetter() {
-			return false;
+		public void onLetter() {
+			
 		}
 		/**
 		 * Checks to see if char is a digit.
-		 * @return boolean which represents if digit or not.
 		 */
-		public boolean onDigit() {
-			return false;
+		public void onDigit() {
+			
 		}
 	}
 	/**
@@ -177,17 +210,15 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
-		 * @return boolean which represents if letter or not.
 		 */
-		public boolean onLetter() {
-			return false;
+		public void onLetter() {
+			
 		}
 		/**
 		 * Checks to see if char is a digit.
-		 * @return boolean which represents if digit or not.
 		 */
-		public boolean onDigit() {
-			return false;
+		public void onDigit() {
+			
 		}
 	}
 }
