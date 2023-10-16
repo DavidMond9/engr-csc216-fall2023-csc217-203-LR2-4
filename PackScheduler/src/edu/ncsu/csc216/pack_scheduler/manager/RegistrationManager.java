@@ -115,32 +115,41 @@ public class RegistrationManager {
 	 * @return true if the user enters the correct password, false if they enter the wrong password
 	 */
 	public boolean login(String id, String password) {
-		String localHashPW = hashPW(password);
-		if (registrar.getId().equals(id)) {
+		// Only login if a user is not currently logged in.
+		if (currentUser == registrar ||
+			currentUser == null) {
+			String localHashPW = hashPW(password);
+			if (registrar.getId().equals(id)) {
+				
+				if (registrar.getPassword().equals(localHashPW)) {
+					currentUser = registrar;
+						return true;
+				} else {
+					return false;
+					
+				}
+			}
 			
-			if (registrar.getPassword().equals(localHashPW)) {
-				currentUser = registrar;
+			try {
+			Student s = studentDirectory.getStudentById(id);
+				
+			if (s.getPassword().equals(localHashPW)) {
+				currentUser = s;
 					return true;
-			} else {
-				return false;
+			}	
+				
+					return false;
+					
+			} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException("User doesn't exist.");
 				
 			}
-		}
-		
-		try {
-		Student s = studentDirectory.getStudentById(id);
-			
-		if (s.getPassword().equals(localHashPW)) {
-			currentUser = s;
-				return true;
-		}	
-			
-				return false;
-				
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException("User doesn't exist.");
+	
+		} else {
+			return false;
 			
 		}
+
 	}
 
 	/**
