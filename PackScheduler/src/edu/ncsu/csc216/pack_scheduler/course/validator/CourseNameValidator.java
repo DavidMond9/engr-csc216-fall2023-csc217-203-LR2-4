@@ -18,11 +18,11 @@ public class CourseNameValidator {
 	/**
 	 * Field to keep track of the current state.
 	 */
-	private String currentState;
-	private State stateInitial;
-	private State stateLetter;
-	private State stateDigit;
-	private State stateSuffix;
+	private String currentState = "I";
+	private InitialState stateInitial;
+	private LetterState stateLetter;
+	private DigitState stateDigit;
+	private SuffixState stateSuffix;
 	/**
 	 * Field to keep track if end is valid.
 	 */
@@ -104,13 +104,15 @@ public class CourseNameValidator {
 		/**
 		 * Checks to see if char is a letter.
 		 * @return boolean which represents if letter or not.
+		 * @throws InvalidTransitionException 
 		 */
-		public abstract void onLetter();
+		public abstract void onLetter() throws InvalidTransitionException;
 		/**
 		 * Checks to see if char is a digit.
 		 * @return boolean which represents if digit or not.
+		 * @throws InvalidTransitionException 
 		 */
-		public abstract void onDigit();
+		public abstract void onDigit() throws InvalidTransitionException;
 		/**
 		 * If not digit or letter than onOther.
 		 * @throws InvalidTransitionException Throws exception for invalid input.
@@ -135,13 +137,15 @@ public class CourseNameValidator {
 		 * Checks to see if char is a letter.
 		 */
 		public void onLetter() {
+			currentState = "L";
 			letterCount += 1;
 		}
 		/**
 		 * Checks to see if char is a digit.
+		 * @throws InvalidTransitionException 
 		 */
-		public void onDigit() {
-			
+		public void onDigit() throws InvalidTransitionException {
+			throw new InvalidTransitionException("Course name must start with a letter.");
 		}
 	}
 	/**
@@ -187,15 +191,25 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
+		 * @throws InvalidTransitionException 
 		 */
-		public void onLetter() {
-			
+		public void onLetter() throws InvalidTransitionException {
+			if(digitCount == 3) {
+				currentState = "S";
+			}
+			else {
+				throw new InvalidTransitionException("Invalid transition.");
+			}
 		}
 		/**
 		 * Checks to see if char is a digit.
+		 * @throws InvalidTransitionException 
 		 */
-		public void onDigit() {
-			
+		public void onDigit() throws InvalidTransitionException {
+			if(digitCount == 3) {
+				throw new InvalidTransitionException("Invalid transition.");
+			}
+			digitCount += 1;
 		}
 	}
 	/**
