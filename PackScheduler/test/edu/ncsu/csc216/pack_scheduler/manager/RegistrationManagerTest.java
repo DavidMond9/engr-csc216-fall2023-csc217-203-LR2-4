@@ -86,19 +86,8 @@ public class RegistrationManagerTest {
 	 */
 	@Test
 	public void testLogout() {
-		Properties prop = new Properties();
-
-		try (InputStream input = new FileInputStream(PROP_FILE)) {
-			prop.load(input);
-
-			String id = prop.getProperty("id");
 			manager.logout();
-			assertEquals(id, manager.getCurrentUser().getId());
-			
-		} catch (IOException e) {
-			throw new IllegalArgumentException("Cannot load properties file.");
-		}
-
+			assertEquals(null, manager.getCurrentUser());
 	}
 
 	/**
