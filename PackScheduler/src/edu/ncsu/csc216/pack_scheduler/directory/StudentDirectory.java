@@ -166,8 +166,15 @@ public class StudentDirectory {
 	 * 
 	 * @param id a student id
 	 * @return student the student with the given id
+	 * @throws IllegalArgumentException if student is not in directory or directory is empty
 	 */
 	public Student getStudentById(String id) {
+//		if (studentDirectory.size() == 0) {
+//			
+//			throw new IllegalArgumentException();
+//			
+//		}
+		
 		Student student = null;
 		
 		for (int i = 0; i < studentDirectory.size(); i++) {
@@ -179,11 +186,11 @@ public class StudentDirectory {
 			}
 			
 		}
-		if (student == null) {
-			
-			throw new IllegalArgumentException("Student not in directory.");
-			
-		}
+//		if (student == null) {
+//			
+//			throw new IllegalArgumentException("Student not in directory.");
+//			
+//		} 
 
 		return student;
 	}
