@@ -24,6 +24,6 @@ public class InvalidTransitionException extends Exception {
 	 * parameterless constructor that calls the parameterized constructor with an author specified default message
 	 */
 	public InvalidTransitionException() {
-		this("Invalid FSM Transition");
+		this("Invalid FSM Transition.");
 	}
 }
