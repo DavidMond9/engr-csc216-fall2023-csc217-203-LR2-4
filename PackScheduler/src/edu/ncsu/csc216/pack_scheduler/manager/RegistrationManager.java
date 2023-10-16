@@ -139,6 +139,10 @@ public class RegistrationManager {
 					} else {
 						return false;
 					}	
+				} else {
+					
+					return false;
+					
 				}	
 				
 			} catch (IllegalArgumentException e) {
