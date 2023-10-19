@@ -1,18 +1,20 @@
-# csc217-203-LR2-4
-Lab 5
+# CSC 217-203 Team #4
 
-RegistrationManager Unit Tests | Owner: Audrey, Duncan, David, Due: 10/16/23, Status: Complete
+## Lab 5
 
-System Tests | Owner: Audrey, Duncan, David, Due: 10/16/23, Status: Complete
---
-Finish CourseNameValidator | Owner: Audrey, Duncan, David, Due: 10/23/23, Status: Pending
+- **RegistrationManager Unit Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/16/23, **Status:** Complete
+## Lab 6
 
-Test CourseNameValidator | Owner: Audrey, Duncan, David, Due: 10/23/23, Status: Pending
+- **System Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
 
-Integrate CourseNameValidator into Course | Owner: Audrey, Duncan, David, Due: 10/23/23, Status: Pending
+- **Finish CourseNameValidator** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
 
-Update PackScheduler Tests for new Course Functionality | Owner: Audrey, Duncan, David, Due: 10/23/23, Status: Pending
+- **Test CourseNameValidator** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
 
-System Tests | Owner: Audrey, Duncan, David, Due: 10/23/23, Status: Pending
+- **Integrate CourseNameValidator into Course** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
 
-Generate Javadoc | Owner: Audrey, Duncan, David, Due: 10/23/23, Status: Pending
+- **Update PackScheduler Tests for new Course Functionality** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
+
+- **System Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
+
+- **Generate Javadoc** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
