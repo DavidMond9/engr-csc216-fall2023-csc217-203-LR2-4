@@ -5,8 +5,6 @@
 - **RegistrationManager Unit Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/16/23, **Status:** Complete
 ## Lab 6
 
-- **System Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
-
 - **Finish CourseNameValidator** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
 
 - **Test CourseNameValidator** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
