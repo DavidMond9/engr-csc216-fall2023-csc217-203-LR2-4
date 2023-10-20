@@ -115,7 +115,7 @@ public class CourseNameValidator {
 		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public void onOther() throws InvalidTransitionException {
-			throw new InvalidTransitionException("Course name can only contain letters and digits.");
+			throw new InvalidTransitionException("Invalid transition.");
 		}
 
 	}
@@ -145,7 +145,8 @@ public class CourseNameValidator {
 		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public void onDigit() throws InvalidTransitionException {
-			throw new InvalidTransitionException("Invalid transition.");
+			currentState = "D";
+			//throw new InvalidTransitionException("Invalid transition.");
 		}
 	}
 
@@ -172,7 +173,7 @@ public class CourseNameValidator {
 		public void onLetter() throws InvalidTransitionException{
 			letterCount++;
 			if (letterCount == 0 || letterCount > MAX_PREFIX_LETTERS) {
-				throw new InvalidTransitionException("Invalid FSM transition.");
+				onOther();//throw new InvalidTransitionException("Invalid FSM transition.");
 			}
 			if (letterCount == MAX_PREFIX_LETTERS) {
 				currentState = "N";
@@ -186,7 +187,7 @@ public class CourseNameValidator {
 		@Override
 		public void onDigit() throws InvalidTransitionException{
 			if (letterCount == 0) {
-				throw new InvalidTransitionException("Invalid FSM transition.");
+				onOther();//throw new InvalidTransitionException("Invalid FSM transition.");
 			}
 			digitCount++;
 			currentState = "D";
@@ -212,7 +213,7 @@ public class CourseNameValidator {
 				validEndState = true;
 			}
 			else {
-				throw new InvalidTransitionException("Invalid transition.");
+				onOther();//throw new InvalidTransitionException("Invalid transition.");
 			}
 		}
 		/**
@@ -220,8 +221,8 @@ public class CourseNameValidator {
 		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public void onDigit() throws InvalidTransitionException {
-			if(digitCount == 3) {
-				throw new InvalidTransitionException("Invalid transition.");
+			if(digitCount == 3 || letterCount == 0) {
+				onOther();//throw new InvalidTransitionException("Invalid transition.");
 			}
 			digitCount += 1;
 			if (digitCount == 3) {
@@ -244,14 +245,14 @@ public class CourseNameValidator {
 		 *@throws InvalidTransitionException throws exception if there is another character.
 		 */
 		public void onLetter() throws InvalidTransitionException {
-			throw new InvalidTransitionException("Invalid transition.");
+			onOther();
 		}
 		/**
 		 * Checks to see if char is a digit.
 		 * @throws InvalidTransitionException throws exception if there is another character.
 		 */
 		public void onDigit() throws InvalidTransitionException {
-			throw new InvalidTransitionException("Invalid transition.");
+			onOther();
 		}
 	}
 }

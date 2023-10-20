@@ -138,10 +138,20 @@ public class CourseNameValidatorTest {
 	@Test
 	public void testInvalidChar() {
 		
-		Exception e = assertThrows(InvalidTransitionException.class,
+		Exception e1 = assertThrows(InvalidTransitionException.class,
 				() -> fsm.isValid("CSC!116"));
 		
-		assertEquals("Invalid transition.", e.getMessage());
+		assertEquals("Invalid transition.", e1.getMessage());
+		
+		Exception e2 = assertThrows(InvalidTransitionException.class,
+				() -> fsm.isValid(" CSC116"));
+		
+		assertEquals("Invalid transition.", e2.getMessage());
+		
+		Exception e3 = assertThrows(InvalidTransitionException.class,
+				() -> fsm.isValid("!CSC116"));
+		
+		assertEquals("Invalid transition.", e3.getMessage());
 	}
 	
 	/**
