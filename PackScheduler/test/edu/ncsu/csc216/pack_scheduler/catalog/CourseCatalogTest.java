@@ -100,8 +100,8 @@ public class CourseCatalogTest {
 	
 	/**
 	 * tests loading the courses from chosen file
-	 * @throws InvalidTransitionException if invalid
 	 * @throws IllegalArgumentException if invalid
+	 * @throws InvalidTransitionException if invalid
 	 */
 	@Test
 	public void testLoadCoursesFromFile() throws IllegalArgumentException, InvalidTransitionException {
@@ -117,7 +117,7 @@ public class CourseCatalogTest {
 		try {
 			catalog1.loadCoursesFromFile("invalid");
 			fail();
-		} catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException | InvalidTransitionException e) {
 			assertEquals("Unable to read file invalid", e.getMessage());
 		}
 	}
