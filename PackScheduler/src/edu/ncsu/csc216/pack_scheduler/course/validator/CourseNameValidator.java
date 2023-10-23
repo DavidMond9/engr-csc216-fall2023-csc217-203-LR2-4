@@ -11,35 +11,35 @@ public class CourseNameValidator {
 	/**
 	 * Field to keep track of the amount of letters.
 	 */
-	private int letterCount = 0;
+	private int letterCount;
 	/**
 	 * Field to keep track of the amount of digits.
 	 */
-	private int digitCount = 0;
+	private int digitCount;
 	/** Field to keep track of if the course name has a suffix. */
-	private boolean hasSuffix = false;
+	private boolean hasSuffix;
 	/**
 	 * Field to keep track of the current state.
 	 */
-	private String currentState = "I";
+	private String currentState;
 	/** The initial state for a character in the Course's name */
-	private InitialState stateInitial = new InitialState();
+	private InitialState stateInitial;
 	/** The letter state for a character in the Course's name */
-	private LetterState stateLetter = new LetterState();
+	private LetterState stateLetter;
 	/** The digit state for a character in the Course's name */
-	private DigitState stateDigit = new DigitState();
+	private DigitState stateDigit;
 	/** The suffix state for a character in the Course's name */
-	private SuffixState stateSuffix = new SuffixState();
+	private SuffixState stateSuffix;
 	/**
 	 * Field to keep track if end is valid.
 	 */
-	private boolean validEndState = false;
+	private boolean validEndState;
 
 	/**
 	 * Constructor for CourseNameValidator.
 	 */
 	public CourseNameValidator() {
-
+		// Default constructor
 	}
 
 	/**
@@ -50,6 +50,17 @@ public class CourseNameValidator {
 	 * @throws InvalidTransitionException throws an exception if invalid input.
 	 */
 	public boolean isValid(String name) throws InvalidTransitionException {
+		// Reset to default
+		currentState = "I";
+		validEndState = false;
+		stateInitial = new InitialState();
+		stateLetter = new LetterState();
+		stateDigit = new DigitState();
+		stateSuffix = new SuffixState();
+		letterCount = 0;
+		digitCount = 0;
+		hasSuffix = false;
+		
 		for (int i = 0; i < name.length(); i++) {
 			if ("I".equals(currentState)) {
 				if (Character.isLetter(name.charAt(i))) {
@@ -96,7 +107,7 @@ public class CourseNameValidator {
 		 * Constructor for State.
 		 */
 		public State() {
-
+			// Default constructor
 		}
 
 		/**
