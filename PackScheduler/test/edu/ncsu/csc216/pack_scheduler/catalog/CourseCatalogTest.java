@@ -117,7 +117,7 @@ public class CourseCatalogTest {
 		try {
 			catalog1.loadCoursesFromFile("invalid");
 			fail();
-		} catch (IllegalArgumentException | InvalidTransitionException e) {
+		} catch (IllegalArgumentException e) {
 			assertEquals("Unable to read file invalid", e.getMessage());
 		}
 	}
