@@ -65,7 +65,12 @@ public class CourseCatalog {
 	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays, int startTime, int endTime) {
 		
 			
-		Course c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+		Course c;
+		try {
+			c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+		} catch (InvalidTransitionException e) {
+			throw new IllegalArgumentException("Invalid transition.");
+		}
 		for(int j = 0; j < catalog.size(); j++) {
 			if(catalog.get(j).isDuplicate(c)) {
 				//throw new IllegalArgumentException("Course already in system.");

@@ -20,15 +20,15 @@ public class Course extends Activity implements Comparable<Course> {
 	/** Course's instructor */
 	private String instructorId;
 	/** Minimum course name length */
-    private static final int MIN_LENGTH = 5;
+    private static final int MIN_LENGTH = 4;
     /** Maximum course name length */
     private static final int MAX_LENGTH = 8;
-//    /** Minimum course letter count */
-//    private static final int MIN_LETTER_COUNT = 1;
-//    /** Maximum course letter count */
-//    private static final int MAX_LETTER_COUNT = 4;
-//    /** Course digit count */
-//    private static final int DIGIT_COUNT = 3;
+    /** Minimum course letter count */
+    private static final int MIN_LETTER_COUNT = 1;
+    /** Maximum course letter count */
+    private static final int MAX_LETTER_COUNT = 4;
+    /** Course digit count */
+    private static final int DIGIT_COUNT = 3;
     /** Course section length */
     private static final int SECTION_LENGTH = 3;
     /** Course minimum credits */
@@ -49,7 +49,7 @@ public class Course extends Activity implements Comparable<Course> {
      * @throws InvalidTransitionException if invalid format
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
-	        int startTime, int endTime) {
+	        int startTime, int endTime) throws InvalidTransitionException {
 	    super(title, meetingDays, startTime, endTime);
 		try {
 			setName(name);
@@ -139,16 +139,20 @@ public class Course extends Activity implements Comparable<Course> {
 	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
 	    	throw new IllegalArgumentException("Invalid course name.");
 		}	
-//	    //Throw exception if the name is null
-//	    if (name == null) {
-//	        throw new IllegalArgumentException("Invalid course name.");
-//	    }
-//	    
-//	    //Throw exception if the name is an empty string
-//	    //Throw exception if the name contains less than 5 character or greater than 8 characters
-//	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
-//	    	throw new IllegalArgumentException("Invalid course name.");
-//		}
+	    //Throw exception if the name is null
+	    if (name == null) {
+	        throw new IllegalArgumentException("Invalid course name.");
+	    }
+	    
+	    //Throw exception if the name is an empty string
+	    //Throw exception if the name contains less than 5 character or greater than 8 characters
+	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
+	    	throw new IllegalArgumentException("Invalid course name.");
+		}
+	    //Throw exception if the name contains less than 4 character or greater than 8 characters
+	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
+	    	throw new IllegalArgumentException("Invalid course name.");
+		}
 	    CourseNameValidator validator = new CourseNameValidator();
 	    if (validator.isValid(name)) {
 	    	this.name = name;
@@ -161,37 +165,37 @@ public class Course extends Activity implements Comparable<Course> {
 			throw new InvalidTransitionException();
 		}
 	    
-//	    //Check for pattern of L[LLL] NNN
-//	    int letterCount = 0;
-//	    int digitCount = 0;
-//	    boolean space = false;
-//	    for (int i = 0; i < name.length(); i++) {
-//	        if (!space) {
-//	            if (Character.isLetter(name.charAt(i))) {
-//	                letterCount++;
-//	            } else if (name.charAt(i) == ' ') {
-//	                space = true;
-//	            } else {
-//	                throw new IllegalArgumentException("Invalid course name.");
-//	            }
-//	        } else if (space) {
-//	            if (Character.isDigit(name.charAt(i))) {
-//	                digitCount++;
-//	            } else {
-//	                throw new IllegalArgumentException("Invalid course name.");
-//	            }
-//	        }
-//	    }
+	    //Check for pattern of L[LLL] NNN
+	    int letterCount = 0;
+	    int digitCount = 0;
+	    boolean space = false;
+	    for (int i = 0; i < name.length(); i++) {
+	        if (!space) {
+	            if (Character.isLetter(name.charAt(i))) {
+	                letterCount++;
+	            } else if (name.charAt(i) == ' ') {
+	                space = true;
+	            } else {
+	                throw new IllegalArgumentException("Invalid course name.");
+	            }
+	        } else if (space) {
+	            if (Character.isDigit(name.charAt(i))) {
+	                digitCount++;
+	            } else {
+	                throw new IllegalArgumentException("Invalid course name.");
+	            }
+	        }
+	    }
 	    
-//	    //Check that the number of letters is correct
-//	    if (letterCount < MIN_LETTER_COUNT || letterCount > MAX_LETTER_COUNT) {
-//	        throw new IllegalArgumentException("Invalid course name.");
-//	    }
-//	    //Check that the number of digits is correct
-//	    if (digitCount != DIGIT_COUNT) {
-//	        throw new IllegalArgumentException("Invalid course name.");
-//	    }
-//	    this.name = name;
+	    //Check that the number of letters is correct
+	    if (letterCount < MIN_LETTER_COUNT || letterCount > MAX_LETTER_COUNT) {
+	        throw new IllegalArgumentException("Invalid course name.");
+	    }
+	    //Check that the number of digits is correct
+	    if (digitCount != DIGIT_COUNT) {
+	        throw new IllegalArgumentException("Invalid course name.");
+	    }
+	    this.name = name;
 	}
 	
 	/**
