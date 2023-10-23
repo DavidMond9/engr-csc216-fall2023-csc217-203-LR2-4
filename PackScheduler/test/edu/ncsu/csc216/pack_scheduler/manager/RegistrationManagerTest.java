@@ -57,6 +57,7 @@ public class RegistrationManagerTest {
 
 	/**
 	 * Tests the login method with a valid and invalid password.
+	 * @throws Exception if there is an error
 	 */
 	@Test
 	public void testLogin() throws Exception {		
