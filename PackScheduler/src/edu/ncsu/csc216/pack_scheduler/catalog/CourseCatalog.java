@@ -40,12 +40,11 @@ public class CourseCatalog {
 	 * Loads courses into the catalog from the provided file.
 	 * @param fileName file to load courses from
 	 * @throws IllegalArgumentException thrown if file is unable to be read/found
-	 * @throws InvalidTransitionException if invalid format
 	 */
-	public void loadCoursesFromFile(String fileName) throws IllegalArgumentException, InvalidTransitionException {
+	public void loadCoursesFromFile(String fileName) throws IllegalArgumentException {
 		try {
 			catalog = CourseRecordIO.readCourseRecords(fileName);
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException | InvalidTransitionException e) {
 			throw new IllegalArgumentException("Unable to read file " + fileName);
 		}
 	}
@@ -63,8 +62,10 @@ public class CourseCatalog {
 	 * @return boolean, true if successfully added, false if not
 	 * @throws InvalidTransitionException  if invalid format
 	 */
-	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays, int startTime, int endTime) throws InvalidTransitionException {
-		Course c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);	
+	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays, int startTime, int endTime) {
+		
+			
+		Course c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
 		for(int j = 0; j < catalog.size(); j++) {
 			if(catalog.get(j).isDuplicate(c)) {
 				//throw new IllegalArgumentException("Course already in system.");

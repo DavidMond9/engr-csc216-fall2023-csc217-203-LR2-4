@@ -52,7 +52,7 @@ public class CourseCatalogTest {
 	/**
 	 * checks if new course catalog is empty
 	 * @throws InvalidTransitionException if invalid
-	 * @throws IllegalArgumentException 
+	 * @throws IllegalArgumentException if invalid
 	 */
 	@Test
 	public void testNewCourseCatalog() throws IllegalArgumentException, InvalidTransitionException {
@@ -68,7 +68,7 @@ public class CourseCatalogTest {
 	 * @throws InvalidTransitionException if invalid
 	 */
 	@Test
-	public void testAddCourseToCatalog() throws InvalidTransitionException {
+	public void testAddCourseToCatalog() {
 		CourseCatalog catalog1 = new CourseCatalog();
 		
 		catalog1.addCourseToCatalog("CSC 116", "Intro to Programming - Java", "003", 3, "tbdimitr", "TH", 1120, 1310);
@@ -83,7 +83,7 @@ public class CourseCatalogTest {
 	/**
 	 * tests getting a course from catalog
 	 * @throws InvalidTransitionException if invalid
-	 * @throws IllegalArgumentException 
+	 * @throws IllegalArgumentException  if invalid
 	 */
 	@Test
 	public void testGetCourseFromCatalog() throws IllegalArgumentException, InvalidTransitionException {
@@ -117,7 +117,7 @@ public class CourseCatalogTest {
 		try {
 			catalog1.loadCoursesFromFile("invalid");
 			fail();
-		} catch (IllegalArgumentException | InvalidTransitionException e) {
+		} catch (IllegalArgumentException e) {
 			assertEquals("Unable to read file invalid", e.getMessage());
 		}
 	}

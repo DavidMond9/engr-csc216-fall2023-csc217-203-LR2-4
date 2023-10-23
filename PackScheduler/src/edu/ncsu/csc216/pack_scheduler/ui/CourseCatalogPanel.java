@@ -372,7 +372,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				scrollCourseCatalog.revalidate();
 				scrollCourseCatalog.repaint();
 				courseCatalogTableModel.fireTableDataChanged();
-			} catch (IllegalArgumentException | IllegalStateException | InvalidTransitionException iae) {
+			} catch (IllegalArgumentException | IllegalStateException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 		} else if (e.getSource() == btnSaveCourseCatalog) {
@@ -473,7 +473,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				} else {
 					JOptionPane.showMessageDialog(this, "Course already in system.");
 				}
-			} catch (IllegalArgumentException | UnsupportedOperationException | InvalidTransitionException iae) {
+			} catch (IllegalArgumentException | UnsupportedOperationException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 			courseCatalogTableModel.updateData();
