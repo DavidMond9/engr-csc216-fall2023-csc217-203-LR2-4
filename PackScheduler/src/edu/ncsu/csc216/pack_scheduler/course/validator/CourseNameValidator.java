@@ -50,7 +50,7 @@ public class CourseNameValidator {
 				} else if (Character.isDigit(name.charAt(i))) {
 					stateInitial.onDigit();
 				} else {
-					State.onOther();
+					stateInitial.onOther();
 				}
 			} else if ("L".equals(currentState)) {
 				if (Character.isLetter(name.charAt(i))) {
@@ -58,7 +58,7 @@ public class CourseNameValidator {
 				} else if (Character.isDigit(name.charAt(i))) {
 					stateLetter.onDigit();
 				} else {
-					State.onOther();
+					stateLetter.onOther();
 				}
 			} else if ("D".equals(currentState)) {
 				if (Character.isLetter(name.charAt(i))) {
@@ -66,7 +66,7 @@ public class CourseNameValidator {
 				} else if (Character.isDigit(name.charAt(i))) {
 					stateDigit.onDigit();
 				} else {
-					State.onOther();
+					stateDigit.onOther();
 				}
 			} else if ("S".equals(currentState)) {
 				if (Character.isLetter(name.charAt(i))) {
