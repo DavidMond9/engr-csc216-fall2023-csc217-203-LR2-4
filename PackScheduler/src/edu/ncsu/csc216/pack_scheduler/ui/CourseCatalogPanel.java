@@ -372,7 +372,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				scrollCourseCatalog.revalidate();
 				scrollCourseCatalog.repaint();
 				courseCatalogTableModel.fireTableDataChanged();
-			} catch (IllegalArgumentException | IllegalStateException iae) {
+			} catch (IllegalArgumentException | IllegalStateException | InvalidTransitionException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 		} else if (e.getSource() == btnSaveCourseCatalog) {
