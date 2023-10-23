@@ -11,7 +11,7 @@ public interface Conflict {
 	/**
 	 * Checks if the input activity's start and end times conflicts with current activity on any of the meeting days.
 	 * @param possibleConflictingActivity input activity to check for conflict.
-	 * @throws InvalidTransitionException Exception thrown when conflict is found.
+	 * @throws ConflictException Exception thrown when conflict is found.
 	 */
-	void checkConflict(Activity possibleConflictingActivity) throws InvalidTransitionException;	
+	void checkConflict(Activity possibleConflictingActivity) throws ConflictException;	
 }

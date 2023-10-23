@@ -14,20 +14,20 @@ import org.junit.jupiter.api.Test;
 class ConflictExceptionTest {
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.InvalidTransitionException.course.ConflictException#ConflictException()}.
+	 * Test method for {@link edu.ncsu.csc216.ConflictException.course.ConflictException#ConflictException()}.
 	 */
 	@Test
 	public void testConflictException() {
-	    InvalidTransitionException ce = new InvalidTransitionException();
+	    ConflictException ce = new ConflictException();
 	    assertEquals("Schedule conflict.", ce.getMessage());
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.InvalidTransitionException.course.ConflictException#ConflictException(java.lang.String)}.
+	 * Test method for {@link edu.ncsu.csc216.ConflictException.course.ConflictException#ConflictException(java.lang.String)}.
 	 */
 	@Test
 	public void testConflictExceptionString() {
-	    InvalidTransitionException ce = new InvalidTransitionException("Custom exception message");
+	    ConflictException ce = new ConflictException("Custom exception message");
 	    assertEquals("Custom exception message", ce.getMessage());
 	}
 

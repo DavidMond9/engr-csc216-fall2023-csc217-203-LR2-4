@@ -54,9 +54,7 @@ public class Course extends Activity implements Comparable<Course> {
 		try {
 			setName(name);
 		} catch (InvalidTransitionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return;
+			throw new IllegalArgumentException("Invalid course name construct.");
 		}
 	    setSection(section);
 	    setCredits(credits);

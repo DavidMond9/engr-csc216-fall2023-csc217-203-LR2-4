@@ -175,20 +175,20 @@ public abstract class Activity implements Conflict {
 	 * Checks if the input activity's start and end times conflicts with current activity on any of the meeting days.
 	 * Conflict is defined as an overlap of at least one day and time, even by the same minute.
 	 * @param possibleConflictingActivity input activity to check for conflict.
-	 * @throws InvalidTransitionException Exception thrown when conflict is found.
+	 * @throws ConflictException Exception thrown when conflict is found.
 	 */
 	@Override
-	public void checkConflict(Activity possibleConflictingActivity) throws InvalidTransitionException {
+	public void checkConflict(Activity possibleConflictingActivity) throws ConflictException {
 		if(!"A".equals(possibleConflictingActivity.getMeetingDays()) || !"A".equals(getMeetingDays())) {
 			for(int i = 0; i < possibleConflictingActivity.getMeetingDays().length(); i++) {
 				if (getMeetingDays().contains(Character.toString(possibleConflictingActivity.getMeetingDays().charAt(i)))) {
 					if(getStartTime() < possibleConflictingActivity.getStartTime()) {
 						if(getEndTime() >= possibleConflictingActivity.getStartTime()) {
-							throw new InvalidTransitionException();
+							throw new ConflictException();
 						}
 					}
 					else if (getStartTime() <= possibleConflictingActivity.getEndTime()) {
-						throw new InvalidTransitionException();
+						throw new ConflictException();
 					}
 				}
 			}
