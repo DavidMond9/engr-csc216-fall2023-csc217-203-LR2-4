@@ -48,9 +48,9 @@ public class CourseNameValidator {
 	 * @throws InvalidTransitionException throws an exception if invalid input.
 	 */
 	public boolean isValid(String name) throws InvalidTransitionException {
-		if (name == null) {
-			return false;
-		}
+//		if (name == null) {
+//			return false;
+//		}
 		
 		for (int i = 0; i < name.length(); i++) {
 			if ("I".equals(currentState)) {

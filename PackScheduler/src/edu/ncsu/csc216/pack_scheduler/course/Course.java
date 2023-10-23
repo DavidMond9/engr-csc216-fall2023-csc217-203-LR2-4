@@ -19,16 +19,16 @@ public class Course extends Activity implements Comparable<Course> {
 	private int credits;
 	/** Course's instructor */
 	private String instructorId;
-//	/** Minimum course name length */
-//    private static final int MIN_LENGTH = 5;
-//    /** Maximum course name length */
-//    private static final int MAX_LENGTH = 8;
-//    /** Minimum course letter count */
-//    private static final int MIN_LETTER_COUNT = 1;
-//    /** Maximum course letter count */
-//    private static final int MAX_LETTER_COUNT = 4;
-//    /** Course digit count */
-//    private static final int DIGIT_COUNT = 3;
+	/** Minimum course name length */
+    private static final int MIN_LENGTH = 4;
+    /** Maximum course name length */
+    private static final int MAX_LENGTH = 8;
+    /** Minimum course letter count */
+    private static final int MIN_LETTER_COUNT = 1;
+    /** Maximum course letter count */
+    private static final int MAX_LETTER_COUNT = 4;
+    /** Course digit count */
+    private static final int DIGIT_COUNT = 3;
     /** Course section length */
     private static final int SECTION_LENGTH = 3;
     /** Course minimum credits */
@@ -123,20 +123,19 @@ public class Course extends Activity implements Comparable<Course> {
 	 * IllegalArgumentException is thrown.
 	 * @param name the name to set
 	 * @throws InvalidTransitionException if invalid format
-	 * @throws ConflictException 
 	 * @throws IllegalArgumentException if the name parameter is invalid
 	 */
 	private void setName(String name) throws InvalidTransitionException {
-//	    //Throw exception if the name is null
-//	    if (name == null) {
-//	        throw new IllegalArgumentException("Invalid course name.");
-//	    }
-//	    
-//	    //Throw exception if the name is an empty string
-//	    //Throw exception if the name contains less than 5 character or greater than 8 characters
-//	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
-//	    	throw new IllegalArgumentException("Invalid course name.");
-//		}
+	    //Throw exception if the name is null
+	    if (name == null) {
+	        throw new IllegalArgumentException("Invalid course name.");
+	    }
+	    
+	    //Throw exception if the name is an empty string
+	    //Throw exception if the name contains less than 4 character or greater than 8 characters
+	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
+	    	throw new IllegalArgumentException("Invalid course name.");
+		}
 	    CourseNameValidator validator = new CourseNameValidator();
 		if (validator.isValid(name)) {
 			this.name = name;
