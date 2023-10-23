@@ -104,7 +104,7 @@ public class CourseNameValidatorTest {
 		Exception e = assertThrows(InvalidTransitionException.class,
 				() -> fsm.isValid("CSC1A"));
 		
-		assertEquals("Invalid transition.", e.getMessage());
+		assertEquals("Course name must have 3 digits.", e.getMessage());
 		
 	}
 	
@@ -117,7 +117,7 @@ public class CourseNameValidatorTest {
 		Exception e = assertThrows(InvalidTransitionException.class,
 				() -> fsm.isValid("CSC11A"));
 		
-		assertEquals("Invalid transition.", e.getMessage());
+		assertEquals("Course name must have 3 digits.", e.getMessage());
 	}
 	
 	/**
@@ -129,7 +129,7 @@ public class CourseNameValidatorTest {
 		Exception e = assertThrows(InvalidTransitionException.class,
 				() -> fsm.isValid("CSC1116"));
 		
-		assertEquals("Invalid transition.", e.getMessage());
+		assertEquals("Course name can only have 3 digits.", e.getMessage());
 	}
 	
 	/**
@@ -141,21 +141,21 @@ public class CourseNameValidatorTest {
 		Exception e1 = assertThrows(InvalidTransitionException.class,
 				() -> fsm.isValid("CSC!116"));
 		
-		assertEquals("Invalid transition.", e1.getMessage());
+		assertEquals("Course name can only contain letters and digits.", e1.getMessage());
 		
 		CourseNameValidator fsm2 = new CourseNameValidator();
 		
 		Exception e2 = assertThrows(InvalidTransitionException.class,
 				() -> fsm2.isValid(" CSC116"));
 		
-		assertEquals("Invalid transition.", e2.getMessage());
+		assertEquals("Course name can only contain letters and digits.", e2.getMessage());
 		
 		CourseNameValidator fsm3 = new CourseNameValidator();
 		
 		Exception e3 = assertThrows(InvalidTransitionException.class,
 				() -> fsm3.isValid("!CSC116"));
 		
-		assertEquals("Invalid transition.", e3.getMessage());
+		assertEquals("Course name can only contain letters and digits.", e3.getMessage());
 	}
 	
 	/**
@@ -167,7 +167,7 @@ public class CourseNameValidatorTest {
 		Exception e = assertThrows(InvalidTransitionException.class,
 				() -> fsm.isValid("116CSC"));
 
-		assertEquals("Invalid transition.", e.getMessage());
+		assertEquals("Course name must start with a letter.", e.getMessage());
 	}
 	
 	/**
@@ -179,7 +179,7 @@ public class CourseNameValidatorTest {
 		Exception e = assertThrows(InvalidTransitionException.class,
 				() -> fsm.isValid("HESFA101"));
 
-		assertEquals("Invalid transition.", e.getMessage());
+		assertEquals("Course name cannot start with more than 4 letters.", e.getMessage());
 	}
 	
 	/**
@@ -192,14 +192,14 @@ public class CourseNameValidatorTest {
 		Exception e1 = assertThrows(InvalidTransitionException.class,
 				() -> fsm.isValid("CSC116ABC"));
 		
-		assertEquals("Invalid transition.", e1.getMessage());
+		assertEquals("Course name can only have a 1 letter suffix.", e1.getMessage());
 
 		CourseNameValidator fsm2 = new CourseNameValidator();
 		
 		Exception e2 = assertThrows(InvalidTransitionException.class,
 				() -> fsm2.isValid("CSC116A123"));
 
-		assertEquals("Invalid transition.", e2.getMessage());
+		assertEquals("Course name cannot contain digits after the suffix.", e2.getMessage());
 
 	}
 

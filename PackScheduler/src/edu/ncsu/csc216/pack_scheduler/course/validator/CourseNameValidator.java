@@ -117,7 +117,7 @@ public class CourseNameValidator {
 		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public void onOther() throws InvalidTransitionException {
-			throw new InvalidTransitionException("Invalid transition.");
+			throw new InvalidTransitionException("Course name can only contain letters and digits.");
 		}
 
 	}
@@ -148,7 +148,7 @@ public class CourseNameValidator {
 		 */
 		public void onDigit() throws InvalidTransitionException {
 			currentState = "D";
-			//throw new InvalidTransitionException("Invalid transition.");
+			throw new InvalidTransitionException("Course name must start with a letter.");
 		}
 	}
 
@@ -175,7 +175,7 @@ public class CourseNameValidator {
 		public void onLetter() throws InvalidTransitionException{
 			letterCount++;
 			if (letterCount == 0 || letterCount > MAX_PREFIX_LETTERS || hasSuffix) {
-				onOther(); //throw new InvalidTransitionException("Invalid FSM transition.");
+				throw new InvalidTransitionException("Course name cannot start with more than 4 letters.");
 			}
 			if (letterCount == MAX_PREFIX_LETTERS) {
 				currentState = "N";
@@ -216,7 +216,7 @@ public class CourseNameValidator {
 				validEndState = true;
 			}
 			else {
-				onOther(); //throw new InvalidTransitionException("Invalid transition.");
+				throw new InvalidTransitionException("Course name must have 3 digits.");
 			}
 		}
 		/**
@@ -225,7 +225,7 @@ public class CourseNameValidator {
 		 */
 		public void onDigit() throws InvalidTransitionException {
 			if(digitCount == 3 || letterCount == 0) {
-				onOther(); //throw new InvalidTransitionException("Invalid transition.");
+				throw new InvalidTransitionException("Course name can only have 3 digits.");
 			}
 			digitCount += 1;
 			currentState = "D";
@@ -246,17 +246,21 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
+		 * @throws InvalidTransitionException throws exception if there is more than one letter in the suffix.
 		 */
-		public void onLetter() {
+		public void onLetter() throws InvalidTransitionException {
 				currentState = "L";
 				validEndState = false;
+				throw new InvalidTransitionException("Course name can only have a 1 letter suffix.");
 		}
 		/**
 		 * Checks to see if char is a digit.
+		 * @throws InvalidTransitionException throws exception if there is a digit after the suffix.
 		 */
-		public void onDigit() {
+		public void onDigit() throws InvalidTransitionException {
 				currentState = "D";
 				validEndState = false;
+				throw new InvalidTransitionException("Course name cannot contain digits after the suffix.");
 		}
 	}
 }
