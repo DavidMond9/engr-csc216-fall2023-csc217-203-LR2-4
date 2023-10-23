@@ -75,10 +75,10 @@ public class ArrayList<E> extends AbstractList<E> {
 		return null;
 	}
 	
-	public E get(int idx, E list) {
+	public E get(int idx) {
 		if(idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
-		return null;
+		return (E)list[idx];
 	}
 }
