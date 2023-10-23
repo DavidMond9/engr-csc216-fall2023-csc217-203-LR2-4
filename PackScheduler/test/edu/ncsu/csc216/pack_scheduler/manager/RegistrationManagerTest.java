@@ -10,6 +10,8 @@ import java.util.Properties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * Tests the RegistrationManager class.
  * @author Audrey Fuelleman
@@ -34,9 +36,10 @@ public class RegistrationManagerTest {
 
 	/**
 	 * Tests the getCourseCatalog method.
+	 * @throws InvalidTransitionException if invalid
 	 */
 	@Test
-	public void testGetCourseCatalog() {
+	public void testGetCourseCatalog() throws InvalidTransitionException {
 		assertEquals(0, manager.getCourseCatalog().getCourseCatalog().length);
 		manager.getCourseCatalog().addCourseToCatalog("CSC 116", "Intro to Programming - Java", "003", 3, "spbalik", "MW", 1250, 1440);
 		assertEquals("CSC 116", manager.getCourseCatalog().getCourseFromCatalog("CSC 116", "003").getName());

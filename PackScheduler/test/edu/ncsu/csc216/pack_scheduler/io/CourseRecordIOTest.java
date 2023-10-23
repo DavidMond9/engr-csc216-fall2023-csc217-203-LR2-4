@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
@@ -87,7 +88,7 @@ public class CourseRecordIOTest {
 			for (int i = 0; i < validCourses.length; i++) {
 				assertEquals(validCourses[i], courses.get(i).toString());
 			}
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException | InvalidTransitionException e) {
 			fail("Unexpected error reading " + validTestFile);
 		}
 	}
@@ -101,16 +102,17 @@ public class CourseRecordIOTest {
 		try {
 			courses = CourseRecordIO.readCourseRecords(invalidTestFile);
 			assertEquals(0, courses.size());
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException | InvalidTransitionException e) {
 			fail("Unexpected FileNotFoundException");
 		}
 	}
 	
 	/**
 	 * Tests writeCourseRecords()
+	 * @throws InvalidTransitionException if invalid
 	 */
 	@Test
-	public void testWriteCourseRecords() {
+	public void testWriteCourseRecords() throws InvalidTransitionException {
 		SortedList<Course> courses = new SortedList<Course>();
 		courses.add(new Course("CSC 116", "Intro to Programming - Java", "003", 3, "spbalik", "MW", 1250, 1440));
 		courses.add(new Course("CSC 216", "Software Development Fundamentals", "001", 3, "sesmith5", "MW", 1330, 1445));

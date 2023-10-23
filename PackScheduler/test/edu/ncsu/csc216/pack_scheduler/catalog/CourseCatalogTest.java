@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 
 
 /**
@@ -50,9 +51,11 @@ public class CourseCatalogTest {
 
 	/**
 	 * checks if new course catalog is empty
+	 * @throws InvalidTransitionException if invalid
+	 * @throws IllegalArgumentException 
 	 */
 	@Test
-	public void testNewCourseCatalog() {
+	public void testNewCourseCatalog() throws IllegalArgumentException, InvalidTransitionException {
 	  CourseCatalog catalog = new CourseCatalog();
 	  catalog.loadCoursesFromFile("test-files/student_record.txt");
 	  catalog.newCourseCatalog();
@@ -62,9 +65,10 @@ public class CourseCatalogTest {
 	/**
 	 * Tests CourseCatalog.addCourseToCatalog(). tests valid course, and adding
 	 * same course twice.
+	 * @throws InvalidTransitionException if invalid
 	 */
 	@Test
-	public void testAddCourseToCatalog() {
+	public void testAddCourseToCatalog() throws InvalidTransitionException {
 		CourseCatalog catalog1 = new CourseCatalog();
 		
 		catalog1.addCourseToCatalog("CSC 116", "Intro to Programming - Java", "003", 3, "tbdimitr", "TH", 1120, 1310);
@@ -78,9 +82,11 @@ public class CourseCatalogTest {
 	
 	/**
 	 * tests getting a course from catalog
+	 * @throws InvalidTransitionException if invalid
+	 * @throws IllegalArgumentException 
 	 */
 	@Test
-	public void testGetCourseFromCatalog() {
+	public void testGetCourseFromCatalog() throws IllegalArgumentException, InvalidTransitionException {
 	  CourseCatalog catalog = new CourseCatalog();
 	  catalog.loadCoursesFromFile("test-files/student_record.txt");
 	  Course c1 = catalog.getCourseFromCatalog("CSC 216", "001");
@@ -94,9 +100,11 @@ public class CourseCatalogTest {
 	
 	/**
 	 * tests loading the courses from chosen file
+	 * @throws InvalidTransitionException if invalid
+	 * @throws IllegalArgumentException if invalid
 	 */
 	@Test
-	public void testLoadCoursesFromFile() {
+	public void testLoadCoursesFromFile() throws IllegalArgumentException, InvalidTransitionException {
 		CourseCatalog catalog1 = new CourseCatalog();
 	
 		catalog1.loadCoursesFromFile(validTestFile);
@@ -119,9 +127,11 @@ public class CourseCatalogTest {
 	
 	/**
 	 * tests removing a course from the catalog
+	 * @throws InvalidTransitionException if invalid
+	 * @throws IllegalArgumentException if invalid 
 	 */
 	@Test
-	public void testRemoveCourseFromCatalog() {
+	public void testRemoveCourseFromCatalog() throws IllegalArgumentException, InvalidTransitionException {
 		CourseCatalog catalog1 = new CourseCatalog();
 		catalog1.loadCoursesFromFile(validTestFile);
 		catalog1.removeCourseFromCatalog("CSC116", "003");
@@ -135,9 +145,11 @@ public class CourseCatalogTest {
 	
 	/**
 	 * tests saving the course to file
+	 * @throws InvalidTransitionException if invalid
+	 * @throws IllegalArgumentException  if invalid
 	 */
 	@Test
-	public void testSaveCourseCatalog() {
+	public void testSaveCourseCatalog() throws IllegalArgumentException, InvalidTransitionException {
 		CourseCatalog catalog = new CourseCatalog();
 		
 		catalog.loadCoursesFromFile(validTestFile);
