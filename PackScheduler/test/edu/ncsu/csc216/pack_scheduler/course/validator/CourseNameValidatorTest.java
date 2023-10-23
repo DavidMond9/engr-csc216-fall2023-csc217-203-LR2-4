@@ -1,15 +1,10 @@
 package edu.ncsu.csc216.pack_scheduler.course.validator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
-
-import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator.State;
-import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator.SuffixState;
 
 /**
  * Tests the CourseNameValidator for all possible states and transitions.
@@ -148,13 +143,17 @@ public class CourseNameValidatorTest {
 		
 		assertEquals("Invalid transition.", e1.getMessage());
 		
+		CourseNameValidator fsm2 = new CourseNameValidator();
+		
 		Exception e2 = assertThrows(InvalidTransitionException.class,
-				() -> fsm.isValid(" CSC116"));
+				() -> fsm2.isValid(" CSC116"));
 		
 		assertEquals("Invalid transition.", e2.getMessage());
 		
+		CourseNameValidator fsm3 = new CourseNameValidator();
+		
 		Exception e3 = assertThrows(InvalidTransitionException.class,
-				() -> fsm.isValid("!CSC116"));
+				() -> fsm3.isValid("!CSC116"));
 		
 		assertEquals("Invalid transition.", e3.getMessage());
 	}
@@ -190,22 +189,17 @@ public class CourseNameValidatorTest {
 	@Test
 	public void testInvalidSuffix() {
 
-		try {
-			assertFalse(fsm.isValid("CSC116AB"));
-		} catch (InvalidTransitionException e) {
-			fail("Should not throw exception.");
-		}
+		Exception e1 = assertThrows(InvalidTransitionException.class,
+				() -> fsm.isValid("CSC116ABC"));
+		
+		assertEquals("Invalid transition.", e1.getMessage());
 
+		CourseNameValidator fsm2 = new CourseNameValidator();
+		
 		Exception e2 = assertThrows(InvalidTransitionException.class,
-				() -> fsm.isValid("CSC116A1"));
+				() -> fsm2.isValid("CSC116A123"));
 
 		assertEquals("Invalid transition.", e2.getMessage());
-		
-//		try {
-//			assertFalse(fsm.isValid("CSC116A"));
-//		} catch (InvalidTransitionException e) {
-//			fail("Should not throw exception.");
-//		}
 
 	}
 

@@ -255,7 +255,7 @@ public class CourseNameValidator {
 		 * Checks to see if char is a digit.
 		 */
 		public void onDigit() {
-				//currentState = "D";
+				currentState = "D";
 				validEndState = false;
 		}
 	}
