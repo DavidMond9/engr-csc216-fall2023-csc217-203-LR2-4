@@ -19,16 +19,16 @@ public class Course extends Activity implements Comparable<Course> {
 	private int credits;
 	/** Course's instructor */
 	private String instructorId;
-	/** Minimum course name length */
-    private static final int MIN_LENGTH = 5;
-    /** Maximum course name length */
-    private static final int MAX_LENGTH = 8;
-    /** Minimum course letter count */
-    private static final int MIN_LETTER_COUNT = 1;
-    /** Maximum course letter count */
-    private static final int MAX_LETTER_COUNT = 4;
-    /** Course digit count */
-    private static final int DIGIT_COUNT = 3;
+//	/** Minimum course name length */
+//    private static final int MIN_LENGTH = 5;
+//    /** Maximum course name length */
+//    private static final int MAX_LENGTH = 8;
+//    /** Minimum course letter count */
+//    private static final int MIN_LETTER_COUNT = 1;
+//    /** Maximum course letter count */
+//    private static final int MAX_LETTER_COUNT = 4;
+//    /** Course digit count */
+//    private static final int DIGIT_COUNT = 3;
     /** Course section length */
     private static final int SECTION_LENGTH = 3;
     /** Course minimum credits */
@@ -46,7 +46,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param meetingDays meeting days for Course as series of chars
 	 * @param startTime start time for Course
 	 * @param endTime end time for Course
-     * @throws InvalidTransitionException  if invalid format
+     * @throws InvalidTransitionException if invalid format
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
 	        int startTime, int endTime) {

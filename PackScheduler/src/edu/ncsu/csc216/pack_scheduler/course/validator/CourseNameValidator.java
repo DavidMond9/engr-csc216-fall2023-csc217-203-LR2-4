@@ -178,7 +178,7 @@ public class CourseNameValidator {
 			if (letterCount == MAX_PREFIX_LETTERS) {
 				currentState = "N";
 			}
-			currentState = "D";
+			currentState = "L";
 		}
 
 		/**

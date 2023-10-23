@@ -84,7 +84,7 @@ public class CourseTest {
 	 * @param courseName valid course name to test
 	 */
 	@ParameterizedTest
-	@ValueSource(strings = {"CSC 216", "E 115", "MA 141", "HESF 101", "CSC 116"})
+	@ValueSource(strings = {"CSC216", "E115", "MA141", "HESF101", "CSC116"})
 	public void testSetNameValid(String courseName) {
 
 		// Testing valid names
@@ -101,7 +101,7 @@ public class CourseTest {
 	 */
 	@ParameterizedTest
 	@NullAndEmptySource
-	@ValueSource(strings = {"E 11", "HESFQ 101", "101", "CSC216", "101ext", "HESFQ101", "HSEF01", "CSC 2167", " CSC 216", "CSC\t216", "C!C 216", "CSC 21!"})
+	@ValueSource(strings = {"E11", "HESFQ101", "101", "CSC 216", "101ext", "HESFQ101", "HSEF01", "CSC2167", "CSC\t216", "C!C216", "CSC21!"})
 	public void testSetNameInvalid(String invalidCourseName) {
 		// Testing for null name - IAE should be thrown
 		Exception e1 = assertThrows(IllegalArgumentException.class,

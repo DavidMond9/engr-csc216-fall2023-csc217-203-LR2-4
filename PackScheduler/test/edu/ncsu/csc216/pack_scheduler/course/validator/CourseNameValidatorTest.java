@@ -55,7 +55,7 @@ public class CourseNameValidatorTest {
 	public void testStateLLL(){
 		
 		try {
-			assertTrue(fsm.isValid("CSC116"));
+			assertTrue(fsm.isValid("CSC216"));
 		} catch (InvalidTransitionException e) {
 			
 			// Do nothing
