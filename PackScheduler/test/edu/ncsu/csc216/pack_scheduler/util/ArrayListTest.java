@@ -27,7 +27,8 @@ class ArrayListTest {
 	@Test
 	void testArrayList() {
 		ArrayList<Integer> list = new ArrayList();
-		assertEquals("Size should be 0 after construction", 0, list.getSize());
+		//Size should be 0 after construction
+		assertEquals(0, list.size());
 		}
 
 	/**

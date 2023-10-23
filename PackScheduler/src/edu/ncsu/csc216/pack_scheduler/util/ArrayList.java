@@ -8,19 +8,38 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * 
+ * ArrayList class has many methods to add, remove, and more for handling an array better.
+ * It also extends AbstractList and has a few fields such as its own list with type E and
+ * its size. It has a constant as well which determines the maximum capacity of the list.
+ * @param <E> Parameter of type E in the ArrayList.
  */
 public class ArrayList<E> extends AbstractList<E> {
+	/**
+	 * Maximum capacity of list.
+	 */
 	private static final int INIT_SIZE = 10;
+	/**
+	 * List of type E for ArrayList.
+	 */
 	private E[] list;
+	/**
+	 * Size of list.
+	 */
 	private int size;
 	
+	/**
+	 * ArrayList constructor, creates a new list of type E and sets the size to 0.
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList() {
 		list = (E[]) new Object[INIT_SIZE];
 		size = 0;
 	}
-	
+	/**
+	 * Adds an element at a specific index.
+	 * @param idx index to add at.
+	 * @param ele element being added.
+	 */
 	public void add(int idx, E ele) {
 		if(ele == null) {
 			throw new NullPointerException("Element cannot be null.");
@@ -45,7 +64,11 @@ public class ArrayList<E> extends AbstractList<E> {
 		list[idx] = ele;
 		size += 1;
 	}
-	
+	/**
+	 * Removes an element at a specific index.
+	 * @param idx index to remove at.
+	 * @return E element being removed.
+	 */
 	public E remove(int idx) {
 		if(idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
@@ -61,7 +84,12 @@ public class ArrayList<E> extends AbstractList<E> {
         size--;
 		return removedElement;
 	}
-	
+	/**
+	 * Sets an element at a specific index.
+	 * @param idx index to set at
+	 * @param ele element to set
+	 * @return E the element after being set.
+	 */
 	public E set(int idx, E ele) {
 		if(ele == null) {
 			throw new NullPointerException("Element cannot be null.");
@@ -81,11 +109,23 @@ public class ArrayList<E> extends AbstractList<E> {
 		
 		return temp;
 	}
-	
+	/**
+	 * Gets the element at a specific index.
+	 * @param idx index to get from
+	 * @return E element to return.
+	 */
 	public E get(int idx) {
 		if(idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
 		return (E)list[idx];
 	}
+	/**
+	 * Gets the size of list.
+	 * @return int size of list.
+	 */
+	public int size() {
+		return size;
+	}
+
 }
