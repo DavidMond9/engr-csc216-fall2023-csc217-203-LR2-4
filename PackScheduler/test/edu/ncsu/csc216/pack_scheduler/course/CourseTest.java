@@ -443,7 +443,7 @@ public class CourseTest {
 		Activity c7 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, "TH", START_TIME, END_TIME);
 		Activity c8 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, 830, END_TIME);
 		Activity c9 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, 1400);
-		Activity c10 = new Course("CSC 217", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Activity c10 = new Course("CSC217", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 
 		// Test for equality in both directions
 		assertTrue(c1.equals(c2));
@@ -475,7 +475,7 @@ public class CourseTest {
 		Activity c7 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, "TH", START_TIME, END_TIME);
 		Activity c8 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, 830, END_TIME);
 		Activity c9 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, 1400);
-		Activity c10 = new Course("CSC 217", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Activity c10 = new Course("CSC217", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 
 
 		// Test for the same hash code for the same values
@@ -499,11 +499,11 @@ public class CourseTest {
 	@Test
 	public void testToString() throws InvalidTransitionException {
 		Activity c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
-		String s1 = "CSC 216,Software Development Fundamentals,001,3,sesmith5,MW,1330,1445";
+		String s1 = "CSC216,Software Development Fundamentals,001,3,sesmith5,MW,1330,1445";
 		assertEquals(s1, c1.toString());
 
 		Activity c2 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, "A");
-		String s2 = "CSC 216,Software Development Fundamentals,001,3,sesmith5,A";
+		String s2 = "CSC216,Software Development Fundamentals,001,3,sesmith5,A";
 		assertEquals(s2, c2.toString());
 	}
 

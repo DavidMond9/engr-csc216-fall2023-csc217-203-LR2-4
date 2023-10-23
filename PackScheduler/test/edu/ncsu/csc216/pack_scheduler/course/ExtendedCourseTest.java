@@ -14,7 +14,7 @@ import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionExceptio
 public class ExtendedCourseTest {
 	
 	/** Course name */
-	private static final String NAME = "CSC 216";
+	private static final String NAME = "CSC216";
 	/** Course title */
 	private static final String TITLE = "Software Development Fundamentals";
 	/** Course section */

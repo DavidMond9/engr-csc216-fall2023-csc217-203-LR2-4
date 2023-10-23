@@ -41,8 +41,8 @@ public class RegistrationManagerTest {
 	@Test
 	public void testGetCourseCatalog() throws InvalidTransitionException {
 		assertEquals(0, manager.getCourseCatalog().getCourseCatalog().length);
-		manager.getCourseCatalog().addCourseToCatalog("CSC 116", "Intro to Programming - Java", "003", 3, "spbalik", "MW", 1250, 1440);
-		assertEquals("CSC 116", manager.getCourseCatalog().getCourseFromCatalog("CSC 116", "003").getName());
+		manager.getCourseCatalog().addCourseToCatalog("CSC116", "Intro to Programming - Java", "003", 3, "spbalik", "MW", 1250, 1440);
+		assertEquals("CSC116", manager.getCourseCatalog().getCourseFromCatalog("CSC116", "003").getName());
 	}
 
 	/**
