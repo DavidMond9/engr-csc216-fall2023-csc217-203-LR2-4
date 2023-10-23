@@ -51,28 +51,35 @@ public class ArrayList<E> extends AbstractList<E> {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
 		
-		for(int i = 0; i < list.length; i++) {
-			if(i == idx) {
-				if(idx == size - 1) {
-					E ele = list.remove(i);
-				}
-				else {
-					E ele = list.remove(i);
-					
-				}
-			}
+		E removedElement = (E)list[idx];
+		
+		if(idx < size - 1) {
+			System.arraycopy(list, idx + 1, list, idx, size - idx - 1);
 		}
-		return ele;
+		
+		list[size - 1] = null;
+        size--;
+		return removedElement;
 	}
 	
-	public E set(int idx, E list) {
-		
-		if()
-		
+	public E set(int idx, E ele) {
+		if(ele == null) {
+			throw new NullPointerException("Element cannot be null.");
+		}
 		if(idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
-		return null;
+		for(int i = 0; i < size; i++) {
+			if(i != idx && Objects.equals(list[i], ele)) {
+				throw new IllegalArgumentException("Duplicate element not allowed.");
+			}
+		}
+		
+		
+		E temp = (E) list[idx];
+		list[idx] = ele;
+		
+		return temp;
 	}
 	
 	public E get(int idx) {
