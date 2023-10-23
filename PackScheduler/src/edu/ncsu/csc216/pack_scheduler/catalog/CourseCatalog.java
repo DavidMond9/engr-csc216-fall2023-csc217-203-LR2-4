@@ -65,11 +65,7 @@ public class CourseCatalog {
 		
 			
 		Course c;
-		try {
-			c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
-		} catch (InvalidTransitionException e) {
-			throw new IllegalArgumentException("Invalid transition.");
-		}
+		c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
 		for(int j = 0; j < catalog.size(); j++) {
 			if(catalog.get(j).isDuplicate(c)) {
 				//throw new IllegalArgumentException("Course already in system.");
