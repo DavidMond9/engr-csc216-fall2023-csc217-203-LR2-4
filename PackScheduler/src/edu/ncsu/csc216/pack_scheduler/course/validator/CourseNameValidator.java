@@ -4,6 +4,7 @@ package edu.ncsu.csc216.pack_scheduler.course.validator;
  * Checking whether a Course's Name is valid.
  * 
  * @author David Mond
+ * @author Audrey Fuelleman
  */
 public class CourseNameValidator {
 
@@ -19,14 +20,18 @@ public class CourseNameValidator {
 	 * Field to keep track of the current state.
 	 */
 	private String currentState = "I";
-	private InitialState stateInitial;
-	private LetterState stateLetter;
-	private DigitState stateDigit;
-	private SuffixState stateSuffix;
+	/** The initial state for a character in the Course's name */
+	private InitialState stateInitial = new InitialState();
+	/** The letter state for a character in the Course's name */
+	private LetterState stateLetter = new LetterState();
+	/** The digit state for a character in the Course's name */
+	private DigitState stateDigit = new DigitState();
+	/** The suffix state for a character in the Course's name */
+	private SuffixState stateSuffix = new SuffixState();
 	/**
 	 * Field to keep track if end is valid.
 	 */
-	private boolean validEndState;
+	private boolean validEndState = false;
 
 	/**
 	 * Constructor for CourseNameValidator.
@@ -74,12 +79,11 @@ public class CourseNameValidator {
 				} else if (Character.isDigit(name.charAt(i))) {
 					stateSuffix.onDigit();
 				} else {
-					State.onOther();
+					stateSuffix.onOther();
 				}
 			}
-
 		}
-		return false;
+		return validEndState;
 	}
 
 	/**
@@ -95,27 +99,23 @@ public class CourseNameValidator {
 
 		/**
 		 * Checks to see if char is a letter.
-		 * 
-		 * @return boolean which represents if letter or not.
-		 * @throws InvalidTransitionException
+		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public abstract void onLetter() throws InvalidTransitionException;
 
 		/**
 		 * Checks to see if char is a digit.
-		 * 
-		 * @return boolean which represents if digit or not.
-		 * @throws InvalidTransitionException
+		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public abstract void onDigit() throws InvalidTransitionException;
 
 		/**
 		 * If not digit or letter than onOther.
 		 * 
-		 * @throws InvalidTransitionException Throws exception for invalid input.
+		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public void onOther() throws InvalidTransitionException {
-			throw new InvalidTransitionException("Course name can only contain letters and digits.");
+			throw new InvalidTransitionException("Invalid transition.");
 		}
 
 	}
@@ -142,10 +142,11 @@ public class CourseNameValidator {
 		/**
 		 * Checks to see if char is a digit.
 		 * 
-		 * @throws InvalidTransitionException
+		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public void onDigit() throws InvalidTransitionException {
-			throw new InvalidTransitionException("Course name must start with a letter.");
+			currentState = "D";
+			//throw new InvalidTransitionException("Invalid transition.");
 		}
 	}
 
@@ -172,7 +173,7 @@ public class CourseNameValidator {
 		public void onLetter() throws InvalidTransitionException{
 			letterCount++;
 			if (letterCount == 0 || letterCount > MAX_PREFIX_LETTERS) {
-				throw new InvalidTransitionException("Invalid FSM transition.");
+				onOther();//throw new InvalidTransitionException("Invalid FSM transition.");
 			}
 			if (letterCount == MAX_PREFIX_LETTERS) {
 				currentState = "N";
@@ -185,20 +186,17 @@ public class CourseNameValidator {
 		 */
 		@Override
 		public void onDigit() throws InvalidTransitionException{
-			digitCount++;
 			if (letterCount == 0) {
-				throw new InvalidTransitionException("Invalid FSM transition.");
+				onOther();//throw new InvalidTransitionException("Invalid FSM transition.");
+			}
+			digitCount++;
+			currentState = "D";
 		}
-			currentState = "N";
 	}
 	/**
 	 * DigitState class, third state, extends state.
 	 */
 	public class DigitState extends State {
-		/**
-		 * Constant for Course Number Length.
-		 */
-		private static final int COURSE_NUMBER_LENGTH = 8;
 		/**
 		 * Constructor for DigitState.
 		 */
@@ -207,25 +205,29 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
-		 * @throws InvalidTransitionException 
+		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public void onLetter() throws InvalidTransitionException {
 			if(digitCount == 3) {
 				currentState = "S";
+				validEndState = true;
 			}
 			else {
-				throw new InvalidTransitionException("Invalid transition.");
+				onOther();//throw new InvalidTransitionException("Invalid transition.");
 			}
 		}
 		/**
 		 * Checks to see if char is a digit.
-		 * @throws InvalidTransitionException 
+		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public void onDigit() throws InvalidTransitionException {
-			if(digitCount == 3) {
-				throw new InvalidTransitionException("Invalid transition.");
+			if(digitCount == 3 || letterCount == 0) {
+				onOther();//throw new InvalidTransitionException("Invalid transition.");
 			}
 			digitCount += 1;
+			if (digitCount == 3) {
+				validEndState = true;
+			}
 		}
 	}
 	/**
@@ -240,15 +242,18 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
+		 *@throws InvalidTransitionException throws exception if there is another character.
 		 */
-		public void onLetter() {
-			
+		public void onLetter() throws InvalidTransitionException {
+			onOther();
 		}
 		/**
 		 * Checks to see if char is a digit.
+		 * @throws InvalidTransitionException throws exception if there is another character.
 		 */
-		public void onDigit() {
-			
+		public void onDigit() throws InvalidTransitionException {
+			onOther();
 		}
 	}
 }
+	
