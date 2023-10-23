@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * Superclass for all activities.  
  * Contains information on title, meeting days and times.
@@ -31,7 +33,7 @@ public abstract class Activity implements Conflict {
 	 * @param startTime start time of activity
 	 * @param endTime end time of activity
 	 */
-	public Activity(String title, String meetingDays, int startTime, int endTime) {
+	public Activity(String title, String meetingDays, int startTime, int endTime) throws InvalidTransitionException {
 		super();
 		setTitle(title);
 		setMeetingDaysAndTime(meetingDays, startTime, endTime);
