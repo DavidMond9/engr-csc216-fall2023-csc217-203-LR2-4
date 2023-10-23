@@ -28,14 +28,14 @@ public class CourseRecordIO {
      * @throws FileNotFoundException if the file cannot be found or read
      * @throws InvalidTransitionException if invalid format
      */
-    public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException, InvalidTransitionException {
+    public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException {
     	Scanner fileReader = new Scanner(new FileInputStream(fileName));  //Create a file scanner to read the file
         SortedList<Course> courses = new SortedList<Course>(); //Create an empty array of Course objects
         while (fileReader.hasNextLine()) { //While we have more lines in the file
             try { //Attempt to do the following
                 //Read the line, process it in readCourse, and get the object
                 //If trying to construct a Course in readCourse() results in an exception, flow of control will transfer to the catch block, below
-                Course course = readCourse(fileReader.nextLine()); 
+                Course course = readCourse(fileReader.nextLine());
 
                 //Create a flag to see if the newly created Course is a duplicate of something already in the list  
                 boolean duplicate = false;
@@ -55,7 +55,7 @@ public class CourseRecordIO {
                 if (!duplicate) {
                     courses.add(course); //Add to the ArrayList!
                 } //Otherwise ignore
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | InvalidTransitionException e) {
                 //The line is invalid b/c we couldn't create a course, skip it!
             }
         }

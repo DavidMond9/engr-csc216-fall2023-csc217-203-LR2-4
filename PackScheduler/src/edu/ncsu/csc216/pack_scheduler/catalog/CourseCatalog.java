@@ -44,7 +44,7 @@ public class CourseCatalog {
 	public void loadCoursesFromFile(String fileName) throws IllegalArgumentException {
 		try {
 			catalog = CourseRecordIO.readCourseRecords(fileName);
-		} catch (FileNotFoundException | InvalidTransitionException e) {
+		} catch (FileNotFoundException e) {
 			throw new IllegalArgumentException("Unable to read file " + fileName);
 		}
 	}
