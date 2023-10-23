@@ -62,6 +62,7 @@ public class CourseRecordIOTest {
 
 	/**
 	 * Resets course_records.txt for use in other tests.
+	 * @throws Exception if there is an error resetting the files.
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -88,7 +89,7 @@ public class CourseRecordIOTest {
 			for (int i = 0; i < validCourses.length; i++) {
 				assertEquals(validCourses[i], courses.get(i).toString());
 			}
-		} catch (FileNotFoundException | InvalidTransitionException e) {
+		} catch (FileNotFoundException e) {
 			fail("Unexpected error reading " + validTestFile);
 		}
 	}
@@ -102,7 +103,7 @@ public class CourseRecordIOTest {
 		try {
 			courses = CourseRecordIO.readCourseRecords(invalidTestFile);
 			assertEquals(0, courses.size());
-		} catch (FileNotFoundException | InvalidTransitionException e) {
+		} catch (FileNotFoundException e) {
 			fail("Unexpected FileNotFoundException");
 		}
 	}

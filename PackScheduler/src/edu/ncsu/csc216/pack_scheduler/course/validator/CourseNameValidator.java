@@ -11,33 +11,35 @@ public class CourseNameValidator {
 	/**
 	 * Field to keep track of the amount of letters.
 	 */
-	private int letterCount = 0;
+	private int letterCount;
 	/**
 	 * Field to keep track of the amount of digits.
 	 */
-	private int digitCount = 0;
+	private int digitCount;
+	/** Field to keep track of if the course name has a suffix. */
+	private boolean hasSuffix;
 	/**
 	 * Field to keep track of the current state.
 	 */
-	private String currentState = "I";
+	private String currentState;
 	/** The initial state for a character in the Course's name */
-	private InitialState stateInitial = new InitialState();
+	private InitialState stateInitial;
 	/** The letter state for a character in the Course's name */
-	private LetterState stateLetter = new LetterState();
+	private LetterState stateLetter;
 	/** The digit state for a character in the Course's name */
-	private DigitState stateDigit = new DigitState();
+	private DigitState stateDigit;
 	/** The suffix state for a character in the Course's name */
-	private SuffixState stateSuffix = new SuffixState();
+	private SuffixState stateSuffix;
 	/**
 	 * Field to keep track if end is valid.
 	 */
-	private boolean validEndState = false;
+	private boolean validEndState;
 
 	/**
 	 * Constructor for CourseNameValidator.
 	 */
 	public CourseNameValidator() {
-
+		// Default constructor
 	}
 
 	/**
@@ -48,9 +50,16 @@ public class CourseNameValidator {
 	 * @throws InvalidTransitionException throws an exception if invalid input.
 	 */
 	public boolean isValid(String name) throws InvalidTransitionException {
-//		if (name == null) {
-//			return false;
-//		}
+		// Reset to default
+		currentState = "I";
+		validEndState = false;
+		stateInitial = new InitialState();
+		stateLetter = new LetterState();
+		stateDigit = new DigitState();
+		stateSuffix = new SuffixState();
+		letterCount = 0;
+		digitCount = 0;
+		hasSuffix = false;
 		
 		for (int i = 0; i < name.length(); i++) {
 			if ("I".equals(currentState)) {
@@ -98,7 +107,7 @@ public class CourseNameValidator {
 		 * Constructor for State.
 		 */
 		public State() {
-
+			// Default constructor
 		}
 
 		/**
@@ -119,7 +128,7 @@ public class CourseNameValidator {
 		 * @throws InvalidTransitionException throws exception for the next character being invalid.
 		 */
 		public void onOther() throws InvalidTransitionException {
-			throw new InvalidTransitionException("Invalid transition.");
+			throw new InvalidTransitionException("Course name can only contain letters and digits.");
 		}
 
 	}
@@ -150,7 +159,7 @@ public class CourseNameValidator {
 		 */
 		public void onDigit() throws InvalidTransitionException {
 			currentState = "D";
-			//throw new InvalidTransitionException("Invalid transition.");
+			throw new InvalidTransitionException("Course name must start with a letter.");
 		}
 	}
 
@@ -176,8 +185,8 @@ public class CourseNameValidator {
 		@Override
 		public void onLetter() throws InvalidTransitionException{
 			letterCount++;
-			if (letterCount == 0 || letterCount > MAX_PREFIX_LETTERS) {
-				onOther(); //throw new InvalidTransitionException("Invalid FSM transition.");
+			if (letterCount == 0 || letterCount > MAX_PREFIX_LETTERS || hasSuffix) {
+				throw new InvalidTransitionException("Course name cannot start with more than 4 letters.");
 			}
 			if (letterCount == MAX_PREFIX_LETTERS) {
 				currentState = "N";
@@ -214,10 +223,11 @@ public class CourseNameValidator {
 		public void onLetter() throws InvalidTransitionException {
 			if(digitCount == 3) {
 				currentState = "S";
+				hasSuffix = true;
 				validEndState = true;
 			}
 			else {
-				onOther(); //throw new InvalidTransitionException("Invalid transition.");
+				throw new InvalidTransitionException("Course name must have 3 digits.");
 			}
 		}
 		/**
@@ -226,7 +236,7 @@ public class CourseNameValidator {
 		 */
 		public void onDigit() throws InvalidTransitionException {
 			if(digitCount == 3 || letterCount == 0) {
-				onOther(); //throw new InvalidTransitionException("Invalid transition.");
+				throw new InvalidTransitionException("Course name can only have 3 digits.");
 			}
 			digitCount += 1;
 			currentState = "D";
@@ -247,17 +257,21 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
-		 *@throws InvalidTransitionException throws exception if there is another character.
+		 * @throws InvalidTransitionException throws exception if there is more than one letter in the suffix.
 		 */
 		public void onLetter() throws InvalidTransitionException {
-			onOther();
+				currentState = "L";
+				validEndState = false;
+				throw new InvalidTransitionException("Course name can only have a 1 letter suffix.");
 		}
 		/**
 		 * Checks to see if char is a digit.
-		 * @throws InvalidTransitionException throws exception if there is another character.
+		 * @throws InvalidTransitionException throws exception if there is a digit after the suffix.
 		 */
 		public void onDigit() throws InvalidTransitionException {
-			onOther();
+				currentState = "D";
+				validEndState = false;
+				throw new InvalidTransitionException("Course name cannot contain digits after the suffix.");
 		}
 	}
 }

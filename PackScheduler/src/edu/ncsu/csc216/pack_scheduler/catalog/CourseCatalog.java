@@ -44,7 +44,7 @@ public class CourseCatalog {
 	public void loadCoursesFromFile(String fileName) throws IllegalArgumentException {
 		try {
 			catalog = CourseRecordIO.readCourseRecords(fileName);
-		} catch (FileNotFoundException | InvalidTransitionException e) {
+		} catch (FileNotFoundException e) {
 			throw new IllegalArgumentException("Unable to read file " + fileName);
 		}
 	}
@@ -60,7 +60,6 @@ public class CourseCatalog {
 	 * @param startTime start time of the course
 	 * @param endTime end time of the course
 	 * @return boolean, true if successfully added, false if not
-	 * @throws InvalidTransitionException  if invalid format
 	 */
 	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays, int startTime, int endTime) {
 		

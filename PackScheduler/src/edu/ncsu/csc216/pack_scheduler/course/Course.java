@@ -46,10 +46,10 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param meetingDays meeting days for Course as series of chars
 	 * @param startTime start time for Course
 	 * @param endTime end time for Course
-     * @throws InvalidTransitionException if invalid format
+     * @throws IllegalArgumentException if course name is invalid
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
-	        int startTime, int endTime) throws InvalidTransitionException {
+	        int startTime, int endTime) {
 	    super(title, meetingDays, startTime, endTime);
 		try {
 			setName(name);
@@ -72,9 +72,9 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param credits credit hours for Course
 	 * @param instructorId instructor's unity id
 	 * @param meetingDays meeting days for Course as series of chars
-	 * @throws InvalidTransitionException  if invalid format
+     * @throws IllegalArgumentException if course name is invalid
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) throws InvalidTransitionException {
+	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) {
 		this(name, title, section, credits, instructorId, meetingDays, 0, 0);
 	}
 	
@@ -125,8 +125,11 @@ public class Course extends Activity implements Comparable<Course> {
 	 * IllegalArgumentException is thrown.
 	 * @param name the name to set
 	 * @throws InvalidTransitionException if invalid format
+<<<<<<< HEAD
 	 * @throws ConflictException if there is a conflict
 	 * @throws IllegalArgumentException if the name parameter is invalid
+=======
+>>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-fall2023/csc217-203-LR2-4.git
 	 */
 	private void setName(String name) throws InvalidTransitionException {
 	    //Throw exception if the name is null

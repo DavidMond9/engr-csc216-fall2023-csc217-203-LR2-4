@@ -20,7 +20,6 @@ public class CourseNameValidatorFSMTest {
 	
 	/**
 	 * Test the FSM state and transitions for a course with one letter.
-	 * @throws InvalidTransitionException if state transition is invalid.
 	 */
 	@Test
 	public void testStateL() {
@@ -36,7 +35,6 @@ public class CourseNameValidatorFSMTest {
 	
 	/**
 	 * Test the FSM state and transitions for a course with two letters.
-	 * @throws InvalidTransitionException if state transition is invalid.
 	 */
 	@Test
 	public void testStateLL(){
@@ -52,7 +50,6 @@ public class CourseNameValidatorFSMTest {
 	
 	/**
 	 * Test the FSM state and transitions for a course with three letters.
-	 * @throws InvalidTransitionException if state transition is invalid.
 	 */
 	@Test
 	public void testStateLLL(){
@@ -68,7 +65,6 @@ public class CourseNameValidatorFSMTest {
 	
 	/**
 	 * Test the FSM state and transitions for a course with four letters.
-	 * @throws InvalidTransitionException if state transition is invalid.
 	 */
 	@Test
 	public void testStateLLLL(){
@@ -84,7 +80,6 @@ public class CourseNameValidatorFSMTest {
 	
 	/**
 	 * Test the FSM state and transitions for a course with a suffix letter.
-	 * @throws InvalidTransitionException if state transition is invalid.
 	 */
 	@Test
 	public void testStateSuffix(){
