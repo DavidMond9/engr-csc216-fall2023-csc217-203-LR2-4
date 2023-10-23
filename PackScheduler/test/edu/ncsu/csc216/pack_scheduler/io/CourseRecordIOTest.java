@@ -129,7 +129,7 @@ public class CourseRecordIOTest {
 	}
 
 	/**
-	 * Helper method to compare two files for the same contents
+	 * Helper method to compare two files for the same contents l
 	 * @param expFile expected output
 	 * @param actFile actual output
 	 */
