@@ -473,7 +473,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				} else {
 					JOptionPane.showMessageDialog(this, "Course already in system.");
 				}
-			} catch (IllegalArgumentException | UnsupportedOperationException | InvalidTransitionException iae) {
+			} catch (IllegalArgumentException | UnsupportedOperationException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 			courseCatalogTableModel.updateData();

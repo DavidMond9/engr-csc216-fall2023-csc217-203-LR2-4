@@ -68,7 +68,7 @@ public class CourseCatalogTest {
 	 * @throws InvalidTransitionException if invalid
 	 */
 	@Test
-	public void testAddCourseToCatalog() throws InvalidTransitionException {
+	public void testAddCourseToCatalog() {
 		CourseCatalog catalog1 = new CourseCatalog();
 		
 		catalog1.addCourseToCatalog("CSC 116", "Intro to Programming - Java", "003", 3, "tbdimitr", "TH", 1120, 1310);
