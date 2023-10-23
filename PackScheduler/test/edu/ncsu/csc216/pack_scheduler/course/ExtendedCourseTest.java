@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * Tests the extended functionality of Course from 
  * Guided Project 2.
@@ -30,9 +32,10 @@ public class ExtendedCourseTest {
 
 	/**
 	 * Tests Course.getShortDisplayArray().
+	 * @throws InvalidTransitionException if invalid foramt
 	 */
 	@Test
-	public void testGetShortDisplayArray() {
+	public void testGetShortDisplayArray() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());
@@ -52,9 +55,10 @@ public class ExtendedCourseTest {
 
 	/**
 	 * Tests Course.getLongDisplayArray().
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testGetLongDisplayArray() {
+	public void testGetLongDisplayArray() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());

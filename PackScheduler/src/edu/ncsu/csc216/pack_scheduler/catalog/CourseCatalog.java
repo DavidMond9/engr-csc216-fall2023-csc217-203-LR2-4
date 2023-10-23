@@ -40,8 +40,9 @@ public class CourseCatalog {
 	 * Loads courses into the catalog from the provided file.
 	 * @param fileName file to load courses from
 	 * @throws IllegalArgumentException thrown if file is unable to be read/found
+	 * @throws InvalidTransitionException if invalid format
 	 */
-	public void loadCoursesFromFile(String fileName) throws IllegalArgumentException {
+	public void loadCoursesFromFile(String fileName) throws IllegalArgumentException, InvalidTransitionException {
 		try {
 			catalog = CourseRecordIO.readCourseRecords(fileName);
 		} catch (FileNotFoundException e) {
