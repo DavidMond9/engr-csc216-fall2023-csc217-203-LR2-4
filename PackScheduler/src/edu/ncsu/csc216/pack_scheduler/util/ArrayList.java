@@ -24,32 +24,6 @@ public class ArrayList<E> extends AbstractList<E> {
 	public void add(int idx, E ele) {
 		if(ele == null) {
 			throw new NullPointerException("Element cannot be null.");
-		if (ele == null) {
-			throw new NullPointerException("Cannot add a null object");
-		}
-		for (int i = 0; i < this.size; i++) {
-			if (list[i].equals(ele)) {
-				throw new IllegalArgumentException("Duplicate element");
-			}
-		}
-		if (idx < 0 || idx > this.size) {
-			throw new IndexOutOfBoundsException("Out of bounds index");
-		}
-		if(idx == size) {
-			//growArray();
-			E[] newList = (E[]) new Object[list.length * 2]; 
-			for (int j = 0; j < newList.length; j++) {
-				list[j] = newList.get(j); //need to add get method
-		}
-		for (int i = 0; i > idx; i--) {
-			list[i] = list[i - 1];
-		}
-		list[idx] = ele;
-	}
-		
-		
-		if(size == INIT_SIZE) {
-			
 		}
 		if(idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
@@ -70,7 +44,6 @@ public class ArrayList<E> extends AbstractList<E> {
 		}
 		list[idx] = ele;
 		size += 1;
-		
 	}
 	
 	public E remove(int idx) {
