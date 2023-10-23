@@ -1,5 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * Defines the Course object
  * Receives all course information and validates information before creating a course object and has ability to get and set all fields.
@@ -43,9 +46,10 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param meetingDays meeting days for Course as series of chars
 	 * @param startTime start time for Course
 	 * @param endTime end time for Course
+     * @throws InvalidTransitionException  if invalid format
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
-	        int startTime, int endTime) {
+	        int startTime, int endTime) throws InvalidTransitionException {
 	    super(title, meetingDays, startTime, endTime);
 		setName(name);
 	    setSection(section);
@@ -62,8 +66,9 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param credits credit hours for Course
 	 * @param instructorId instructor's unity id
 	 * @param meetingDays meeting days for Course as series of chars
+	 * @throws InvalidTransitionException  if invalid format
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) {
+	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) throws InvalidTransitionException {
 		this(name, title, section, credits, instructorId, meetingDays, 0, 0);
 	}
 	
@@ -113,9 +118,10 @@ public class Course extends Activity implements Comparable<Course> {
 	 * or more than 4 letter characters, and not exactly three trailing digit characters, an
 	 * IllegalArgumentException is thrown.
 	 * @param name the name to set
+	 * @throws InvalidTransitionException if invalid format
 	 * @throws IllegalArgumentException if the name parameter is invalid
 	 */
-	private void setName(String name) {
+	private void setName(String name) throws InvalidTransitionException {
 	    //Throw exception if the name is null
 	    if (name == null) {
 	        throw new IllegalArgumentException("Invalid course name.");
@@ -126,38 +132,44 @@ public class Course extends Activity implements Comparable<Course> {
 	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
 	    	throw new IllegalArgumentException("Invalid course name.");
 		}	
-	    
-	    //Check for pattern of L[LLL] NNN
-	    int letterCount = 0;
-	    int digitCount = 0;
-	    boolean space = false;
-	    for (int i = 0; i < name.length(); i++) {
-	        if (!space) {
-	            if (Character.isLetter(name.charAt(i))) {
-	                letterCount++;
-	            } else if (name.charAt(i) == ' ') {
-	                space = true;
-	            } else {
-	                throw new IllegalArgumentException("Invalid course name.");
-	            }
-	        } else if (space) {
-	            if (Character.isDigit(name.charAt(i))) {
-	                digitCount++;
-	            } else {
-	                throw new IllegalArgumentException("Invalid course name.");
-	            }
-	        }
+	    CourseNameValidator validator = new CourseNameValidator();
+	    if (validator.isValid(name)) {
+	    	this.name = name;
+	    } else {
+	    	throw new IllegalArgumentException("Invalid course name.");
 	    }
 	    
-	    //Check that the number of letters is correct
-	    if (letterCount < MIN_LETTER_COUNT || letterCount > MAX_LETTER_COUNT) {
-	        throw new IllegalArgumentException("Invalid course name.");
-	    }
-	    //Check that the number of digits is correct
-	    if (digitCount != DIGIT_COUNT) {
-	        throw new IllegalArgumentException("Invalid course name.");
-	    }
-	    this.name = name;
+//	    //Check for pattern of L[LLL] NNN
+//	    int letterCount = 0;
+//	    int digitCount = 0;
+//	    boolean space = false;
+//	    for (int i = 0; i < name.length(); i++) {
+//	        if (!space) {
+//	            if (Character.isLetter(name.charAt(i))) {
+//	                letterCount++;
+//	            } else if (name.charAt(i) == ' ') {
+//	                space = true;
+//	            } else {
+//	                throw new IllegalArgumentException("Invalid course name.");
+//	            }
+//	        } else if (space) {
+//	            if (Character.isDigit(name.charAt(i))) {
+//	                digitCount++;
+//	            } else {
+//	                throw new IllegalArgumentException("Invalid course name.");
+//	            }
+//	        }
+//	    }
+	    
+//	    //Check that the number of letters is correct
+//	    if (letterCount < MIN_LETTER_COUNT || letterCount > MAX_LETTER_COUNT) {
+//	        throw new IllegalArgumentException("Invalid course name.");
+//	    }
+//	    //Check that the number of digits is correct
+//	    if (digitCount != DIGIT_COUNT) {
+//	        throw new IllegalArgumentException("Invalid course name.");
+//	    }
+//	    this.name = name;
 	}
 	
 	/**

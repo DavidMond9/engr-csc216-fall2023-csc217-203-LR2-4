@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
 import edu.ncsu.csc217.collections.list.SortedList;
 
@@ -39,8 +40,9 @@ public class CourseCatalog {
 	 * Loads courses into the catalog from the provided file.
 	 * @param fileName file to load courses from
 	 * @throws IllegalArgumentException thrown if file is unable to be read/found
+	 * @throws InvalidTransitionException if invalid format
 	 */
-	public void loadCoursesFromFile(String fileName) throws IllegalArgumentException {
+	public void loadCoursesFromFile(String fileName) throws IllegalArgumentException, InvalidTransitionException {
 		try {
 			catalog = CourseRecordIO.readCourseRecords(fileName);
 		} catch (FileNotFoundException e) {
@@ -59,8 +61,9 @@ public class CourseCatalog {
 	 * @param startTime start time of the course
 	 * @param endTime end time of the course
 	 * @return boolean, true if successfully added, false if not
+	 * @throws InvalidTransitionException  if invalid format
 	 */
-	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays, int startTime, int endTime) {
+	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays, int startTime, int endTime) throws InvalidTransitionException {
 		Course c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);	
 		for(int j = 0; j < catalog.size(); j++) {
 			if(catalog.get(j).isDuplicate(c)) {

@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
@@ -25,8 +26,9 @@ public class CourseRecordIO {
      * @param fileName file to read Course records from
      * @return a list of valid Courses
      * @throws FileNotFoundException if the file cannot be found or read
+     * @throws InvalidTransitionException if invalid format
      */
-    public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException {
+    public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException, InvalidTransitionException {
     	Scanner fileReader = new Scanner(new FileInputStream(fileName));  //Create a file scanner to read the file
         SortedList<Course> courses = new SortedList<Course>(); //Create an empty array of Course objects
         while (fileReader.hasNextLine()) { //While we have more lines in the file
@@ -67,9 +69,10 @@ public class CourseRecordIO {
      * Reads a line and returns a course object with information from line
      * @param nextLine input string with course info
      * @return a course object populated with info from nextLine
+     * @throws InvalidTransitionException  if invalid format
      * @throws IllegalArgumentException if input string format is invalid
      */
-    private static Course readCourse(String nextLine) {
+    private static Course readCourse(String nextLine) throws InvalidTransitionException {
     	Scanner reader = new Scanner(nextLine);
 		reader.useDelimiter(",");
 		

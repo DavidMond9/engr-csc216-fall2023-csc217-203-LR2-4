@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * Tests functionality of Activity class that is not covered with other tests.
  * Specifically tests checkConflict method
@@ -17,9 +19,10 @@ class ActivityTest {
 
 	/**
 	 * Tests checkConflict method with non-conflicting activities.
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testCheckConflict() {
+	public void testCheckConflict() throws InvalidTransitionException {
 		Activity a1 = new Course("CSC 216", "Software Development Fundamentals", "001", 3, "sesmith5", "A");
 	    Activity a2 = new Course("CSC 216", "Software Development Fundamentals", "001", 3, "sesmith5", "TH", 1330, 1445);
 	    
@@ -47,9 +50,10 @@ class ActivityTest {
 	
 	/**
 	 * Tests checkConflict method with conflicting activities.
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testCheckConflictWithConflict() {
+	public void testCheckConflictWithConflict() throws InvalidTransitionException {
 	    Activity a1 = new Course("CSC 216", "Software Development Fundamentals", "001", 3, "sesmith5", "MW", 1330, 1445);
 	    Activity a2 = new Course("CSC 216", "Software Development Fundamentals", "001", 3, "sesmith5", "M", 1330, 1445);
 		

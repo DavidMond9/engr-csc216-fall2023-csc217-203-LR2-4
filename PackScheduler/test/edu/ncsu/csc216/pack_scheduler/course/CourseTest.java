@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * Tests the Course class.
  * 
@@ -109,9 +111,10 @@ public class CourseTest {
 
 	/**
 	 * Tests setTitle().
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testSetTitleValid() {
+	public void testSetTitleValid() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertAll("Course", 
 				() -> assertEquals(NAME, c.getName(), "incorrect name"), 
@@ -152,9 +155,10 @@ public class CourseTest {
 
 	/**
 	 * Tests setSection().
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testSetSectionValid() {
+	public void testSetSectionValid() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertAll("Course", 
 				() -> assertEquals(NAME, c.getName(), "incorrect name"), 
@@ -182,11 +186,12 @@ public class CourseTest {
 	/**
 	 * Tests setSection with invalid input.
 	 * @param invalid invalid input for the test
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@ParameterizedTest
 	@NullAndEmptySource
 	@ValueSource(strings = {"00", "0012", "abc"})
-	public void testSetSectionInvalid(String invalid) {
+	public void testSetSectionInvalid(String invalid) throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 
 		Exception exception = assertThrows(IllegalArgumentException.class,
@@ -197,9 +202,10 @@ public class CourseTest {
 
 	/**
 	 * Tests setCredits().
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testSetCreditsValid() {
+	public void testSetCreditsValid() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertAll("Course", 
 				() -> assertEquals(NAME, c.getName(), "incorrect name"), 
@@ -227,10 +233,11 @@ public class CourseTest {
 	/**
 	 * Tests setCredits with invalid input.
 	 * @param invalid invalid input for the test
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@ParameterizedTest
 	@ValueSource(ints = {0, 6})
-	public void testSetCreditsInvalid(int invalid) {
+	public void testSetCreditsInvalid(int invalid) throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 
 		Exception exception = assertThrows(IllegalArgumentException.class,
@@ -240,9 +247,10 @@ public class CourseTest {
 
 	/**
 	 * Tests setInstructorId().
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testSetInstructorIdValid() {
+	public void testSetInstructorIdValid() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertAll("Course", 
 				() -> assertEquals(NAME, c.getName(), "incorrect name"), 
@@ -270,10 +278,11 @@ public class CourseTest {
 	/**
 	 * Tests setInstructorId with invalid input.
 	 * @param invalid invalid input for the test
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@ParameterizedTest
 	@NullAndEmptySource
-	public void testSetInstructorIdInvalid(String invalid) {
+	public void testSetInstructorIdInvalid(String invalid) throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 
 		Exception exception = assertThrows(IllegalArgumentException.class,
@@ -289,6 +298,7 @@ public class CourseTest {
 	 * @param endTime valid end time
 	 * @param expectedStartTime expected start time from the first three arguments
 	 * @param expectedEndTime expected end time from the first three arguments
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@ParameterizedTest(name = "{index} => meetingString={0}, startTime={1}, endTime={2}, expectedStartTime={3}, expectedEndTime={4}")
 	@CsvSource({
@@ -300,7 +310,7 @@ public class CourseTest {
 		"H,1130,1245,1130,1245",
 		"A,0,0,0,0"
 	})
-	public void testSetMeetingDaysAndTimesValid(String meetingString, int startTime, int endTime, int expectedStartTime, int expectedEndTime) {
+	public void testSetMeetingDaysAndTimesValid(String meetingString, int startTime, int endTime, int expectedStartTime, int expectedEndTime) throws InvalidTransitionException {
 		// The code below is commented out until you make some changes to Course.
 		// Once those are made, remove the line of code fail() and uncomment the
 		// provided tests.
@@ -346,6 +356,7 @@ public class CourseTest {
 	 * @param meetingString valid meeting string
 	 * @param startTime valid start time
 	 * @param endTime valid end time
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@ParameterizedTest(name = "{index} => meetingString={0}, startTime={1}, endTime={2}")
 	@CsvSource({
@@ -370,7 +381,7 @@ public class CourseTest {
 		"A,300,0",
 		"A,0,1300"
 	})
-	public void testSetMeetingDaysAndTimesInvalid(String meetingString, int startTime, int endTime) {
+	public void testSetMeetingDaysAndTimesInvalid(String meetingString, int startTime, int endTime) throws InvalidTransitionException {
 		// The code below is commented out until you make some changes to Course.
 		// Once those are made, remove the line of code fail() and uncomment the
 		// provided tests.
@@ -397,9 +408,10 @@ public class CourseTest {
 
 	/**
 	 * Tests getMeetingString().
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testGetMeetingString() {
+	public void testGetMeetingString() throws InvalidTransitionException {
 		// The code below is commented out until you make some changes to Course.
 		// Once those are made, remove the line of code fail() and uncomment the
 		// provided tests.
@@ -418,9 +430,10 @@ public class CourseTest {
 
 	/**
 	 * Tests that the equals method works for all Course fields.
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testEqualsObject() {
+	public void testEqualsObject() throws InvalidTransitionException {
 		Activity c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		Activity c2 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		Activity c3 = new Course(NAME, "Different", SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
@@ -449,9 +462,10 @@ public class CourseTest {
 
 	/**
 	 * Tests that hashCode works correctly.
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testHashCode() {
+	public void testHashCode() throws InvalidTransitionException {
 		Activity c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		Activity c2 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		Activity c3 = new Course(NAME, "Different", SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
@@ -480,9 +494,10 @@ public class CourseTest {
 
 	/**
 	 * Tests that toString returns the correct comma-separated value.
+	 * @throws InvalidTransitionException if invalid format
 	 */
 	@Test
-	public void testToString() {
+	public void testToString() throws InvalidTransitionException {
 		Activity c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		String s1 = "CSC 216,Software Development Fundamentals,001,3,sesmith5,MW,1330,1445";
 		assertEquals(s1, c1.toString());
