@@ -62,6 +62,7 @@ public class CourseRecordIOTest {
 
 	/**
 	 * Resets course_records.txt for use in other tests.
+	 * @throws Exception if there is an error resetting the files.
 	 */
 	@Before
 	public void setUp() throws Exception {

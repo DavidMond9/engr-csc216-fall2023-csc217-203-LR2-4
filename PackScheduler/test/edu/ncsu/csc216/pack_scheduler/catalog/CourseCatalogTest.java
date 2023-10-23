@@ -65,7 +65,6 @@ public class CourseCatalogTest {
 	/**
 	 * Tests CourseCatalog.addCourseToCatalog(). tests valid course, and adding
 	 * same course twice.
-	 * @throws InvalidTransitionException if invalid
 	 */
 	@Test
 	public void testAddCourseToCatalog() {

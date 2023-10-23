@@ -26,7 +26,6 @@ public class CourseRecordIO {
      * @param fileName file to read Course records from
      * @return a list of valid Courses
      * @throws FileNotFoundException if the file cannot be found or read
-     * @throws InvalidTransitionException if invalid format
      */
     public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException {
     	Scanner fileReader = new Scanner(new FileInputStream(fileName));  //Create a file scanner to read the file
