@@ -16,6 +16,8 @@ public class CourseNameValidator {
 	 * Field to keep track of the amount of digits.
 	 */
 	private int digitCount = 0;
+	/** Field to keep track of if the course name has a suffix. */
+	private boolean hasSuffix = false;
 	/**
 	 * Field to keep track of the current state.
 	 */
@@ -48,10 +50,6 @@ public class CourseNameValidator {
 	 * @throws InvalidTransitionException throws an exception if invalid input.
 	 */
 	public boolean isValid(String name) throws InvalidTransitionException {
-//		if (name == null) {
-//			return false;
-//		}
-		
 		for (int i = 0; i < name.length(); i++) {
 			if ("I".equals(currentState)) {
 				if (Character.isLetter(name.charAt(i))) {
@@ -176,7 +174,7 @@ public class CourseNameValidator {
 		@Override
 		public void onLetter() throws InvalidTransitionException{
 			letterCount++;
-			if (letterCount == 0 || letterCount > MAX_PREFIX_LETTERS) {
+			if (letterCount == 0 || letterCount > MAX_PREFIX_LETTERS || hasSuffix) {
 				onOther(); //throw new InvalidTransitionException("Invalid FSM transition.");
 			}
 			if (letterCount == MAX_PREFIX_LETTERS) {
@@ -214,6 +212,7 @@ public class CourseNameValidator {
 		public void onLetter() throws InvalidTransitionException {
 			if(digitCount == 3) {
 				currentState = "S";
+				hasSuffix = true;
 				validEndState = true;
 			}
 			else {
@@ -247,17 +246,17 @@ public class CourseNameValidator {
 		}
 		/**
 		 * Checks to see if char is a letter.
-		 *@throws InvalidTransitionException throws exception if there is another character.
 		 */
-		public void onLetter() throws InvalidTransitionException {
-			onOther();
+		public void onLetter() {
+				currentState = "L";
+				validEndState = false;
 		}
 		/**
 		 * Checks to see if char is a digit.
-		 * @throws InvalidTransitionException throws exception if there is another character.
 		 */
-		public void onDigit() throws InvalidTransitionException {
-			onOther();
+		public void onDigit() {
+				//currentState = "D";
+				validEndState = false;
 		}
 	}
 }

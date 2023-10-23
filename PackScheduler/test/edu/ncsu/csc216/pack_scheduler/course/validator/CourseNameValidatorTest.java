@@ -1,10 +1,15 @@
 package edu.ncsu.csc216.pack_scheduler.course.validator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
+
+import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator.State;
+import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator.SuffixState;
 
 /**
  * Tests the CourseNameValidator for all possible states and transitions.
@@ -184,16 +189,24 @@ public class CourseNameValidatorTest {
 	 */
 	@Test
 	public void testInvalidSuffix() {
-		
-		Exception e1 = assertThrows(InvalidTransitionException.class,
-				() -> fsm.isValid("CSC116AB"));
-		
-		assertEquals("Invalid transition.", e1.getMessage());
-		
+
+		try {
+			assertFalse(fsm.isValid("CSC116AB"));
+		} catch (InvalidTransitionException e) {
+			fail("Should not throw exception.");
+		}
+
 		Exception e2 = assertThrows(InvalidTransitionException.class,
 				() -> fsm.isValid("CSC116A1"));
 
 		assertEquals("Invalid transition.", e2.getMessage());
+		
+//		try {
+//			assertFalse(fsm.isValid("CSC116A"));
+//		} catch (InvalidTransitionException e) {
+//			fail("Should not throw exception.");
+//		}
+
 	}
 
 }
