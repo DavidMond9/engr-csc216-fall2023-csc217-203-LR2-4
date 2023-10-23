@@ -51,7 +51,13 @@ public class Course extends Activity implements Comparable<Course> {
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
 	        int startTime, int endTime) {
 	    super(title, meetingDays, startTime, endTime);
-		setName(name);
+		try {
+			setName(name);
+		} catch (InvalidTransitionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
 	    setSection(section);
 	    setCredits(credits);
 	    setInstructorId(instructorId);
@@ -121,23 +127,21 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @throws InvalidTransitionException if invalid format
 	 * @throws IllegalArgumentException if the name parameter is invalid
 	 */
-	private void setName(String name) /*throws InvalidTransitionException*/ {
-//	    //Throw exception if the name is null
-//	    if (name == null) {
-//	        throw new IllegalArgumentException("Invalid course name.");
-//	    }
-//	    
-//	    //Throw exception if the name is an empty string
-//	    //Throw exception if the name contains less than 5 character or greater than 8 characters
-//	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
-//	    	throw new IllegalArgumentException("Invalid course name.");
-//		}
-		try {
+	private void setName(String name) throws InvalidTransitionException {
+	    //Throw exception if the name is null
+	    if (name == null) {
+	        throw new IllegalArgumentException("Invalid course name.");
+	    }
+	    
+	    //Throw exception if the name is an empty string
+	    //Throw exception if the name contains less than 5 character or greater than 8 characters
+	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
+	    	throw new IllegalArgumentException("Invalid course name.");
+		}	
 	    CourseNameValidator validator = new CourseNameValidator();
-		    if (validator.isValid(name)) {
-		    	this.name = name;
-		    }
-	    } catch (InvalidTransitionException e) {
+	    if (validator.isValid(name)) {
+	    	this.name = name;
+	    } else {
 	    	throw new IllegalArgumentException("Invalid course name.");
 	    }
 	    
