@@ -9,9 +9,9 @@
 
 - **Test CourseNameValidator** | **Owner:** Audrey **Due:** 10/19/23, **Status:** Complete
 
-- **Integrate CourseNameValidator into Course** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
+- **Integrate CourseNameValidator into Course** | **Owner:** Duncan, David, **Due:** 10/23/23, **Status:** Complete
 
-- **Update PackScheduler Tests for new Course Functionality** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
+- **Update PackScheduler Tests for new Course Functionality** | **Owner:** Audrey, **Due:** 10/23/23, **Status:** Complete
 
 - **System Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
 
