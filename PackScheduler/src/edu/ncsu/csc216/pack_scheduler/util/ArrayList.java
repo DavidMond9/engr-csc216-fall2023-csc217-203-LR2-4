@@ -10,12 +10,13 @@ import java.util.AbstractList;
  */
 public class ArrayList<E> extends AbstractList<E> {
 	private static final int INIT_SIZE = 10;
-	private E list;
+	private E[] list;
 	private int size;
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList() {
 		//create array object
-		
+		list = (E[]) new Object[INIT_SIZE];
 		//cast to E
 		
 		//set size to 0
