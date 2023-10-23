@@ -15,4 +15,4 @@
 
 - **System Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
 
-- **Generate Javadoc** | **Owner:** Audrey, Duncan, David, **Due:** 10/23/23, **Status:** Pending
+- **Generate Javadoc** | **Owner:** Audrey, **Due:** 10/23/23, **Status:** Complete
