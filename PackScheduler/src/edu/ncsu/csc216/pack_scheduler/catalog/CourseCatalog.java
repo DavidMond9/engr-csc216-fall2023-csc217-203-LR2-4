@@ -63,30 +63,17 @@ public class CourseCatalog {
 	 * @throws InvalidTransitionException  if invalid format
 	 */
 	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays, int startTime, int endTime) {
-		try {
-			Course c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
-			for(int j = 0; j < catalog.size(); j++) {
-				if(catalog.get(j).isDuplicate(c)) {
-					//throw new IllegalArgumentException("Course already in system.");
-					return false;
-				}
+		
+			
+		Course c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+		for(int j = 0; j < catalog.size(); j++) {
+			if(catalog.get(j).isDuplicate(c)) {
+				//throw new IllegalArgumentException("Course already in system.");
+				return false;
 			}
-			catalog.add(c);
-			return true;
-		} catch (InvalidTransitionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}	
-//		Course c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
-//		for(int j = 0; j < catalog.size(); j++) {
-//			if(catalog.get(j).isDuplicate(c)) {
-//				//throw new IllegalArgumentException("Course already in system.");
-//				return false;
-//			}
-//		}
-//		catalog.add(c);
-//		return true;
+		}
+		catalog.add(c);
+		return true;
 	}
 	
 	/**

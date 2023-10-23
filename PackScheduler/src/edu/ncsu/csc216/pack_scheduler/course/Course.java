@@ -49,9 +49,15 @@ public class Course extends Activity implements Comparable<Course> {
      * @throws InvalidTransitionException  if invalid format
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
-	        int startTime, int endTime) throws InvalidTransitionException {
+	        int startTime, int endTime) {
 	    super(title, meetingDays, startTime, endTime);
-		setName(name);
+		try {
+			setName(name);
+		} catch (InvalidTransitionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
 	    setSection(section);
 	    setCredits(credits);
 	    setInstructorId(instructorId);
