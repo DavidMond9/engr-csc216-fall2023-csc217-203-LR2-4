@@ -72,7 +72,7 @@ public class CourseRecordIO {
      * @throws InvalidTransitionException  if invalid format
      * @throws IllegalArgumentException if input string format is invalid
      */
-    private static Course readCourse(String nextLine) {
+    private static Course readCourse(String nextLine) throws InvalidTransitionException {
     	Scanner reader = new Scanner(nextLine);
 		reader.useDelimiter(",");
 		
