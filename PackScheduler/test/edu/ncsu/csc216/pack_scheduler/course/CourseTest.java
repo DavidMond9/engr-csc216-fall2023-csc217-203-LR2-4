@@ -15,7 +15,7 @@ import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionExceptio
  * 
  * Note that test methods for all getters have been omitted. They will be tested
  * as we test other methods.
- * 
+ * 	
  * @author Sarah Heckman
  */
 public class CourseTest {

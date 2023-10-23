@@ -173,7 +173,7 @@ public class CourseNameValidator {
 		public void onLetter() throws InvalidTransitionException{
 			letterCount++;
 			if (letterCount == 0 || letterCount > MAX_PREFIX_LETTERS) {
-				onOther();//throw new InvalidTransitionException("Invalid FSM transition.");
+				onOther(); //throw new InvalidTransitionException("Invalid FSM transition.");
 			}
 			if (letterCount == MAX_PREFIX_LETTERS) {
 				currentState = "N";
@@ -187,7 +187,7 @@ public class CourseNameValidator {
 		@Override
 		public void onDigit() throws InvalidTransitionException{
 			if (letterCount == 0) {
-				onOther();//throw new InvalidTransitionException("Invalid FSM transition.");
+				onOther(); //throw new InvalidTransitionException("Invalid FSM transition.");
 			}
 			digitCount++;
 			currentState = "D";
@@ -213,7 +213,7 @@ public class CourseNameValidator {
 				validEndState = true;
 			}
 			else {
-				onOther();//throw new InvalidTransitionException("Invalid transition.");
+				onOther(); //throw new InvalidTransitionException("Invalid transition.");
 			}
 		}
 		/**
@@ -222,7 +222,7 @@ public class CourseNameValidator {
 		 */
 		public void onDigit() throws InvalidTransitionException {
 			if(digitCount == 3 || letterCount == 0) {
-				onOther();//throw new InvalidTransitionException("Invalid transition.");
+				onOther(); //throw new InvalidTransitionException("Invalid transition.");
 			}
 			digitCount += 1;
 			if (digitCount == 3) {
