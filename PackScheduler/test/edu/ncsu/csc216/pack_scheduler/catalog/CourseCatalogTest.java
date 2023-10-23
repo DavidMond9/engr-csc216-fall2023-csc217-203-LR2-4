@@ -71,10 +71,10 @@ public class CourseCatalogTest {
 	public void testAddCourseToCatalog() {
 		CourseCatalog catalog1 = new CourseCatalog();
 		
-		catalog1.addCourseToCatalog("CSC 116", "Intro to Programming - Java", "003", 3, "tbdimitr", "TH", 1120, 1310);
+		catalog1.addCourseToCatalog("CSC116", "Intro to Programming - Java", "003", 3, "tbdimitr", "TH", 1120, 1310);
 		String [][] courseCatalog = catalog1.getCourseCatalog();
 		assertEquals(1, courseCatalog.length);
-		assertEquals("CSC 116", courseCatalog[0][0]);
+		assertEquals("CSC116", courseCatalog[0][0]);
 		assertEquals("003", courseCatalog[0][1]);
 		assertEquals("Intro to Programming - Java", courseCatalog[0][2]);
 		//assertFalse(catalog1.addCourseToCatalog("CSC 116", "Intro to Programming - Java", "003", 3, "spbalik", "MW", 1250, 1440));
@@ -89,9 +89,9 @@ public class CourseCatalogTest {
 	public void testGetCourseFromCatalog() throws IllegalArgumentException, InvalidTransitionException {
 	  CourseCatalog catalog = new CourseCatalog();
 	  catalog.loadCoursesFromFile("test-files/student_record.txt");
-	  Course c1 = catalog.getCourseFromCatalog("CSC 216", "001");
+	  Course c1 = catalog.getCourseFromCatalog("CSC216", "001");
 	  assertNotNull(c1);
-	  assertEquals("CSC 216", c1.getName());
+	  assertEquals("CSC216", c1.getName());
 	  assertEquals("001", c1.getSection());
 	  Course c2 = catalog.getCourseFromCatalog("CSC999", "999");
 	  assertNull(c2);
@@ -110,9 +110,9 @@ public class CourseCatalogTest {
 		catalog1.loadCoursesFromFile(validTestFile);
 		assertEquals(3, catalog1.getCourseCatalog().length);
 		String [][] studentDirectory = catalog1.getCourseCatalog();
-		assertEquals("CSC 116", studentDirectory[0][0]);
-		assertEquals("CSC 216", studentDirectory[1][0]);
-		assertEquals("CSC 216", studentDirectory[2][0]);
+		assertEquals("CSC116", studentDirectory[0][0]);
+		assertEquals("CSC216", studentDirectory[1][0]);
+		assertEquals("CSC216", studentDirectory[2][0]);
 		
 		try {
 			catalog1.loadCoursesFromFile("invalid");
@@ -137,7 +137,7 @@ public class CourseCatalogTest {
 		catalog1.removeCourseFromCatalog("CSC116", "003");
 		String [][] courseCatalog = catalog1.getCourseCatalog();
 		assertEquals(2, courseCatalog.length);
-		assertEquals("CSC 216", courseCatalog[0][0]);
+		assertEquals("CSC216", courseCatalog[0][0]);
 		assertEquals("001", courseCatalog[0][1]);
 		
 		assertFalse(catalog1.removeCourseFromCatalog("CSC116", "003"));

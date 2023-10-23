@@ -48,6 +48,10 @@ public class CourseNameValidator {
 	 * @throws InvalidTransitionException throws an exception if invalid input.
 	 */
 	public boolean isValid(String name) throws InvalidTransitionException {
+		if (name == null) {
+			return false;
+		}
+		
 		for (int i = 0; i < name.length(); i++) {
 			if ("I".equals(currentState)) {
 				if (Character.isLetter(name.charAt(i))) {
@@ -178,7 +182,7 @@ public class CourseNameValidator {
 			if (letterCount == MAX_PREFIX_LETTERS) {
 				currentState = "N";
 			}
-			currentState = "D";
+			currentState = "L";
 		}
 
 		/**
@@ -225,6 +229,7 @@ public class CourseNameValidator {
 				onOther(); //throw new InvalidTransitionException("Invalid transition.");
 			}
 			digitCount += 1;
+			currentState = "D";
 			if (digitCount == 3) {
 				validEndState = true;
 			}

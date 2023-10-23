@@ -23,12 +23,12 @@ public class Course extends Activity implements Comparable<Course> {
     private static final int MIN_LENGTH = 5;
     /** Maximum course name length */
     private static final int MAX_LENGTH = 8;
-    /** Minimum course letter count */
-    private static final int MIN_LETTER_COUNT = 1;
-    /** Maximum course letter count */
-    private static final int MAX_LETTER_COUNT = 4;
-    /** Course digit count */
-    private static final int DIGIT_COUNT = 3;
+//    /** Minimum course letter count */
+//    private static final int MIN_LETTER_COUNT = 1;
+//    /** Maximum course letter count */
+//    private static final int MAX_LETTER_COUNT = 4;
+//    /** Course digit count */
+//    private static final int DIGIT_COUNT = 3;
     /** Course section length */
     private static final int SECTION_LENGTH = 3;
     /** Course minimum credits */
@@ -46,7 +46,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param meetingDays meeting days for Course as series of chars
 	 * @param startTime start time for Course
 	 * @param endTime end time for Course
-     * @throws InvalidTransitionException  if invalid format
+     * @throws InvalidTransitionException if invalid format
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
 	        int startTime, int endTime) {
@@ -56,7 +56,7 @@ public class Course extends Activity implements Comparable<Course> {
 		} catch (InvalidTransitionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return;
+			throw new IllegalArgumentException("Invalid course name.");
 		}
 	    setSection(section);
 	    setCredits(credits);
@@ -125,6 +125,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 * IllegalArgumentException is thrown.
 	 * @param name the name to set
 	 * @throws InvalidTransitionException if invalid format
+	 * @throws ConflictException if there is a conflict
 	 * @throws IllegalArgumentException if the name parameter is invalid
 	 */
 	private void setName(String name) throws InvalidTransitionException {
@@ -138,12 +139,27 @@ public class Course extends Activity implements Comparable<Course> {
 	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
 	    	throw new IllegalArgumentException("Invalid course name.");
 		}	
+//	    //Throw exception if the name is null
+//	    if (name == null) {
+//	        throw new IllegalArgumentException("Invalid course name.");
+//	    }
+//	    
+//	    //Throw exception if the name is an empty string
+//	    //Throw exception if the name contains less than 5 character or greater than 8 characters
+//	    if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
+//	    	throw new IllegalArgumentException("Invalid course name.");
+//		}
 	    CourseNameValidator validator = new CourseNameValidator();
 	    if (validator.isValid(name)) {
 	    	this.name = name;
 	    } else {
 	    	throw new IllegalArgumentException("Invalid course name.");
 	    }
+		if (validator.isValid(name)) {
+			this.name = name;
+		} else {
+			throw new InvalidTransitionException();
+		}
 	    
 //	    //Check for pattern of L[LLL] NNN
 //	    int letterCount = 0;
