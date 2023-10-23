@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
 /**
  * Class to create a Student object
@@ -8,6 +9,8 @@ package edu.ncsu.csc216.pack_scheduler.user;
  */
 public class Student extends User implements Comparable<Student> {
 	
+	/** Field for the student's schedule */
+	Schedule schedule;
 	/** Absolute maximum number of credits a student can take */
 	public static final int MAX_CREDITS = 18;
 	/** Student's maximum number of credits */
@@ -27,6 +30,7 @@ public class Student extends User implements Comparable<Student> {
 		
 		super(firstName, lastName, id, email, hashPW);
 		setMaxCredits(maxCredits);
+		schedule = new Schedule();
 		
 	}
 	
@@ -344,6 +348,12 @@ public class Student extends User implements Comparable<Student> {
 		return maxCredits == other.maxCredits;
 	}
 
-	
+	/**
+	 * Returns the student's schedule.
+	 * @return schedule the student's schedule as an ArrayList of Courses.
+	 */
+	public Schedule getSchedule() {
+		return this.schedule;
+	}
 	
 }
