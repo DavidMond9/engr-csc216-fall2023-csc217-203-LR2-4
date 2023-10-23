@@ -52,7 +52,7 @@ public class CourseCatalogTest {
 	/**
 	 * checks if new course catalog is empty
 	 * @throws InvalidTransitionException if invalid
-	 * @throws IllegalArgumentException 
+	 * @throws IllegalArgumentException if invalid
 	 */
 	@Test
 	public void testNewCourseCatalog() throws IllegalArgumentException, InvalidTransitionException {
@@ -83,7 +83,7 @@ public class CourseCatalogTest {
 	/**
 	 * tests getting a course from catalog
 	 * @throws InvalidTransitionException if invalid
-	 * @throws IllegalArgumentException 
+	 * @throws IllegalArgumentException  if invalid
 	 */
 	@Test
 	public void testGetCourseFromCatalog() throws IllegalArgumentException, InvalidTransitionException {
