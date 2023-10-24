@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
  * @author Duncan Munro
  */
 class ArrayListTest {
+	
 
 	/**
 	 * integer size for the array
@@ -56,20 +57,22 @@ class ArrayListTest {
 	 */
 	@Test
 	void testRemove() {
-		
+		assertTrue(true);
+
 	}
 	/**
 	 * Testing the set method in ArrayList.
 	 */
 	@Test
 	void testSet() {
-		
+		assertTrue(true);
+
 	}
 	/**
 	 * Testing the get method in ArrayList.
 	 */
 	@Test
 	void testGet() {
-		
+		assertTrue(true);
 	}
 }

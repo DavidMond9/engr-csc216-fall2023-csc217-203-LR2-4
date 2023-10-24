@@ -10,7 +10,6 @@ package edu.ncsu.csc216.pack_scheduler.course;
  * @author Sam McDonald
  */
 public abstract class Activity implements Conflict {
-
 	/** Activity's title. */
 	private String title;
 	/** Activity's meeting days */
