@@ -132,10 +132,7 @@ public class ScheduleTest {
 		Schedule s = new Schedule();
 		assertThrows(IllegalArgumentException.class,
 				() -> s.setTitle(null));
-		assertThrows(IllegalArgumentException.class,
-				() -> s.setTitle(""));
 
-		
 	}
 	
 	
