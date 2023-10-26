@@ -44,7 +44,7 @@ public class ArrayList<E> extends AbstractList<E> {
 		if(ele == null) {
 			throw new NullPointerException("Element cannot be null.");
 		}
-		if(idx < 0 || idx >= size()) {
+		if(idx < 0 || idx > size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
 		for(int i = 0; i < size; i++) {

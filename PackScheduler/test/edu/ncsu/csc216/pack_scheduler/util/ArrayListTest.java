@@ -40,11 +40,11 @@ class ArrayListTest {
 		//Invalid checks
 		//null pointer check
 		Exception e1 = assertThrows(NullPointerException.class, 
-						() -> list.add(4, null));
+						() -> list.add(0, null));
 		assertEquals("Element cannot be null.", e1.getMessage(), "checking that a null pointer exception is thrown when a null element is added");
 		//duplicate element
-		list.add(1, 66);
-		Exception e2 = assertThrows(IllegalArgumentException.class, () -> list.add(3, 66));
+		list.add(0, 66);
+		Exception e2 = assertThrows(IllegalArgumentException.class, () -> list.add(1, 66));
 		assertEquals("Duplicate element not allowed.", e2.getMessage(), "checking that a duplicate element cannot be added");
 		//index out of range
 		Exception e3 = assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1, 33));

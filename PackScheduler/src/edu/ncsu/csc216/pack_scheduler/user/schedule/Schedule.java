@@ -43,7 +43,7 @@ public class Schedule {
 		for (Course course:schedule) {
 			// Check if the Course is a duplicate to another in the schedule
 			if (c.isDuplicate(course)) {
-				throw new IllegalArgumentException("You are already enrolled in " + course + ".");	
+				throw new IllegalArgumentException("You are already enrolled in " + course.getName() + ".");	
 			}
 			// Check if course conflicts with an existing course in the schedule
 			try {
