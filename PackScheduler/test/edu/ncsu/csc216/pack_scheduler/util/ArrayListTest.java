@@ -37,6 +37,7 @@ class ArrayListTest {
 	@Test
 	void testAdd() {
 		ArrayList<Integer> list = new ArrayList();
+		assertEquals(0, list.size());
 		//Invalid checks
 		//null pointer check
 		Exception e1 = assertThrows(NullPointerException.class, 
@@ -51,6 +52,10 @@ class ArrayListTest {
 		assertEquals("Index out of bounds.", e3.getMessage(), "checking that out of bounds exception is thrown for a negative index");
 		Exception e4 = assertThrows(IndexOutOfBoundsException.class, () -> list.add(1000, 33333));
 		assertEquals("Index out of bounds.", e4.getMessage(), "checking that out of bounds exception is thrown for a negative index");
+		
+		list.add(1, 15);
+		list.add(2, 20);
+		list.add(3, 25);
 	}
 	/**
 	 * Testing the remove method in ArrayList.
