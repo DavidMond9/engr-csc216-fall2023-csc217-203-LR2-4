@@ -19,9 +19,6 @@ class ArrayListTest {
 	 */
 	private static final int INIT_SIZE = 10;
 	
-	/** value for size of the array */
-	private int size;
-	
 	/**
 	 * Testing the constructor in ArrayList.
 	 */
@@ -107,6 +104,7 @@ class ArrayListTest {
             fail(); 
             //fail statement is security in case an exception is not thrown
         } catch (IndexOutOfBoundsException e) {
+        	// Do nothing
         }
 
         // Add some elements to the list
@@ -125,6 +123,7 @@ class ArrayListTest {
             list.remove(5);
             fail();
         } catch (IndexOutOfBoundsException e) {
+        	// Do nothing
         }
 	}
 

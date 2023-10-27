@@ -49,7 +49,7 @@ public class ArrayList<E> extends AbstractList<E> {
 		}
 		for(int i = 0; i < list.length; i++) {
 			E temp = list[i];
-			if (temp != null && ele.equals(temp)) {
+			if (temp != null && temp.equals(ele)) {
 				throw new IllegalArgumentException("Duplicate element not allowed.");
 			}
 		}
