@@ -47,22 +47,24 @@ public class ArrayList<E> extends AbstractList<E> {
 		if(idx < 0 || idx > size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
-		for(int i = 0; i < size; i++) {
-			if(Objects.equals(list[i], ele)) {
+		for(E temp: list) {
+			if (temp != null && ele.equals(temp)) {
 				throw new IllegalArgumentException("Duplicate element not allowed.");
 			}
 		}
 		if(size == list.length) {
 			int newCapacity = list.length * 2;
-			list = Arrays.copyOf(list, newCapacity);
+			this.list = Arrays.copyOf(list, newCapacity);
+			this.size = this.size * 2;
+			return;
 		}
 		
 		if(idx < size) {
 			System.arraycopy(list, idx, list, idx + 1, size - idx);
 			
 		}
-		list[idx] = ele;
-		size += 1;
+		this.list[idx] = ele;
+		this.size += 1;
 	}
 	/**
 	 * Removes an element at a specific index.
