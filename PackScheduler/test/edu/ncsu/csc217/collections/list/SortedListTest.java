@@ -242,8 +242,8 @@ public class SortedListTest {
 		}
 		
 		//TODO Test for equality and non-equality
-		assertTrue(list1.equals(list2));
-		assertFalse(list1.equals(list3));
+		assertEquals(list1, list2);
+		assertNotEquals(list1, list3);
 	}
 	
 	/**

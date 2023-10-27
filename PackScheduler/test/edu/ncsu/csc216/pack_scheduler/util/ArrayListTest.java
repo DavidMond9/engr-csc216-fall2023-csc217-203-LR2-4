@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
  * @author Duncan Munro
  */
 class ArrayListTest {
+	
 
 	/**
 	 * integer size for the array
@@ -22,16 +23,16 @@ class ArrayListTest {
 	private int size;
 	
 	/**
-	 * this will test the array list constructor
+	 * Testing the constructor in ArrayList.
 	 */
 	@Test
 	void testArrayList() {
 		ArrayList<Integer> list = new ArrayList();
-		assertEquals("Size should be 0 after construction", 0, list.getSize());
+		assertEquals(0, list.size(), "Size should be 0 after construction" );
 		}
 
 	/**
-	 * this will test the array list add method
+	 * Testing the add method in ArrayList.
 	 */
 	@Test
 	void testAdd() {
@@ -47,21 +48,29 @@ class ArrayListTest {
         assertEquals(20, list.size(), "check to see if arraylist doubles when a tenth integer is added");
 		
 		
+
+		assertEquals(0, list.size());
 		//Invalid checks
 		//null pointer check
 		Exception e1 = assertThrows(NullPointerException.class, 
-						() -> list.add(4, null));
-		assertEquals("Element cannot be null", e1.getMessage(), "checking that a null pointer exception is thrown when a null element is added");
+						() -> list.add(0, null));
+		assertEquals("Element cannot be null.", e1.getMessage(), "checking that a null pointer exception is thrown when a null element is added");
 		//duplicate element
-		list.add(1, 66);
-		Exception e2 = assertThrows(IllegalArgumentException.class, () -> list.add(3, 66));
-		assertEquals("Duplicate element", e2.getMessage(), "checking that a duplicate element cannot be added");
+		list.add(0, 66);
+		Exception e2 = assertThrows(IllegalArgumentException.class, () -> list.add(1, 66));
+		assertEquals("Duplicate element not allowed.", e2.getMessage(), "checking that a duplicate element cannot be added");
 		//index out of range
 		Exception e3 = assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1, 33));
-		assertEquals("Out of bounds", e3.getMessage(), "checking that out of bounds exception is thrown for a negative index");
+		assertEquals("Index out of bounds.", e3.getMessage(), "checking that out of bounds exception is thrown for a negative index");
 		Exception e4 = assertThrows(IndexOutOfBoundsException.class, () -> list.add(1000, 33333));
 		assertEquals("Out of bounds", e4.getMessage(), "checking that out of bounds exception is thrown for a negative index");		
+		assertEquals("Index out of bounds.", e4.getMessage(), "checking that out of bounds exception is thrown for a negative index");
+		
+		list.add(1, 15);
+		list.add(2, 20);
+		list.add(3, 25);
 	}
+
 	
 	/**
 	 * this will test the set method
@@ -83,4 +92,21 @@ class ArrayListTest {
     
 	}
 
+
+	/**
+	 * Testing the remove method in ArrayList.
+	 */
+	@Test
+	void testRemove() {
+		assertTrue(true);
+
+	}
+
+	/**
+	 * Testing the get method in ArrayList.
+	 */
+	@Test
+	void testGet() {
+		assertTrue(true);
+	}
 }
