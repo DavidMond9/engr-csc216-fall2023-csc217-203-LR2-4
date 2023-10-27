@@ -5,6 +5,7 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import java.util.AbstractList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -79,6 +80,24 @@ public class ArrayList<E> extends AbstractList<E> {
 		if(idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
+		return null;
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean addAll(Collection<? extends E> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public E get(int index) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }
