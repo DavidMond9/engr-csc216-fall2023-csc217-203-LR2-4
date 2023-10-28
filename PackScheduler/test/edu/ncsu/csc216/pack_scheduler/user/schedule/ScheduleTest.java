@@ -125,12 +125,14 @@ public class ScheduleTest {
 	}
 	
 	/**
-	 * Test setting the title.
+	 * Test setting the title with invalid title.
 	 */
 	@Test
-	public void testSetTitle() {
-		
-		
+	public void testSetTitleInvalid() {
+		Schedule s = new Schedule();
+		assertThrows(IllegalArgumentException.class,
+				() -> s.setTitle(null));
+
 	}
 	
 	

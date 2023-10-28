@@ -4,7 +4,6 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
 import java.util.AbstractList;
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -41,6 +40,7 @@ public class ArrayList<E> extends AbstractList<E> {
 	 * @param idx index to add at.
 	 * @param ele element being added.
 	 */
+	@SuppressWarnings("unchecked")
 	public void add(int idx, E ele) {
 		if(ele == null) {
 			throw new NullPointerException("Element cannot be null.");
@@ -48,22 +48,30 @@ public class ArrayList<E> extends AbstractList<E> {
 		if(idx < 0 || idx > size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
-		for(int i = 0; i < size; i++) {
-			if(Objects.equals(list[i], ele)) {
+		for(int i = 0; i < list.length; i++) {
+			E temp = list[i];
+			if (temp != null && temp.equals(ele)) {
 				throw new IllegalArgumentException("Duplicate element not allowed.");
 			}
 		}
 		if(size == list.length) {
 			int newCapacity = list.length * 2;
-			list = Arrays.copyOf(list, newCapacity);
+			E[] newList = (E[]) new Object[newCapacity];
+			for (int i = 0; i < size; i++) {
+				newList[i] = list[i];
+			}
+			list = newList;
+			//this.list = Arrays.copyOf(list, newCapacity);
+			//this.size = this.size * 2;
+			//return;
 		}
 		
-		if(idx < size) {
-			System.arraycopy(list, idx, list, idx + 1, size - idx);
-			
-		}
-		list[idx] = ele;
-		size += 1;
+//		if(idx < size) {
+//			System.arraycopy(list, idx, list, idx + 1, size - idx);
+//			
+//		}
+		this.list[idx] = ele;
+		this.size += 1;
 	}
 	/**
 	 * Removes an element at a specific index.
