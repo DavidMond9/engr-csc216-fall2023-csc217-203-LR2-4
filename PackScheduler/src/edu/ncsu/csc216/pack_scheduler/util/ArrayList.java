@@ -12,6 +12,7 @@ import java.util.Objects;
  * It also extends AbstractList and has a few fields such as its own list with type E and
  * its size. It has a constant as well which determines the maximum capacity of the list.
  * @param <E> Parameter of type E in the ArrayList.
+ * @author David Mond
  */
 public class ArrayList<E> extends AbstractList<E> {
 	/**
