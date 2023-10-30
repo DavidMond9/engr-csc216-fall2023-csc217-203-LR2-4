@@ -39,16 +39,20 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * Adds an element to the linked list.
 	 * @param idx the index to add the element to.
 	 * @param ele the element to add.
+	 * @throws IllegalArgumentException if the list is at capacity.
+	 * @throws NullPointerException if the element to add is null.
+	 * @throws IllegalArgumentException if the element is a duplicate of another in the list.
+	 * @throws IndexOutOfBoundsException if there is not an element at the given index in the list.
 	 */
 	@Override
 	public void add(int idx, E ele) {
-		if (this.size == this.capacity) {
+		if (size() == this.capacity) {
 			throw new IllegalArgumentException("List is at capacity.");
 		}
 		if (ele == null) {
 			throw new NullPointerException("Element is null.");
 		}
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < size(); i++) {
 			if (get(i).equals(ele)) {
 				throw new IllegalArgumentException("Element is already in list.");
 			}
@@ -57,18 +61,95 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			throw new IndexOutOfBoundsException();
 		}
 		
+		// Add to an empty list
+		if (this.front == null) {
+			this.front = new ListNode(ele);
+		}
+		// Add to the front of the list
+		if (idx == 0) {
+			ListNode newFront = new ListNode(ele);
+			newFront.next = this.front;
+			this.front = newFront;
+		// Add to the middle/end of the list
+		} else {
+			ListNode current = this.front;
+			for (int i = 0; i < idx - 1; i++) {
+				current = current.next;
+			}
+			current.next = new ListNode(ele, current);
+		}
+		
+	}
+	
+	/**
+	 * Removes an element from the list at the given index.
+	 * @param idx the index of the element to remove.
+	 * @return ele the element that is remove.
+	 */
+	public E remove(int idx) {
+		if (idx < 0 || idx >= size()) {
+			throw new IndexOutOfBoundsException("Index is out of bounds.");
+		}
+		E ele = null;
+		// Remove from the front of list
+		if (idx == 0) {
+			ele = front.data;
+			front = front.next;
+		// Remove from elsewhere in the list
+		} else {
+			ListNode current = front;
+			for (int i = 0; i < idx - 1; i++) {
+				current = current.next;
+			}
+			ele = current.next.data;
+			current.next = current.next.next;
+		}
+		size--;
+		return ele;
+	}
+	
+	/**
+	 * 
+	 */
+	public E set(int idx, E ele) {
+		if (ele == null) {
+			throw new NullPointerException("Element is null.");
+		}
+		for (int i = 0; i < size(); i++) {
+			if (get(i).equals(ele)) {
+				throw new IllegalArgumentException("Element is already in list.");
+			}
+		}
+		if (idx < 0 || idx >= size()) {
+			throw new IndexOutOfBoundsException("Index is out of bounds.");
+		}
+		
+		ListNode current = front;
+		for (int i = 0; i < idx - 1; i++) {
+			current = current.next;
+		}
+		current = new ListNode(ele, current);
+		return ele;
+		
 	}
 	
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		ListNode current = front;
+		while (current != null) {
+			size++;
+			current = current.next;
+		}
+		return size;
 	}
 
 	@Override
-	public E get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+	public E get(int idx) {
+		ListNode current = front;
+		for (int i = 0; i < idx; i++) {
+			current = current.next;
+		}
+		return current.data;
 	}
 	
 	/** Inner class of LinkedAbstractList that creates a ListNode for the linked list. */
