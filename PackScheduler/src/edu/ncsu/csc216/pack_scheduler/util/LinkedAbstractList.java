@@ -30,7 +30,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		} else {
 			throw new IllegalArgumentException("Invalid capacity.");
 		}
-		if (capacity < this.size) {
+		if (capacity < this.size()) {
 			throw new IllegalArgumentException("Invalid capacity.");
 		}
 	}
@@ -135,18 +135,13 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	
 	@Override
 	public int size() {
-		ListNode current = front;
-		while (current != null) {
-			size++;
-			current = current.next;
-		}
 		return size;
 	}
 
 	@Override
 	public E get(int idx) {
 		ListNode current = front;
-		for (int i = 0; i < idx; i++) {
+		for (int i = 0; i < idx - 1; i++) {
 			current = current.next;
 		}
 		return current.data;
