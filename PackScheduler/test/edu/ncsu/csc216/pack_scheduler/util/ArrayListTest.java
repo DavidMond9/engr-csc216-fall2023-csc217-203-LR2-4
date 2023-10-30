@@ -132,6 +132,14 @@ class ArrayListTest {
 	 */
 	@Test
 	void testGet() {
-		assertTrue(true);
+		ArrayList<String> list = new ArrayList();
+		list.add(0, "one");
+        list.add(1, "two");
+        list.add(2, "three");
+        assertEquals(list.get(0), "one");
+        assertEquals(list.get(1), "two");
+        assertEquals(list.get(2), "three");
+		Exception e = assertThrows(IndexOutOfBoundsException.class, () -> list.get(3));
+        assertEquals(e.getMessage(), "Index out of bounds.");
 	}
 }
