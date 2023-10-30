@@ -64,9 +64,36 @@ class ArrayListTest {
 		assertEquals("Index out of bounds.", e4.getMessage(), "checking that out of bounds exception is thrown for a negative index");		
 		assertEquals("Index out of bounds.", e4.getMessage(), "checking that out of bounds exception is thrown for a negative index");
 		
-		list.add(1, "h");
-		list.add(2, "j");
-		list.add(3, "l");
+		ArrayList<String> list2 = new ArrayList();
+		
+		list2.add(0, "h");
+		list2.add(1, "j");
+		list2.add(2, "l");
+		
+		// Add to front
+		list2.add(0, "front");
+		assertEquals("front", list2.get(0));
+		assertEquals("h", list2.get(1));
+		assertEquals("j", list2.get(2));
+		assertEquals("l", list2.get(3));
+		
+		// Add to middle
+		list2.add(1, "middle");
+		assertEquals("front", list2.get(0));
+		assertEquals("middle", list2.get(1));
+		assertEquals("h", list2.get(2));
+		assertEquals("j", list2.get(3));
+		assertEquals("l", list2.get(4));
+		
+		// Add to back
+		list2.add(5, "back");
+		assertEquals("front", list2.get(0));
+		assertEquals("middle", list2.get(1));
+		assertEquals("h", list2.get(2));
+		assertEquals("j", list2.get(3));
+		assertEquals("l", list2.get(4));
+		assertEquals("back", list2.get(5));
+		
 	}
 
 	

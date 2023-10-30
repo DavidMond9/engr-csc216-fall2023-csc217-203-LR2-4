@@ -54,6 +54,7 @@ public class ArrayList<E> extends AbstractList<E> {
 				throw new IllegalArgumentException("Duplicate element not allowed.");
 			}
 		}
+		// Increase list length if needed
 		if(size == list.length) {
 			int newCapacity = list.length * 2;
 			E[] newList = (E[]) new Object[newCapacity];
@@ -70,7 +71,30 @@ public class ArrayList<E> extends AbstractList<E> {
 //			System.arraycopy(list, idx, list, idx + 1, size - idx);
 //			
 //		}
-		this.list[idx] = ele;
+		// Front of the list - shift all elements to the right
+		if (idx == 0) {
+			for (int i = size(); i > 0; i--) {
+				E temp = list[i - 1];
+				list[i] = temp;
+				
+			}	
+			this.list[idx] = ele;
+		}
+		// Middle of the list - shift elements to right after index
+		if (idx > 0 && idx < size()) {
+			for (int i = size(); i > idx; i--) {
+				E temp = list[i - 1];
+				list[i] = temp;
+			}
+			this.list[idx] = ele;
+		}
+		// End of list
+		if (idx == size()) {
+			this.list[idx] = ele;
+		}
+		
+		
+		//this.list[idx] = ele;
 		this.size += 1;
 	}
 	/**
@@ -79,7 +103,7 @@ public class ArrayList<E> extends AbstractList<E> {
 	 * @return E element being removed.
 	 */
 	public E remove(int idx) {
-		if(idx < 0 || idx > size()) {
+		if(idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
 		

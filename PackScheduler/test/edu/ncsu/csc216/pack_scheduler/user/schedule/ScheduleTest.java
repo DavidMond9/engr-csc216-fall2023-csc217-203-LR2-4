@@ -48,7 +48,7 @@ public class ScheduleTest {
 		// Add a duplicate course
 		Exception e1 = assertThrows(IllegalArgumentException.class,
 				() -> s.addCourseToSchedule(c1));
-		assertEquals("You are already enrolled in CSC116.", e1.getMessage());
+		assertEquals("You are already enrolled in CSC116", e1.getMessage());
 		assertEquals(2, s.getScheduledCourses().length);
 		// Add a course with conflict
 		Course c3 = new Course("CSC230", "title3", "001", 3, "instructorid", "MW", 1400, 1500);
