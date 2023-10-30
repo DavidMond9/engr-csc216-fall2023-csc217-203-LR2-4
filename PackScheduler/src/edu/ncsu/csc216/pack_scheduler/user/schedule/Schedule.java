@@ -67,9 +67,9 @@ public class Schedule {
 	 */
 	public boolean removeCourseFromSchedule(Course c) {
 		boolean isRemoved = false;
-		for (Course course:schedule) {
-			if (course.equals(c)) {
-				schedule.remove(c);
+		for (int i = 0; i < schedule.size(); i++) {
+			if (schedule.get(i).equals(c)) {
+				schedule.remove(i);
 				isRemoved = true;
 			}
 		}

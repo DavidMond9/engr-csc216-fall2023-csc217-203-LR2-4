@@ -115,7 +115,7 @@ public class ArrayList<E> extends AbstractList<E> {
 			}
 		}
 		// Remove element from back
-		if (idx == (size() - 1)) {
+		if (idx == size() - 1) {
 			list[idx] = null;
 		}
 //		if(idx < size - 1) {
