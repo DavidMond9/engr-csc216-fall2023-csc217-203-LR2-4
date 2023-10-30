@@ -75,6 +75,7 @@ public class CourseRoll {
 		} catch(Exception e) {
 			throw new IllegalArgumentException("Cannot enroll student.");
 		}
+		
 	}
 	/**
 	 * Removes a student from the roll.
@@ -90,6 +91,7 @@ public class CourseRoll {
 		} catch(Exception e) {
 			throw new IllegalArgumentException("Cannot drop student.");
 		}
+		
 	}
 	/**
 	 * Checks to see if a student can be enrolled to the current roll.
