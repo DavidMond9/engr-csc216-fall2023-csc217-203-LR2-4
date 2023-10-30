@@ -62,15 +62,8 @@ public class ArrayList<E> extends AbstractList<E> {
 				newList[i] = list[i];
 			}
 			list = newList;
-			//this.list = Arrays.copyOf(list, newCapacity);
-			//this.size = this.size * 2;
-			//return;
 		}
-		
-//		if(idx < size) {
-//			System.arraycopy(list, idx, list, idx + 1, size - idx);
-//			
-//		}
+
 		// Front of the list - shift all elements to the right
 		if (idx == 0) {
 			for (int i = size(); i > 0; i--) {
@@ -92,9 +85,7 @@ public class ArrayList<E> extends AbstractList<E> {
 		if (idx == size()) {
 			this.list[idx] = ele;
 		}
-		
-		
-		//this.list[idx] = ele;
+
 		this.size += 1;
 	}
 	/**
@@ -109,11 +100,29 @@ public class ArrayList<E> extends AbstractList<E> {
 		
 		E removedElement = (E)list[idx];
 		
-		if(idx < size - 1) {
-			System.arraycopy(list, idx + 1, list, idx, size - idx - 1);
+		// Remove element from front
+		if (idx == 0) {
+			for (int i = 0; i < size(); i++) {
+				E temp = list[i + 1];
+				list[i] = temp;
+			}
 		}
-		
-		list[size - 1] = null;
+		// Remove element from middle
+		if (idx > 0 && idx < size()) {
+			for (int i = idx; i < size(); i++) {
+				E temp = list[i + 1];
+				list[i] = temp;
+			}
+		}
+		// Remove element from back
+		if (idx == (size() - 1)) {
+			list[idx] = null;
+		}
+//		if(idx < size - 1) {
+//			System.arraycopy(list, idx + 1, list, idx, size - idx - 1);
+//		}
+//		
+//		list[size - 1] = null;
         size--;
 		return removedElement;
 	}

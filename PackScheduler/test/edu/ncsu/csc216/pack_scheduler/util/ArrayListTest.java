@@ -111,9 +111,7 @@ class ArrayListTest {
     // Test setting elements
     assertEquals(Integer.valueOf(1), list.set(0, 6), "Original element should be returned");
     assertEquals(Integer.valueOf(6), list.get(0), "New element should be at index 0");
-	
-    
-    //invalid checks
+
     
 	}
 
