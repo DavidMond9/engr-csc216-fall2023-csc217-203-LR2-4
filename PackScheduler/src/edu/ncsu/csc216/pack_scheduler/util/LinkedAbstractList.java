@@ -78,7 +78,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 			current.next = new ListNode(ele, current);
 		}
-		
+		size++;
 	}
 	
 	/**
@@ -109,7 +109,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	}
 	
 	/**
-	 * 
+	 * Sets the element at the given index.
+	 * @param idx the index 
+	 * @param ele the element to set at the given index.
 	 */
 	public E set(int idx, E ele) {
 		if (ele == null) {
@@ -133,11 +135,18 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		
 	}
 	
+	/**
+	 * Returns the size of the list.
+	 */
 	@Override
 	public int size() {
 		return size;
 	}
 
+	/**
+	 * Returns an element from the list at the given index.
+	 * @param idx the index of the element to return.
+	 */
 	@Override
 	public E get(int idx) {
 		ListNode current = front;
