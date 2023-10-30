@@ -60,7 +60,7 @@ class LinkedAbstractListTest {
 		Exception e3 = assertThrows(IllegalArgumentException.class, () -> list.add(5, "five"));
 		assertEquals("List is at capacity.", e3.getMessage());
 
-		
+		list.remove(3);
 		//invalid checks
 		//null check
 		try {
@@ -70,7 +70,7 @@ class LinkedAbstractListTest {
 			// nothing should happen after the exception is thrown
 		}
 		//check for duplicate element
-		list.remove(4);
+		list.remove(3);
 		Exception e1 = assertThrows(IllegalArgumentException.class, () -> list.add(1, "one"));
 		assertEquals("Element is already in list.", e1.getMessage(), "duplicate element check");
 		//index out of bounds
@@ -126,6 +126,7 @@ class LinkedAbstractListTest {
 	@Test
 	void testGet() {
 		fail("Not yet implemented");
+		//edit for push
 	}
 	
 	/**
