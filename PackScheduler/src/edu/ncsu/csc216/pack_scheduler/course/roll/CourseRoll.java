@@ -4,7 +4,10 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 
 /**
- * CourseRoll class. Holds a 
+ * CourseRoll class. A course roll connects with a course and holds a list of students in a roll.
+ * Has multiple fields including a roll of students with the type LinkedAbstractList.
+ * Has an enrollment capacity and also a max and min capacity for this field.
+ * Has many methods that can add, remove students from the roll and more.
  * @author David Mond
  */
 public class CourseRoll {
