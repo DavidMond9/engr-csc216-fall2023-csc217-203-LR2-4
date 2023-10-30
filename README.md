@@ -20,10 +20,10 @@
 
 ## Lab 7
 
-- **Test ArrayList** | **Owner:** Audrey, Duncan, David **Due:** 10/30/23, **Status:** Pending
+- **Test ArrayList** | **Owner:** Audrey, Duncan, David **Due:** 10/30/23, **Status:** Complete
 
-- **Test Schedule** | **Owner:** Audrey, Duncan, David **Due:** 10/30/23, **Status:** Pending
+- **Test Schedule** | **Owner:** Audrey **Due:** 10/30/23, **Status:** Complete
 
-- **System Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/30/23, **Status:** Pending
+- **System Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/30/23, **Status:** Complete
 
-- **Generate Javadoc** | **Owner:** Audrey, Duncan, David **Due:** 10/30/23, **Status:** Pending
+- **Generate Javadoc** | **Owner:** Audrey, Duncan, David **Due:** 10/30/23, **Status:** Complete
