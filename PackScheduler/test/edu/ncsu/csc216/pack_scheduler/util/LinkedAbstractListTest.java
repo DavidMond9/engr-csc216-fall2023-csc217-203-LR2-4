@@ -94,6 +94,9 @@ class LinkedAbstractListTest {
 		list2.add(0, "h");
 		list2.add(1, "j");
 		list2.add(2, "l");
+		assertEquals("h", list2.get(0));
+		assertEquals("j", list2.get(1));
+		assertEquals("l", list2.get(2));
 		
 		// Add to front
 		list2.add(0, "front");

@@ -61,22 +61,28 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			throw new IndexOutOfBoundsException();
 		}
 		
-		// Add to an empty list
-		if (this.front == null) {
-			this.front = new ListNode(ele);
-		}
 		// Add to the front of the list
 		if (idx == 0) {
-			ListNode newFront = new ListNode(ele);
-			newFront.next = this.front;
-			this.front = newFront;
+			ListNode newNode = new ListNode(ele);
+			newNode.next = front;
+			front = newNode;
+//			// Add to an empty list
+//			if (front == null) {
+//				this.front = new ListNode(ele, null);
+//				
+//			} else {
+//				ListNode newFront = new ListNode(ele, front);
+//				//System.out.println(newFront.data);
+//				//newFront.next = this.front;
+//				this.front = newFront;
+//			}
 		// Add to the middle/end of the list
 		} else {
 			ListNode current = this.front;
 			for (int i = 0; i < idx - 1; i++) {
 				current = current.next;
 			}
-			current.next = new ListNode(ele, current);
+			current.next = new ListNode(ele, current.next);
 		}
 		size++;
 	}
@@ -169,6 +175,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		 */
 		ListNode(E data) {
 			this.data = data;
+			this.next = null;
 		}
 		
 		/**
