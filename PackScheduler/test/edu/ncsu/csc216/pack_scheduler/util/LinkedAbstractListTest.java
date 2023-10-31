@@ -16,7 +16,7 @@ class LinkedAbstractListTest {
 	 */
 	@Test
 	void testLinkedAbstractList() {
-		int capacity = 0;
+		int capacity = 5;
 		LinkedAbstractList<String> list = new LinkedAbstractList(capacity);
 		assertNull(list.get(0));
 		assertEquals(0, list.size(), "ensure size is 0 when first created");

@@ -59,26 +59,39 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		}
 		if (idx < 0 || idx > size()) {
 			throw new IndexOutOfBoundsException();
-		}
+		} 
 		
-		// Add to the front of the list
-		if (idx == 0) {
-			ListNode newNode = new ListNode(ele);
-			newNode.next = front;
-			front = newNode;
-//			// Add to an empty list
-//			if (front == null) {
-//				this.front = new ListNode(ele, null);
-//				
-//			} else {
-//				ListNode newFront = new ListNode(ele, front);
-//				//System.out.println(newFront.data);
-//				//newFront.next = this.front;
-//				this.front = newFront;
+//		// Add to the front of the list
+//		if (idx == 0) {
+//			ListNode newNode = new ListNode(ele);
+//			newNode.next = front;
+//			front = newNode;
+////			// Add to an empty list
+////			if (front == null) {
+////				this.front = new ListNode(ele, null);
+////				
+////			} else {
+////				ListNode newFront = new ListNode(ele, front);
+////				//System.out.println(newFront.data);
+////				//newFront.next = this.front;
+////				this.front = newFront;
+////			}
+//		// Add to the middle/end of the list
+//		} else {
+//			ListNode current = this.front;
+//			for (int i = 0; i < idx - 1; i++) {
+//				current = current.next;
 //			}
-		// Add to the middle/end of the list
+//			current.next = new ListNode(ele, current.next);
+//		}
+//		size++;
+		
+		// Add element to the front of the list
+		if (idx == 0) {
+			front = new ListNode(ele, front);
+		// Insert element into list
 		} else {
-			ListNode current = this.front;
+			ListNode current = front;
 			for (int i = 0; i < idx - 1; i++) {
 				current = current.next;
 			}
@@ -92,6 +105,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @param idx the index of the element to remove.
 	 * @return ele the element that is remove.
 	 */
+	@Override
 	public E remove(int idx) {
 		if (idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Index is out of bounds.");
@@ -119,6 +133,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @param idx the index 
 	 * @param ele the element to set at the given index.
 	 */
+	@Override
 	public E set(int idx, E ele) {
 		if (ele == null) {
 			throw new NullPointerException("Element is null.");
@@ -159,7 +174,11 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		for (int i = 0; i < idx - 1; i++) {
 			current = current.next;
 		}
-		return current.data;
+		try {
+			return current.data;
+		} catch (NullPointerException e) {
+			return null;
+		}
 	}
 	
 	/** Inner class of LinkedAbstractList that creates a ListNode for the linked list. */
