@@ -89,7 +89,7 @@ class LinkedAbstractListTest {
 		}
 		
 		
-		LinkedAbstractList<String> list2 = new LinkedAbstractList(5);
+		LinkedAbstractList<String> list2 = new LinkedAbstractList<String>(5);
 		
 		list2.add(0, "h");
 		list2.add(1, "j");
@@ -97,6 +97,7 @@ class LinkedAbstractListTest {
 		assertEquals("h", list2.get(0));
 		assertEquals("j", list2.get(1));
 		assertEquals("l", list2.get(2));
+		// h -> h -> j -> l
 		
 		// Add to front
 		list2.add(0, "front");
