@@ -123,4 +123,40 @@ public class Schedule {
 	public String getTitle() {
 		return this.title;
 	}
+
+	/**
+	 * Returns true if the Course can be added to the schedule.
+	 * If the Course is null, if the Course is already in the schedule,
+	 * or if there is a conflict, will return false.
+	 * @param c the course to check if can be added
+	 * @return true/false if the course can be added
+	 */
+	public boolean canAdd(Course c) {
+		if (c == null) {
+			return false;
+		}
+		for (Course course: schedule) {
+			if (course.isDuplicate(c)) {
+				return false;
+			}
+			try {
+				course.checkConflict(c);
+			} catch (ConflictException e) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * Returns the total number of credits in the schedule.
+	 * @return totalCredits the total credits in the schedule
+	 */
+	public int getScheduleCredits() {
+		int totalCredits = 0;
+		for (Course c: schedule) {
+			totalCredits += c.getCredits();
+		}
+		return totalCredits;
+	}
 }
