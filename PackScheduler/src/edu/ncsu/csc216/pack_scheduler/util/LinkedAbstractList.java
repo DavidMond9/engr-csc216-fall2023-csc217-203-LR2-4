@@ -105,6 +105,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * Sets the element at the given index.
 	 * @param idx the index 
 	 * @param ele the element to set at the given index.
+	 * @returns the overridden element.
 	 */
 	@Override
 	public E set(int idx, E ele) {
@@ -124,8 +125,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		for (int i = 0; i < idx - 1; i++) {
 			current = current.next;
 		}
+		E oldElement = get(idx);
 		current.next = new ListNode(ele, current);
-		return ele;
+		return oldElement;
 		
 	}
 	
