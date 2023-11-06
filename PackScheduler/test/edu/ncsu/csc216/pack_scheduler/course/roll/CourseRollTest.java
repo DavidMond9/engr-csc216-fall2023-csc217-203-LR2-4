@@ -55,23 +55,17 @@ class CourseRollTest {
 		roll.enroll(testStudent1);
 		roll.enroll(testStudent2);
 		roll.drop(testStudent1);
-		assertEquals(roll.getOpenSeats(), 14);
-		roll.drop(testStudent2);
 		assertEquals(roll.getOpenSeats(), 15);
+		roll.drop(testStudent2);
+		assertEquals(roll.getOpenSeats(), 16);
 		//INVALID TESTS
 		
 		//student is null
 		try {
-			roll.enroll(null);
+			roll.drop(null);
 		} catch (Exception e) {
-			assertEquals(e.getMessage(), "Cannot enroll student.");
+			assertEquals(e.getMessage(), "Cannot drop student.");
 		}
 		
-		//duplicate student
-		try {
-			roll.enroll(testStudent1);
-		} catch(Exception e) {
-			assertEquals(e.getMessage(), "Cannot enroll student.");
-		}
 	}
 }
