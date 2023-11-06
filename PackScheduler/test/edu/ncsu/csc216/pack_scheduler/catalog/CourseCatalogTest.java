@@ -70,11 +70,8 @@ public class CourseCatalogTest {
 	public void testAddCourseToCatalog() {
 		CourseCatalog catalog1 = new CourseCatalog();
 		
-<<<<<<< HEAD
-		catalog1.addCourseToCatalog("CSC116", "Intro to Programming - Java", "003", 3, "tbdimitr", 10, "TH", 1120, 1310);
-=======
+
 		catalog1.addCourseToCatalog("CSC116", "Intro to Programming - Java", "003", 3, "tbdimitr", 15, "TH", 1120, 1310);
->>>>>>> branch 'main' of git@github.ncsu.edu:engr-csc216-fall2023/csc217-203-LR2-4.git
 		String [][] courseCatalog = catalog1.getCourseCatalog();
 		assertEquals(1, courseCatalog.length);
 		assertEquals("CSC116", courseCatalog[0][0]);

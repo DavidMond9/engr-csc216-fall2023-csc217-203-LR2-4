@@ -82,11 +82,7 @@ public class CourseRecordIO {
     		String section = reader.next();
     		int credits  = reader.nextInt();
     		String instructorId = reader.next();
-<<<<<<< HEAD
-    		int cap = reader.nextInt();
-=======
     		int enrollmentCap = reader.nextInt();
->>>>>>> branch 'main' of git@github.ncsu.edu:engr-csc216-fall2023/csc217-203-LR2-4.git
     		String meetingDays = reader.next();
     		
     		if ("A".equals(meetingDays)) {
@@ -95,11 +91,8 @@ public class CourseRecordIO {
     				throw new IllegalArgumentException("Illegal meetingDays");
     			} else {
     				reader.close();
-<<<<<<< HEAD
-    				return new Course(name, title, section, credits, instructorId, cap, meetingDays);
-=======
+
     				return new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays);
->>>>>>> branch 'main' of git@github.ncsu.edu:engr-csc216-fall2023/csc217-203-LR2-4.git
     			}
     		} else {
     			int startTime = reader.nextInt();
@@ -110,11 +103,8 @@ public class CourseRecordIO {
     			} else {
     				reader.close();
     				return new Course(name, title, section, credits, 
-<<<<<<< HEAD
-    						instructorId, cap, meetingDays, startTime, endTime);
-=======
+
     						instructorId, enrollmentCap, meetingDays, startTime, endTime);
->>>>>>> branch 'main' of git@github.ncsu.edu:engr-csc216-fall2023/csc217-203-LR2-4.git
     			}
     		}
     	} catch (InputMismatchException e) {
