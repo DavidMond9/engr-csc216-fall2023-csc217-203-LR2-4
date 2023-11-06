@@ -55,16 +55,17 @@ public class CourseCatalog {
 	 * @param section section of the course
 	 * @param credits credits of the course
 	 * @param instructorId instructor ID of the course
+	 * @param enrollmentCap max number of students in a course
 	 * @param meetingDays meeting days of the course
 	 * @param startTime start time of the course
 	 * @param endTime end time of the course
 	 * @return boolean, true if successfully added, false if not
 	 */
-	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays, int startTime, int endTime) {
+	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays, int startTime, int endTime) {
 		
 			
 		Course c;
-		c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+		c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime);
 		for(int j = 0; j < catalog.size(); j++) {
 			if(catalog.get(j).isDuplicate(c)) {
 				//throw new IllegalArgumentException("Course already in system.");
