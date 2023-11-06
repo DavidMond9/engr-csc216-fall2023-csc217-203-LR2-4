@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Test class for CourseRoll class.
+ * Test class for CourseRoll class..
  * @author David Mond
  */
 class CourseRollTest {
