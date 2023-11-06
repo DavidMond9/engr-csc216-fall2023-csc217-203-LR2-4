@@ -48,12 +48,13 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param section section of Course
 	 * @param credits credit hours for Course
 	 * @param instructorId instructor's unity id
+	 * @param enrollmentCap max number of students in a course
 	 * @param meetingDays meeting days for Course as series of chars
 	 * @param startTime start time for Course
 	 * @param endTime end time for Course
      * @throws IllegalArgumentException if course name is invalid
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
 	        int startTime, int endTime) {
 	    super(title, meetingDays, startTime, endTime);
 		try {
@@ -64,6 +65,7 @@ public class Course extends Activity implements Comparable<Course> {
 	    setSection(section);
 	    setCredits(credits);
 	    setInstructorId(instructorId);
+	   this.roll = new CourseRoll(enrollmentCap);
 	}
 
 	/**
@@ -74,11 +76,12 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param section section of Course
 	 * @param credits credit hours for Course
 	 * @param instructorId instructor's unity id
+	 * @param enrollmentCap max number of students in a class
 	 * @param meetingDays meeting days for Course as series of chars
      * @throws IllegalArgumentException if course name is invalid
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) {
-		this(name, title, section, credits, instructorId, meetingDays, 0, 0);
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) {
+		this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
 	}
 	
 	/**
@@ -320,9 +323,9 @@ public class Course extends Activity implements Comparable<Course> {
 	@Override
 	public String toString() {
 	    if ("A".equals(getMeetingDays())) {
-	        return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getMeetingDays();
+	        return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getCourseRoll().getEnrollmentCap() + "," + getMeetingDays();
 	    }
-	    return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getCourseRoll() + "," + getMeetingDays() + "," + getStartTime() + "," + getEndTime(); 
+	    return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getCourseRoll().getEnrollmentCap() + "," + getMeetingDays() + "," + getStartTime() + "," + getEndTime(); 
 	}
 
 	/**

@@ -29,6 +29,8 @@ public class ExtendedCourseTest {
 	private static final int START_TIME = 1330;
 	/** Course end time */
 	private static final int END_TIME = 1445;
+	/** enrollment for course */
+	private static final int CAP = 100;
 
 	/**
 	 * Tests Course.getShortDisplayArray().
@@ -36,21 +38,24 @@ public class ExtendedCourseTest {
 	 */
 	@Test
 	public void testGetShortDisplayArray() throws InvalidTransitionException {
-		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, CAP, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());
 		assertEquals(SECTION, c.getSection());
 		assertEquals(CREDITS, c.getCredits());
 		assertEquals(INSTRUCTOR_ID, c.getInstructorId());
+		assertEquals(CAP, c.getCourseRoll().getEnrollmentCap());
 		assertEquals(MEETING_DAYS, c.getMeetingDays());
 		assertEquals(START_TIME, c.getStartTime());
 		assertEquals(END_TIME, c.getEndTime());
 		
 		String [] actualShortDisplay = c.getShortDisplayArray();
+		assertEquals(5, actualShortDisplay.length);
 		assertEquals(NAME, actualShortDisplay[0]);
 		assertEquals(SECTION, actualShortDisplay[1]);
 		assertEquals(TITLE, actualShortDisplay[2]);
 		assertEquals("MW 1:30PM-2:45PM", actualShortDisplay[3]);
+		assertEquals(String.valueOf(c.getCourseRoll().getOpenSeats()), actualShortDisplay[4]);
 	}
 
 	/**
@@ -59,7 +64,7 @@ public class ExtendedCourseTest {
 	 */
 	@Test
 	public void testGetLongDisplayArray() throws InvalidTransitionException {
-		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, CAP, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());
 		assertEquals(SECTION, c.getSection());
@@ -68,6 +73,7 @@ public class ExtendedCourseTest {
 		assertEquals(MEETING_DAYS, c.getMeetingDays());
 		assertEquals(START_TIME, c.getStartTime());
 		assertEquals(END_TIME, c.getEndTime());
+		assertEquals(CAP, c.getCourseRoll().getEnrollmentCap());
 		
 		String [] actualLongDisplay = c.getLongDisplayArray();
 		assertEquals(NAME, actualLongDisplay[0]);
