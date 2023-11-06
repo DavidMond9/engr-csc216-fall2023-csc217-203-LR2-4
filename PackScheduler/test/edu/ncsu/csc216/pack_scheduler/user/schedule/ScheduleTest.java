@@ -37,8 +37,8 @@ public class ScheduleTest {
 	@Test
 	public void testAddCourseToSchedule() {
 		Schedule s = new Schedule();
-		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", "MW", 1400, 1500);
-		Course c2 = new Course("CSC216", "title2", "001", 3, "instructorid", "A");
+		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", 10, "MW", 1400, 1500);
+		Course c2 = new Course("CSC216", "title2", "001", 3, "instructorid", 10, "A");
 		// Add course to empty schedule
 		assertTrue(s.addCourseToSchedule(c1));
 		assertEquals(1, s.getScheduledCourses().length);
@@ -51,7 +51,7 @@ public class ScheduleTest {
 		assertEquals("You are already enrolled in CSC116", e1.getMessage());
 		assertEquals(2, s.getScheduledCourses().length);
 		// Add a course with conflict
-		Course c3 = new Course("CSC230", "title3", "001", 3, "instructorid", "MW", 1400, 1500);
+		Course c3 = new Course("CSC230", "title3", "001", 3, "instructorid", 10, "MW", 1400, 1500);
 		Exception e2 = assertThrows(IllegalArgumentException.class,
 				() -> s.addCourseToSchedule(c3));
 		assertEquals("The course cannot be added due to a conflict.", e2.getMessage());
@@ -65,9 +65,9 @@ public class ScheduleTest {
 	@Test
 	public void testRemoveCourseFromSchedule() {
 		Schedule s = new Schedule();
-		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", "MW", 1400, 1500);
-		Course c2 = new Course("CSC216", "title2", "001", 3, "instructorid", "A");
-		Course c3 = new Course("CSC230", "title3", "001", 3, "instructorid", "MW", 1400, 1500);
+		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", 10, "MW", 1400, 1500);
+		Course c2 = new Course("CSC216", "title2", "001", 3, "instructorid", 10, "A");
+		Course c3 = new Course("CSC230", "title3", "001", 3, "instructorid", 10, "MW", 1400, 1500);
 		s.addCourseToSchedule(c1);
 		s.addCourseToSchedule(c2);
 		assertEquals(2, s.getScheduledCourses().length);
@@ -85,8 +85,8 @@ public class ScheduleTest {
 	@Test
 	public void testResetSchedule() {
 		Schedule s = new Schedule();
-		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", "MW", 1400, 1500);
-		Course c2 = new Course("CSC216", "title2", "001", 3, "instructorid", "A");
+		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", 10, "MW", 1400, 1500);
+		Course c2 = new Course("CSC216", "title2", "001", 3, "instructorid", 10, "A");
 		s.addCourseToSchedule(c1);
 		s.addCourseToSchedule(c2);
 		s.setTitle("New Title");
@@ -105,8 +105,8 @@ public class ScheduleTest {
 	@Test
 	public void testGetScheduledCourses() {
 		Schedule s = new Schedule();
-		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", "MW", 1400, 1500);
-		Course c2 = new Course("CSC216", "title2", "001", 3, "instructorid", "A");
+		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", 10, "MW", 1400, 1500);
+		Course c2 = new Course("CSC216", "title2", "001", 3, "instructorid", 10, "A");
 		s.addCourseToSchedule(c1);
 		s.addCourseToSchedule(c2);
 		assertEquals(2, s.getScheduledCourses().length);

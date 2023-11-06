@@ -60,11 +60,11 @@ public class CourseCatalog {
 	 * @param endTime end time of the course
 	 * @return boolean, true if successfully added, false if not
 	 */
-	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, String meetingDays, int startTime, int endTime) {
+	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays, int startTime, int endTime) {
 		
 			
 		Course c;
-		c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+		c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime);
 		for(int j = 0; j < catalog.size(); j++) {
 			if(catalog.get(j).isDuplicate(c)) {
 				//throw new IllegalArgumentException("Course already in system.");
@@ -108,10 +108,10 @@ public class CourseCatalog {
 	
 	/**
 	 * Returns the entire course catalog as a string matrix
-	 * @return String[][], contains, name, section, title, and meeting information of the courses
+	 * @return String[][], contains, name, section, title, and meeting information and enrollment cap of the courses
 	 */
 	public String[][] getCourseCatalog() {
-		String[][] strCatalog = new String[catalog.size()][4];
+		String[][] strCatalog = new String[catalog.size()][5];
 		for (int i = 0; i < catalog.size(); i++) {
 			Course c = catalog.get(i);
 			strCatalog[i] = c.getShortDisplayArray();

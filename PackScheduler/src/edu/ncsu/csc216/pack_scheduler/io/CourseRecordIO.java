@@ -82,6 +82,7 @@ public class CourseRecordIO {
     		String section = reader.next();
     		int credits  = reader.nextInt();
     		String instructorId = reader.next();
+    		int cap = reader.nextInt();
     		String meetingDays = reader.next();
     		
     		if ("A".equals(meetingDays)) {
@@ -90,7 +91,7 @@ public class CourseRecordIO {
     				throw new IllegalArgumentException("Illegal meetingDays");
     			} else {
     				reader.close();
-    				return new Course(name, title, section, credits, instructorId, meetingDays);
+    				return new Course(name, title, section, credits, instructorId, cap, meetingDays);
     			}
     		} else {
     			int startTime = reader.nextInt();
@@ -101,7 +102,7 @@ public class CourseRecordIO {
     			} else {
     				reader.close();
     				return new Course(name, title, section, credits, 
-    						instructorId, meetingDays, startTime, endTime);
+    						instructorId, cap, meetingDays, startTime, endTime);
     			}
     		}
     	} catch (InputMismatchException e) {
