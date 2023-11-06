@@ -120,12 +120,11 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 				throw new IllegalArgumentException("Element is already in list.");
 			}
 		}
-
+		E oldElement = get(idx); // get original element at index
 		ListNode current = front;
 		for (int i = 0; i < idx - 1; i++) {
 			current = current.next;
 		}
-		E oldElement = get(idx);
 		current.next = new ListNode(ele, current);
 		return oldElement;
 		
