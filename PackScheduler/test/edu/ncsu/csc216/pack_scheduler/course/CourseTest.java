@@ -59,6 +59,11 @@ public class CourseTest {
 				() -> assertEquals(MEETING_DAYS, c.getMeetingDays(), "incorrect meeting days"), 
 				() -> assertEquals(START_TIME, c.getStartTime(), "incorrect start time"),
 				() -> assertEquals(END_TIME, c.getEndTime(), "incorrect end time"));
+		
+		Exception e = assertThrows(IllegalArgumentException.class, () -> new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 251, MEETING_DAYS, START_TIME, END_TIME));
+		assertEquals("Invalid capacity.", e.getMessage(), "Checking illegal enrollment cap");
+		Exception e1 = assertThrows(IllegalArgumentException.class, () -> new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 9, MEETING_DAYS, START_TIME, END_TIME));
+		assertEquals("Invalid capacity.", e1.getMessage(), "Checking illegal enrollment cap");
 	}
 
 	/**
@@ -80,6 +85,10 @@ public class CourseTest {
 				() -> assertEquals("A", c.getMeetingDays(), "incorrect meeting days"), 
 				() -> assertEquals(0, c.getStartTime(), "incorrect start time"),
 				() -> assertEquals(0, c.getEndTime(), "incorrect end time"));
+		Exception e = assertThrows(IllegalArgumentException.class, () -> new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 251, "A"));
+		assertEquals("Invalid capacity.", e.getMessage(), "Checking illegal enrollment cap");
+		Exception e1 = assertThrows(IllegalArgumentException.class, () -> new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 9, "A"));
+		assertEquals("Invalid capacity.", e1.getMessage(), "Checking illegal enrollment cap");
 	}
 
 	/**
