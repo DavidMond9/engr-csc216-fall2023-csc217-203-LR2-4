@@ -66,12 +66,14 @@ public class CourseRoll {
 	 * @param s the student to add.
 	 */
 	public void enroll(Student s) {
+		System.out.println(roll);
 		if(!canEnroll(s)) {
 			throw new IllegalArgumentException("Cannot enroll student.");
 		}
 		
 		try {
 			roll.add(s);
+			System.out.println(roll);
 		} catch(Exception e) {
 			throw new IllegalArgumentException("Cannot enroll student.");
 		}
@@ -103,7 +105,7 @@ public class CourseRoll {
 			return false;
 		}
 		for(int i = 0; i < roll.size(); i++) {
-			if(roll.get(i) == s) {
+			if(roll.get(i).equals(s)) {
 				return false;
 			}
 		}

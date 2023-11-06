@@ -51,10 +51,13 @@ class CourseRollTest {
 	void testDrop() {
 		//VALID TESTS
 		
-		CourseRoll roll = new CourseRoll(15);
+		CourseRoll roll = new CourseRoll(16);
 		roll.enroll(testStudent1);
 		roll.enroll(testStudent2);
-		
+		roll.drop(testStudent1);
+		assertEquals(roll.getOpenSeats(), 14);
+		roll.drop(testStudent2);
+		assertEquals(roll.getOpenSeats(), 15);
 		//INVALID TESTS
 		
 		//student is null
