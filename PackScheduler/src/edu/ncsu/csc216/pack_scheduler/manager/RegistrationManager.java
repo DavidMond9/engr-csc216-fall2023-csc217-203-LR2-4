@@ -180,7 +180,7 @@ public class RegistrationManager {
 	 * @return true if enrolled
 	 */
 	public boolean enrollStudentInCourse(Course c) {
-	    if (currentUser == null || !(currentUser instanceof Student)) {
+	    if (!(currentUser instanceof Student)) {
 	        throw new IllegalArgumentException("Illegal Action");
 	    }
 	    try {
@@ -206,7 +206,7 @@ public class RegistrationManager {
 	 * @return true if dropped
 	 */
 	public boolean dropStudentFromCourse(Course c) {
-	    if (currentUser == null || !(currentUser instanceof Student)) {
+	    if (!(currentUser instanceof Student)) {
 	        throw new IllegalArgumentException("Illegal Action");
 	    }
 	    try {
@@ -223,7 +223,7 @@ public class RegistrationManager {
 	 * from every course and then resetting the schedule.
 	 */
 	public void resetSchedule() {
-	    if (currentUser == null || !(currentUser instanceof Student)) {
+	    if (!(currentUser instanceof Student)) {
 	        throw new IllegalArgumentException("Illegal Action");
 	    }
 	    try {

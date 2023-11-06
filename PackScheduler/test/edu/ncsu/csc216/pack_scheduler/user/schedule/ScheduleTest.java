@@ -38,7 +38,7 @@ public class ScheduleTest {
 	public void testAddCourseToSchedule() {
 		Schedule s = new Schedule();
 
-		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", 15,"MW", 1400, 1500);
+		Course c1 = new Course("CSC116", "title1", "001", 3, "instructorid", 15, "MW", 1400, 1500);
 		Course c2 = new Course("CSC216", "title2", "001", 3, "instructorid", 15, "A");
 		// Add course to empty schedule
 		assertTrue(s.addCourseToSchedule(c1));
