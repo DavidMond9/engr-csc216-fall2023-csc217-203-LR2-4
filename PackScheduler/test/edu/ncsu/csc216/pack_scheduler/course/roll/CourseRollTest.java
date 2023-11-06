@@ -26,9 +26,9 @@ class CourseRollTest {
 		
 		CourseRoll roll = new CourseRoll(16);
 		roll.enroll(testStudent1);
-		assertEquals(roll.getOpenSeats(), 14);
+		assertEquals(roll.getOpenSeats(), 15);
 		roll.enroll(testStudent2);
-		assertEquals(roll.getOpenSeats(), 13);
+		assertEquals(roll.getOpenSeats(), 14);
 		
 		//INVALID TESTS
 		

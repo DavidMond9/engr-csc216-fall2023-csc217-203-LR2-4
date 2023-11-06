@@ -27,3 +27,14 @@
 - **System Tests** | **Owner:** Audrey, Duncan, David, **Due:** 10/30/23, **Status:** Complete
 
 - **Generate Javadoc** | **Owner:** Audrey, Duncan, David **Due:** 10/30/23, **Status:** Complete
+
+## Lab 8
+
+- **Implement and Test LinkedAbstractList** | **Owner:** Audrey **Due:** 11/3/23, **Status:** Complete
+
+- **Test CourseRoll** | **Owner:** David **Due:** 11/6/23, **Status:** Pending
+
+- **Integrate CourseRoll into Course** | **Owner:** Duncan & David, **Due:** 11/6/23, **Status:** Pending
+
+- **Generate Javadoc** | **Owner:** Audrey, Duncan, David **Due:** 11/6/23, **Status:** Pending
+

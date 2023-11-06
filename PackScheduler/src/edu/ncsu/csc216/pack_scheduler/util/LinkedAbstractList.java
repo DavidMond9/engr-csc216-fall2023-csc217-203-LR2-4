@@ -23,14 +23,11 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @param capacity the capacity of the list.
 	 */
 	public LinkedAbstractList(int capacity) {
-		this.front = null;
+		this.front = new ListNode(null);
 		this.size = 0;
 		if (capacity >= 0) {
 			this.capacity = capacity;
 		} else {
-			throw new IllegalArgumentException("Invalid capacity.");
-		}
-		if (capacity < this.size()) {
 			throw new IllegalArgumentException("Invalid capacity.");
 		}
 	}
@@ -59,26 +56,21 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		}
 		if (idx < 0 || idx > size()) {
 			throw new IndexOutOfBoundsException();
-		}
+		} 
 		
-		// Add to an empty list
-		if (this.front == null) {
-			this.front = new ListNode(ele);
-		}
-		// Add to the front of the list
+		// Add element to the front of the list
+		ListNode current = front;
 		if (idx == 0) {
-			ListNode newFront = new ListNode(ele);
-			newFront.next = this.front;
-			this.front = newFront;
-		// Add to the middle/end of the list
+			front = new ListNode(ele, front);
+		// Insert element into list
 		} else {
-			ListNode current = this.front;
+			current = front;
 			for (int i = 0; i < idx - 1; i++) {
 				current = current.next;
 			}
-			current.next = new ListNode(ele, current);
+			current.next = new ListNode(ele, current.next);
 		}
-		
+		size++;
 	}
 	
 	/**
@@ -86,6 +78,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @param idx the index of the element to remove.
 	 * @return ele the element that is remove.
 	 */
+	@Override
 	public E remove(int idx) {
 		if (idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Index is out of bounds.");
@@ -109,9 +102,15 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	}
 	
 	/**
-	 * 
+	 * Sets the element at the given index.
+	 * @param idx the index 
+	 * @param ele the element to set at the given index.
 	 */
+	@Override
 	public E set(int idx, E ele) {
+		if (idx < 0 || idx >= size()) {
+			throw new IndexOutOfBoundsException("Index is out of bounds.");
+		}
 		if (ele == null) {
 			throw new NullPointerException("Element is null.");
 		}
@@ -120,28 +119,36 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 				throw new IllegalArgumentException("Element is already in list.");
 			}
 		}
-		if (idx < 0 || idx >= size()) {
-			throw new IndexOutOfBoundsException("Index is out of bounds.");
-		}
-		
+
 		ListNode current = front;
 		for (int i = 0; i < idx - 1; i++) {
 			current = current.next;
 		}
-		current = new ListNode(ele, current);
+		current.next = new ListNode(ele, current);
 		return ele;
 		
 	}
 	
+	/**
+	 * Returns the size of the list.
+	 */
 	@Override
 	public int size() {
 		return size;
 	}
 
+	/**
+	 * Returns an element from the list at the given index.
+	 * @param idx the index of the element to return.
+	 * @throws IndexOutOfBoundsException if the index is out of bounds for the list.
+	 */
 	@Override
 	public E get(int idx) {
+		if (idx < 0 || idx >= size()) {
+			throw new IndexOutOfBoundsException("Index is out of bounds.");
+		}
 		ListNode current = front;
-		for (int i = 0; i < idx - 1; i++) {
+		for (int i = 0; i < idx; i++) {
 			current = current.next;
 		}
 		return current.data;
@@ -160,6 +167,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		 */
 		ListNode(E data) {
 			this.data = data;
+			this.next = null;
 		}
 		
 		/**
