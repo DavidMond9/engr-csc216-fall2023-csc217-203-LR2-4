@@ -32,7 +32,7 @@ public class ScheduleTest {
 	}
 	
 	/**
-	 * Test adding valid and invalids courses to the schedule.
+	 * Test adding valid and invalids courses to the schedule..
 	 */
 	@Test
 	public void testAddCourseToSchedule() {
