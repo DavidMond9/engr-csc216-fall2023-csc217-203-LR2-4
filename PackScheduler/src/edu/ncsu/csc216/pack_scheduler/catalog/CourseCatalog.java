@@ -55,6 +55,7 @@ public class CourseCatalog {
 	 * @param section section of the course
 	 * @param credits credits of the course
 	 * @param instructorId instructor ID of the course
+	 * @param enrollmentCap max number of students in a course
 	 * @param meetingDays meeting days of the course
 	 * @param startTime start time of the course
 	 * @param endTime end time of the course
