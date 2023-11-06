@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
 import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator;
 import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 
@@ -23,6 +24,10 @@ public class Course extends Activity implements Comparable<Course> {
     private static final int MIN_LENGTH = 4;
     /** Maximum course name length */
     private static final int MAX_LENGTH = 8;
+    
+    /** Keeps track of the Course's roll */
+    private CourseRoll roll;
+    
 //    /** Minimum course letter count */
 //    private static final int MIN_LETTER_COUNT = 1;
 //    /** Maximum course letter count */
@@ -81,7 +86,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @return String[] containing name, section, title, and meeting string
 	 */
 	public String[] getShortDisplayArray() {
-		return new String[] {name, section, getTitle(), getMeetingString()};
+		return new String[] {name, section, getTitle(), getMeetingString(), String.valueOf(getCourseRoll().getOpenSeats())};
 	}
 	
 	/**
@@ -114,6 +119,14 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	/**
+	 * returns the Course's roll
+	 * @return the Course roll
+	 */
+	public CourseRoll getCourseRoll() {
+		return this.roll;
 	}
 	
 	/**
@@ -309,7 +322,7 @@ public class Course extends Activity implements Comparable<Course> {
 	    if ("A".equals(getMeetingDays())) {
 	        return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getMeetingDays();
 	    }
-	    return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getMeetingDays() + "," + getStartTime() + "," + getEndTime(); 
+	    return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getCourseRoll() + "," + getMeetingDays() + "," + getStartTime() + "," + getEndTime(); 
 	}
 
 	/**
